@@ -1,0 +1,4 @@
+class RequestsController < ApplicationController
+  active_scaffold :request do |conf|
+  end
+end 

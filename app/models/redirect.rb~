@@ -1,0 +1,3 @@
+class Redirect < ActiveRecord::Base
+  attr_accessible :code, :default_redirect, :medium_id, :target_id
+end

@@ -1,0 +1,3 @@
+class Action < ActiveRecord::Base
+  attr_accessible :convertion_id, :redirect_id
+end
