@@ -1,4 +1,8 @@
 WebMarketing::Application.routes.draw do
+  resources :redirects do as_routes end
+
+  resources :redirects
+
   resources :targets do as_routes end
 
   resources :targets

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621022819) do
+ActiveRecord::Schema.define(:version => 20120621023306) do
 
   create_table "browsers", :force => true do |t|
     t.string   "uuid"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(:version => 20120621022819) do
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "redirects", :force => true do |t|
+    t.string   "code"
+    t.boolean  "default_redirect"
+    t.integer  "medium_id"
+    t.integer  "target_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "targets", :force => true do |t|
