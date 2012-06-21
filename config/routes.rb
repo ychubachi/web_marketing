@@ -1,4 +1,8 @@
 WebMarketing::Application.routes.draw do
+  resources :browsers do as_routes end
+
+  resources :browsers
+
   authenticated :user do
     root :to => 'home#index'
   end
