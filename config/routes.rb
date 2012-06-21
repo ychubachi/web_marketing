@@ -1,4 +1,12 @@
 WebMarketing::Application.routes.draw do
+  resources :targets do as_routes end
+
+  resources :targets
+
+  resources :media do as_routes end
+
+  resources :media
+
   resources :browsers do as_routes end
 
   resources :browsers
