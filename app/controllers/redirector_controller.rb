@@ -74,6 +74,6 @@ class RedirectorController < ApplicationController
     my_request.save
 
     # redicet
-    # redirect_to redirect_url
+    redirect_to redirect_url
   end
 end
