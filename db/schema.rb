@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621032751) do
+ActiveRecord::Schema.define(:version => 20120621051331) do
 
   create_table "actions", :force => true do |t|
     t.integer  "redirect_id"
@@ -41,19 +41,19 @@ ActiveRecord::Schema.define(:version => 20120621032751) do
 
   create_table "redirects", :force => true do |t|
     t.string   "code"
-    t.boolean  "default_redirect"
+    t.boolean  "is_default"
     t.integer  "medium_id"
     t.integer  "target_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "requests", :force => true do |t|
-    t.string   "referred"
-    t.string   "env"
+    t.string   "referrer"
     t.integer  "action_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "browser_id"
   end
 
   create_table "targets", :force => true do |t|

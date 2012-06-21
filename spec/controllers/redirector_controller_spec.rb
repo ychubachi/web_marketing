@@ -9,4 +9,11 @@ describe RedirectorController do
     end
   end
 
+  describe "GET 'redirect'" do
+    it "returns http success" do
+      get 'redirect'
+      response.should be_success
+    end
+  end
+
 end
