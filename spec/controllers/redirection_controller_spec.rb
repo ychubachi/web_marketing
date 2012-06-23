@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RedirectorController do
+describe RedirectionController do
 
   describe "GET 'index'" do
     it "returns http success" do
@@ -15,5 +15,4 @@ describe RedirectorController do
       response.should be_success
     end
   end
-
 end

@@ -1,15 +1,15 @@
-class RedirectorController < ApplicationController
+class RedirectionController < ApplicationController
   def initialize
     @default_redirect = 'http://aiit.ac.jp/'
   end
 
   def index
-    logger.info '### RedirectorControllor#index'
+    logger.info '### RedirectionControllor#index'
     do_redirect # defaulct redirect
   end
 
   def redirect
-    logger.info '### RedirectorControllor#redirect'
+    logger.info '### RedirectionControllor#redirect'
     code = params[:code]
     do_redirect code
   end
@@ -17,7 +17,7 @@ class RedirectorController < ApplicationController
   private
 
   def do_redirect(code = nil)
-    logger.info "### RedirectorController#do_redirect(id=#{code})"
+    logger.info "### RedirectionController#do_redirect(id=#{code})"
 
     # get browser uuid id from the cookies.
     uuid = cookies[:uuid]

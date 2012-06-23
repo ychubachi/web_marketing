@@ -1,8 +1,8 @@
 WebMarketing::Application.routes.draw do
-  get "redirector/index"
-  get "redirector/redirect"
-  match '/rd/:code' => 'redirector#redirect'
-  root to: "redirector#index"
+  get "redirection/index"
+  get "redirection/redirect"
+  match '/rd/:code' => 'redirection#redirect'
+  root to: "redirection#index"
 
   resources :requests do as_routes end
   resources :requests
