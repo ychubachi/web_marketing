@@ -1,4 +1,4 @@
-class Redirect < ActiveRecord::Base
+class Redirection < ActiveRecord::Base
   attr_accessible :code, :default_redirect, :medium_id, :target_id
   belongs_to :medium
   belongs_to :target

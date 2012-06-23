@@ -1,6 +1,6 @@
 class Action < ActiveRecord::Base
   attr_accessible :convertion_id, :redirect_id
-  belongs_to :redirect
+  belongs_to :redirection
   belongs_to :convertion
 
   def title

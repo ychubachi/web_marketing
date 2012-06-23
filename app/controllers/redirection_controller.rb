@@ -40,30 +40,30 @@ class RedirectionController < ApplicationController
       logger.info '### the browser already exists in DB.'
     end
       
-    # lookup redirect
-    redirect = nil
+    # lookup redirection
+    redirection = nil
     if code == nil then
       logger.info "### default redirection"
-      redirect = Redirect.where('is_default = :flag', {flag: true}).first
+      redirection = Redirection.where('is_default = :flag', {flag: true}).first
     else
       logger.info "### redirect code = #{code}"
-      redirect = Redirect.where('code = :code',{code: code}).first
+      redirection = Redirection.where('code = :code',{code: code}).first
     end
 
     # set url from redirect or use default.
     redirect_url = nil
-    if redirect then
-      logger.info "### redirect to #{redirect.title}"
-      redirect_url = redirect.target.url
+    if redirection then
+      logger.info "### redirection to #{redirection.title}"
+      redirect_url = redirection.target.url
     else
-      logger.info '### unknown redirect is specified. use default.'
+      logger.info '### unknown redirection is specified. use default.'
       redirect_url = @default_redirect
     end
-    logger.info "### redirect url is #{redirect_url}"
+    logger.info "### redirection url is #{redirect_url}"
 
     # save a new action
     action = Action.new
-    action.redirect = redirect
+    action.redirection = redirection
     action.save
 
     # save a new request.
