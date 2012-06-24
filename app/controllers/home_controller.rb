@@ -77,8 +77,8 @@ class HomeController < ApplicationController
     # save a new request.
     my_request = Request.new
     my_request.referrer = request.referer
-    my_request.browser = browser
     my_request.action = action
+    my_request.browser = browser
     my_request.save
 
     # redicet
@@ -86,31 +86,34 @@ class HomeController < ApplicationController
   end
 
   def do_page
-    browser = get_browser
-
-    title = params[:title]
-    logger.info 'title = ' + title.to_s
+    # find the page specified by url.
     referrer = request.referer
-    logger.info 'referrer = ' + referrer.to_s
-
+    logger.info '### referrer = ' + referrer.to_s
     page = Page.where('url = :url', {url: referrer}).first_or_initialize
     if page.new_record? then
       logger.info '### create a new page and save it'
       page.url = referrer
     end
+
+    # set a title to the page
+    title = params[:title]
+    logger.info '### title = ' + title.to_s
     page.title = title # keep page titles update.
     page.save
 
-    # save a new action
+    # get a new action
     action = Action.new
     action.page = page
     action.save
 
+    # get the browser
+    browser = get_browser
+
     # save a new request.
     my_request = Request.new
     my_request.referrer = request.referer
-    my_request.browser = browser
     my_request.action = action
+    my_request.browser = browser
     my_request.save
   end
 

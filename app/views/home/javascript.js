@@ -3,9 +3,7 @@ function sendPostRequest() {
     console.log('url : ' + url)
     
     body = JSON.stringify({
-	title: document.title,
-	URL: document.URL,
-	cookie: document.cookie
+	title: document.title
     });
 
     req = new XMLHttpRequest();
