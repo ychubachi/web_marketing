@@ -1,15 +1,15 @@
 class Action < ActiveRecord::Base
-  attr_accessible :convertion_id, :redirection_id
+  attr_accessible :redirection_id, :page_id
   belongs_to :redirection
-  belongs_to :convertion
+  belongs_to :page
 
   def title
     str = ""
     if redirection then
       str += "[RD]#{redirection.title} "
     end
-    if convertion then
-      str += "[CV]#{convertion.title} "
+    if page then
+      str += "[PV]#{page.title} "
     end
     return str
   end

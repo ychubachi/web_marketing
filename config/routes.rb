@@ -5,8 +5,6 @@ WebMarketing::Application.routes.draw do
   resources :requests
   resources :actions do as_routes end
   resources :actions
-  resources :convertions do as_routes end
-  resources :convertions
   resources :redirections do as_routes end
   resources :redirections
   resources :targets do as_routes end
