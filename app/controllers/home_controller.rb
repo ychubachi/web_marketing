@@ -20,7 +20,7 @@ class HomeController < ApplicationController
   def page
     logger.info '### HomeControllor#page'
     logger.info "request.method=#{request.method}"
-    if request.method == 'OPTION' then #OPTION
+    if request.method == 'OPTIONS' then #OPTION
       logger.info "Send Access-Controll headers"
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Allow-Method'] = '*'
