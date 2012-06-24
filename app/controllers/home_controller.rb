@@ -17,14 +17,12 @@ class HomeController < ApplicationController
   def javascript
     headers['Access-Control-Allow-Origin'] = '*' 
     headers['Access-Control-Allow-Method'] = '*'
-    headers['Access-Control-Allow-Headers'] = request.headers['Access-Control-Request-Headers']
+#    headers['Access-Control-Allow-Headers'] = request.headers['Access-Control-Request-Headers']
   end
 
   def page
     headers['Access-Control-Allow-Origin'] = '*' 
     headers['Access-Control-Allow-Method'] = '*'
-    headers['Access-Control-Allow-Headers'] = request.headers['Access-Control-Request-Headers']
-    logger.info "acrh=#{request.headers['Access-Control-Request-Headers']}"
 
     logger.info '### HomeControllor#page'
     do_page
