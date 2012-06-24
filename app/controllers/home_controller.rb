@@ -87,8 +87,8 @@ class HomeController < ApplicationController
 
   def do_page
     cookie = params['cookie']
-    uuid = cookie.split('=')
-    logger.info "uuid = #{uuid[1]}"
+    uuid = cookie.split('=')[1]
+    logger.info "uuid = #{uuid}"
 
     browser = get_browser(uuid)
 
