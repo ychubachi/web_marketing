@@ -26,9 +26,9 @@ class HomeController < ApplicationController
   end
 
   def page
-    request.headers.each do |key, value|
-      logger.info "key=#{key},value=#{value}"
-    end
+#    request.headers.each do |key, value|
+#      logger.info "key=#{key},value=#{value}"
+#    end
 
     headers['Access-Control-Allow-Origin'] = '*' 
     headers['Access-Control-Allow-Method'] = '*'
