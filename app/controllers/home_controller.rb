@@ -15,14 +15,26 @@ class HomeController < ApplicationController
   end
 
   def javascript
+    request.headers.each do |key, value|
+      if /Access/.match(key) then
+        logger.info "key=#{key},value=#{value}"
+      end
+    end
+
     headers['Access-Control-Allow-Origin'] = '*' 
     headers['Access-Control-Allow-Method'] = '*'
-#    headers['Access-Control-Allow-Headers'] = request.headers['Access-Control-Request-Headers']
   end
 
   def page
+    request.headers.each do |key, value|
+      if /Access/.match(key) then
+        logger.info "key=#{key},value=#{value}"
+      end
+    end
+
     headers['Access-Control-Allow-Origin'] = '*' 
     headers['Access-Control-Allow-Method'] = '*'
+    # headers['Access-Control-Allow-Headers'] = request.headers['Access-Control-Request-Headers']
 
     logger.info '### HomeControllor#page'
     do_page
