@@ -24,7 +24,7 @@ describe MediaController do
   # Medium. As you add validations to Medium, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {title: 'test title'}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -38,7 +38,7 @@ describe MediaController do
     it "assigns all media as @media" do
       medium = Medium.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:media).should eq([medium])
+      assigns(:records).should eq([medium])
     end
   end
 
@@ -46,14 +46,14 @@ describe MediaController do
     it "assigns the requested medium as @medium" do
       medium = Medium.create! valid_attributes
       get :show, {:id => medium.to_param}, valid_session
-      assigns(:medium).should eq(medium)
+      assigns(:record).should eq(medium)
     end
   end
 
   describe "GET new" do
     it "assigns a new medium as @medium" do
       get :new, {}, valid_session
-      assigns(:medium).should be_a_new(Medium)
+      assigns(:record).should be_a_new(Medium)
     end
   end
 
@@ -61,7 +61,7 @@ describe MediaController do
     it "assigns the requested medium as @medium" do
       medium = Medium.create! valid_attributes
       get :edit, {:id => medium.to_param}, valid_session
-      assigns(:medium).should eq(medium)
+      assigns(:record).should eq(medium)
     end
   end
 
@@ -69,18 +69,18 @@ describe MediaController do
     describe "with valid params" do
       it "creates a new Medium" do
         expect {
-          post :create, {:medium => valid_attributes}, valid_session
+          post :create, {:record => valid_attributes}, valid_session
         }.to change(Medium, :count).by(1)
       end
 
       it "assigns a newly created medium as @medium" do
-        post :create, {:medium => valid_attributes}, valid_session
-        assigns(:medium).should be_a(Medium)
-        assigns(:medium).should be_persisted
+        post :create, {:record => valid_attributes}, valid_session
+        assigns(:record).should be_a(Medium)
+        assigns(:record).should be_persisted
       end
 
       it "redirects to the created medium" do
-        post :create, {:medium => valid_attributes}, valid_session
+        post :create, {:record => valid_attributes}, valid_session
         response.should redirect_to(Medium.last)
       end
     end
@@ -89,14 +89,14 @@ describe MediaController do
       it "assigns a newly created but unsaved medium as @medium" do
         # Trigger the behavior that occurs when invalid params are submitted
         Medium.any_instance.stub(:save).and_return(false)
-        post :create, {:medium => {}}, valid_session
-        assigns(:medium).should be_a_new(Medium)
+        post :create, {:record => {}}, valid_session
+        assigns(:record).should be_a_new(Medium)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Medium.any_instance.stub(:save).and_return(false)
-        post :create, {:medium => {}}, valid_session
+        post :create, {:record => {}}, valid_session
         response.should render_template("new")
       end
     end
@@ -111,18 +111,18 @@ describe MediaController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Medium.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => medium.to_param, :medium => {'these' => 'params'}}, valid_session
+        put :update, {:id => medium.to_param, :record => {'these' => 'params'}}, valid_session
       end
 
       it "assigns the requested medium as @medium" do
         medium = Medium.create! valid_attributes
-        put :update, {:id => medium.to_param, :medium => valid_attributes}, valid_session
-        assigns(:medium).should eq(medium)
+        put :update, {:id => medium.to_param, :record => valid_attributes}, valid_session
+        assigns(:record).should eq(medium)
       end
 
       it "redirects to the medium" do
         medium = Medium.create! valid_attributes
-        put :update, {:id => medium.to_param, :medium => valid_attributes}, valid_session
+        put :update, {:id => medium.to_param, :record => valid_attributes}, valid_session
         response.should redirect_to(medium)
       end
     end
@@ -132,15 +132,15 @@ describe MediaController do
         medium = Medium.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Medium.any_instance.stub(:save).and_return(false)
-        put :update, {:id => medium.to_param, :medium => {}}, valid_session
-        assigns(:medium).should eq(medium)
+        put :update, {:id => medium.to_param, :record => {}}, valid_session
+        assigns(:record).should eq(medium)
       end
 
       it "re-renders the 'edit' template" do
         medium = Medium.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Medium.any_instance.stub(:save).and_return(false)
-        put :update, {:id => medium.to_param, :medium => {}}, valid_session
+        put :update, {:id => medium.to_param, :record => {}}, valid_session
         response.should render_template("edit")
       end
     end

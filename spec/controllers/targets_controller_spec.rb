@@ -24,7 +24,7 @@ describe TargetsController do
   # Target. As you add validations to Target, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {title: 'test target', url: 'http://www.some.domain/'}
   end
   
   # This should return the minimal set of values that should be in the session
