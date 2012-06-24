@@ -115,7 +115,7 @@ class HomeController < ApplicationController
     if browser.new_record?
       logger.info '### create a new browser and save it.'
       browser.uuid = uuid
-      browser.user_agent = request.user_agent
+      browser.user_agent = request.user_agent.to_s
       browser.save
     else
       logger.info '### the browser already exists in DB.'
