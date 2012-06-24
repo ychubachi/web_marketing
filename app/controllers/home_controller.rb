@@ -15,17 +15,12 @@ class HomeController < ApplicationController
   end
 
   def javascript
-    request.headers.each do |key, value|
-      if /Access/.match(key) then
-        logger.info "key=#{key},value=#{value}"
-      end
-    end
-
-    headers['Access-Control-Allow-Origin'] = '*' 
-    headers['Access-Control-Allow-Method'] = '*'
   end
 
   def page
+    logger.info '### HomeControllor#page'
+    logger.info "request.method=#{request.method}"
+
 #    request.headers.each do |key, value|
 #      logger.info "key=#{key},value=#{value}"
 #    end
@@ -34,7 +29,6 @@ class HomeController < ApplicationController
     headers['Access-Control-Allow-Method'] = '*'
     headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
 
-    logger.info '### HomeControllor#page'
     do_page
     respond_to do |format|
       format.json { render json: {result: 'ok'} }
