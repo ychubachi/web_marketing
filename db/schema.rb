@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120623172229) do
+ActiveRecord::Schema.define(:version => 20120624060332) do
 
   create_table "actions", :force => true do |t|
     t.integer  "redirect_id"
@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(:version => 20120623172229) do
   end
 
   create_table "media", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pages", :force => true do |t|
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -76,11 +82,5 @@ ActiveRecord::Schema.define(:version => 20120623172229) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "views", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
 end

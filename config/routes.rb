@@ -1,14 +1,16 @@
 WebMarketing::Application.routes.draw do
-  resources :views do as_routes end
-  resources :views
-  resources :submits do as_routes end  resources :requests do as_routes end
+  resources :pages do as_routes end
+
+  resources :pages
+
+  resources :requests do as_routes end
   resources :requests
   resources :actions do as_routes end
   resources :actions
   resources :convertions do as_routes end
   resources :convertions
-  resources :redirects do as_routes end
-  resources :redirects
+  resources :redirections do as_routes end
+  resources :redirections
   resources :targets do as_routes end
   resources :targets
   resources :media do as_routes end
