@@ -1,10 +1,6 @@
 WebMarketing::Application.routes.draw do
-  get "view/index"
-
   resources :views do as_routes end
-
   resources :views
-
   resources :submits do as_routes end
   resources :submits
   resources :requests do as_routes end
@@ -27,6 +23,9 @@ WebMarketing::Application.routes.draw do
   match '/rd/:code' => 'redirection#redirect'
   root to: "redirection#index"
 
+  get "view/index"
+
+  #
   get 'home/index'
   authenticated :user do
     root :to => 'home#index'
