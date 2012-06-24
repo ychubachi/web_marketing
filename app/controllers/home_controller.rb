@@ -32,7 +32,7 @@ class HomeController < ApplicationController
 
     headers['Access-Control-Allow-Origin'] = '*' 
     headers['Access-Control-Allow-Method'] = '*'
-    # headers['Access-Control-Allow-Headers'] = request.headers['Access-Control-Request-Headers']
+    headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
 
     logger.info '### HomeControllor#page'
     do_page
