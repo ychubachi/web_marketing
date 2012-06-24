@@ -22,6 +22,8 @@ class HomeController < ApplicationController
   def page
     headers['Access-Control-Allow-Origin'] = '*' 
     headers['Access-Control-Allow-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = request.headers['Access-Control-Request-Headers']
+    logger.info "acrh=#{request.headers['Access-Control-Request-Headers']}"
 
     logger.info '### HomeControllor#page'
     do_page
@@ -113,9 +115,9 @@ class HomeController < ApplicationController
     if uuid.to_s == '' then
       uuid = UUIDTools::UUID.random_create.to_s
       cookies[:uuid] = { value: uuid, expires: 365.days.from_now }
-      logger.info '### new browser. uuid=#{uuid}'
+      logger.info "### new browser. uuid=#{uuid}"
     else
-      logger.info '### repeated browser. uuid=#{uuid}'
+      logger.info "### repeated browser. uuid=#{uuid}"
     end
 
     # lookup the browser from DB
