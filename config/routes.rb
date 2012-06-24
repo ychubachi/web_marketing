@@ -18,9 +18,11 @@ WebMarketing::Application.routes.draw do
   get  'home/admin'
   get  'home/redirect'
   post 'home/page'
+  get  'home/javascript'
 
   match '/rd/:code' => 'home#redirect'
   match '/pv'      => 'home#page'
+  match '/js'      => 'home#javascript'
   match '/admin/'   => 'home#admin'
 
   root to: "home#index"

@@ -14,6 +14,11 @@ class HomeController < ApplicationController
     do_redirect code
   end
 
+  def javascript
+    headers['Access-Control-Allow-Origin'] = '*' 
+    headers['Access-Control-Request-Method'] = '*'
+  end
+
   def page
     logger.info '### HomeControllor#page'
     do_page
