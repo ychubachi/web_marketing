@@ -71,10 +71,32 @@ class HomeController < ApplicationController
   end
 
   def do_page
+    browser = get_browser()
+
     title = params[:title]
     logger.info 'title = ' + title
+    referrer = request.referer
+    logger.info 'referrer = ' + referrer
 
-    browser = get_browser()
+    page = Page.where('url = :url', {url: referrer}).first_or_initialize
+    if page.new_record? then
+      logger.info '### create a new page and save it'
+      page.url = referrer
+    end
+    page.title = title # keep page titles update.
+    page.save
+
+    # save a new action
+    action = Action.new
+    action.page = page
+    action.save
+
+    # save a new request.
+    my_request = Request.new
+    my_request.referrer = request.referer
+    my_request.browser = browser
+    my_request.action = action
+    my_request.save
   end
 
   def get_browser
