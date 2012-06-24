@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624060332) do
+ActiveRecord::Schema.define(:version => 20120624070042) do
 
   create_table "actions", :force => true do |t|
-    t.integer  "redirect_id"
+    t.integer  "redirection_id"
     t.integer  "convertion_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "browsers", :force => true do |t|

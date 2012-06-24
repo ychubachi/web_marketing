@@ -1,5 +1,5 @@
 class Redirection < ActiveRecord::Base
-  attr_accessible :code, :default_redirect, :medium_id, :target_id
+  attr_accessible :code, :is_default, :medium_id, :target_id
   belongs_to :medium
   belongs_to :target
 
