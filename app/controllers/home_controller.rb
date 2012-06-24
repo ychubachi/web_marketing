@@ -25,7 +25,7 @@ class HomeController < ApplicationController
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Allow-Method'] = '*'
       headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
-      render {nothing: true};
+      render nothing: true
     else # POST
       headers['Access-Control-Allow-Origin'] = '*' 
       do_page
