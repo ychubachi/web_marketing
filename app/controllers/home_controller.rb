@@ -86,6 +86,7 @@ class HomeController < ApplicationController
   end
 
   def do_page
+    logger.info "cookies['uuid']=#{cookies['uuid']}"
     cookie = params['cookie']
     uuid = cookie.split('=')[1]
     logger.info "uuid = #{uuid}"
