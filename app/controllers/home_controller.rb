@@ -86,7 +86,11 @@ class HomeController < ApplicationController
   end
 
   def do_page
-    browser = get_browser()
+    cookie = params['cookie']
+    uuid = cookie.split('=')
+    logger.info "uuid = #{uuid[1]}"
+
+    browser = get_browser(uuid)
 
     title = params[:title]
     logger.info 'title = ' + title.to_s
@@ -114,9 +118,11 @@ class HomeController < ApplicationController
     my_request.save
   end
 
-  def get_browser
-    # get browser's uuid from the cookies.
-    uuid = cookies[:uuid]
+  def get_browser(uuid = nil)
+    if uuid == nil then
+      # get browser's uuid from the cookies.
+      uuid = cookies[:uuid]
+    end
     if uuid.to_s == '' then
       uuid = UUIDTools::UUID.random_create.to_s
       cookies[:uuid] = { value: uuid, expires: 365.days.from_now }
