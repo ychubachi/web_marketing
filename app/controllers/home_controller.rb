@@ -19,14 +19,15 @@ class HomeController < ApplicationController
 
   def page
     logger.info '### HomeControllor#page'
-    logger.info "request.method=#{request.method}"
+    logger.info "### request.method=#{request.method}"
     if request.method == 'OPTIONS' then #OPTION
-      logger.info "Send Access-Controll headers"
+      logger.info "### Process Access-Controll headers"
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Allow-Method'] = '*'
       headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
       render nothing: true
     else # POST
+      logger.info "### Process contents."
       headers['Access-Control-Allow-Origin'] = '*' 
       do_page
       respond_to do |format|
