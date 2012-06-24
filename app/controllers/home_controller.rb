@@ -17,29 +17,24 @@ class HomeController < ApplicationController
   def javascript
   end
 
+  #see: https://developer.mozilla.org/en/http_access_control#Access-Control-Allow-Headers
   def page
     logger.info '### HomeControllor#page'
-    logger.info "### request.method=#{request.method}"
+
     if request.method == 'OPTIONS' then #OPTION
-      logger.info "### Process Access-Controll headers"
+      logger.info "### Return Access-Controll headers"
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Allow-Method'] = '*'
       headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
       render nothing: true
     else # POST
-      logger.info "### Process contents."
+      logger.info "### Process actual request."
       headers['Access-Control-Allow-Origin'] = '*' 
       do_page
       respond_to do |format|
         format.json { render json: {result: 'ok'} }
       end
     end
-
-#    request.headers.each do |key, value|
-#      logger.info "key=#{key},value=#{value}"
-#    end
-
-
   end
 
   def admin
