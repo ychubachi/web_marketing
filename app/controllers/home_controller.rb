@@ -27,9 +27,7 @@ class HomeController < ApplicationController
 
   def page
     request.headers.each do |key, value|
-      if /Access/.match(key) then
-        logger.info "key=#{key},value=#{value}"
-      end
+      logger.info "key=#{key},value=#{value}"
     end
 
     headers['Access-Control-Allow-Origin'] = '*' 
