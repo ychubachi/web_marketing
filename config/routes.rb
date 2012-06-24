@@ -1,9 +1,7 @@
 WebMarketing::Application.routes.draw do
   resources :views do as_routes end
   resources :views
-  resources :submits do as_routes end
-  resources :submits
-  resources :requests do as_routes end
+  resources :submits do as_routes end  resources :requests do as_routes end
   resources :requests
   resources :actions do as_routes end
   resources :actions
