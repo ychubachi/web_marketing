@@ -1,49 +1,33 @@
 <html>
 <head>
 <title>サンプル</title>
-</head>
-<body>
 <script type="text/javascript">
 <!--
-function sendPostRequest(url, body) {
+function sendPostRequest() {
+  url = 'http://localhost:3000/home/page';
+  body = JSON.stringify({
+    title: document.title,
+    URL: document.URL,
+    cookie: document.cookie
+  });
+
   req = new XMLHttpRequest();
   req.open("POST", url, false);
   req.setRequestHeader('Content-Type', 'application/json');
   req.setRequestHeader('Accept', 'application/json');
+
   req.send(body);
   return req;
 }
 
-url = 'http://localhost:3000/views/';
-var body = JSON.stringify({
-  record: {title: 'REST API TEST'}
-});
-request = sendPostRequest(url, body);
+request = sendPostRequest();
 console.log('status code : ' + request.status); //成功時、201
 console.log('response text : ' + request.responseText);
-//result = JSON.parse(request.responseText);
-//console.log result
-
-document.write("<ol>")
-document.write("<li>")
-document.write(document.cookie);
-document.write("<li>")
-document.write(document.title);
-document.write("<li>")
-document.write(document.URL);
-document.write("<li>")
-document.write(navigator.appCodeName);
-document.write("<li>")
-document.write('appName' + navigator.appName);
-document.write("<li>")
-document.write(navigator.appVersion);
-document.write("<li>")
-document.write(navigator.platform);
-document.write("</ol>")
-
-document.write(JSON.stringify({ Name: 'REST API TEST' }))
 // -->
 </script>
+</head>
+<body>
+  こんにちは
 </body>
 </html>
 

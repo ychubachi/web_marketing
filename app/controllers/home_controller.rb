@@ -14,8 +14,18 @@ class HomeController < ApplicationController
     do_redirect code
   end
 
+  def page
+    logger.info '### HomeControllor#page'
+    do_page
+    respond_to do |format|
+      format.json { render json: {result: 'ok'} }
+    end
+  end
+
   def admin
-    @users = User.all
+    respond_to do |format|
+      format.html { render layout: 'application' }
+    end
   end
 
   private
@@ -23,29 +33,9 @@ class HomeController < ApplicationController
   def do_redirect(code = nil)
     logger.info "### HomeController#do_redirect(id=#{code})"
 
-    # get browser uuid id from the cookies.
-    uuid = cookies[:uuid]
-    if uuid.to_s == '' then
-      uuid = UUIDTools::UUID.random_create.to_s
-      cookies[:uuid] = { value: uuid, expires: 365.days.from_now }
-      logger.info '### new browser. uuid=#{uuid}'
-    else
-      logger.info '### repeated browser. uuid=#{uuid}'
-    end
+    browser = get_browser()
 
-    # lookup the browser from DB
-    browser = Browser.where('uuid = :uuid', {uuid: uuid}).first_or_initialize
-    if browser.new_record?
-      logger.info '### create a new browser and save it.'
-      browser.uuid = uuid
-      browser.user_agent = request.user_agent
-      browser.save
-    else
-      logger.info '### the browser already exists in DB.'
-    end
-      
     # lookup redirection
-    redirection = nil
     if code == nil then
       logger.info "### default redirection"
       redirection = Redirection.where('is_default = :flag', {flag: true}).first
@@ -55,7 +45,6 @@ class HomeController < ApplicationController
     end
 
     # set url from redirect or use default.
-    redirect_url = nil
     if redirection then
       logger.info "### redirection to #{redirection.title}"
       redirect_url = redirection.target.url
@@ -79,5 +68,36 @@ class HomeController < ApplicationController
 
     # redicet
     redirect_to redirect_url
+  end
+
+  def do_page
+    title = params[:title]
+    logger.info 'title = ' + title
+
+    browser = get_browser()
+  end
+
+  def get_browser
+    # get browser's uuid from the cookies.
+    uuid = cookies[:uuid]
+    if uuid.to_s == '' then
+      uuid = UUIDTools::UUID.random_create.to_s
+      cookies[:uuid] = { value: uuid, expires: 365.days.from_now }
+      logger.info '### new browser. uuid=#{uuid}'
+    else
+      logger.info '### repeated browser. uuid=#{uuid}'
+    end
+
+    # lookup the browser from DB
+    browser = Browser.where('uuid = :uuid', {uuid: uuid}).first_or_initialize
+    if browser.new_record?
+      logger.info '### create a new browser and save it.'
+      browser.uuid = uuid
+      browser.user_agent = request.user_agent
+      browser.save
+    else
+      logger.info '### the browser already exists in DB.'
+    end
+    return browser
   end
 end

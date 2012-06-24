@@ -14,10 +14,12 @@ WebMarketing::Application.routes.draw do
   resources :browsers do as_routes end
   resources :browsers
 
-  get 'home/index'
-  get "home/redirect"
-  get 'home/admin'
+  get  'home/index'
+  get  'home/admin'
+  get  'home/redirect'
+  post 'home/page'
   match '/rd/:code' => 'home#redirect'
+  match '/pv/'      => 'home#page'
   match '/admin/'   => 'home#admin'
   root to: "home#index"
 
