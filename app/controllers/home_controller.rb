@@ -16,10 +16,13 @@ class HomeController < ApplicationController
 
   def javascript
     headers['Access-Control-Allow-Origin'] = '*' 
-    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Method'] = '*'
   end
 
   def page
+    headers['Access-Control-Allow-Origin'] = '*' 
+    headers['Access-Control-Allow-Method'] = '*'
+
     logger.info '### HomeControllor#page'
     do_page
     respond_to do |format|
