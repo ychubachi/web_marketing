@@ -74,9 +74,9 @@ class HomeController < ApplicationController
     browser = get_browser()
 
     title = params[:title]
-    logger.info 'title = ' + title
+    logger.info 'title = ' + title.to_s
     referrer = request.referer
-    logger.info 'referrer = ' + referrer
+    logger.info 'referrer = ' + referrer.to_s
 
     page = Page.where('url = :url', {url: referrer}).first_or_initialize
     if page.new_record? then
