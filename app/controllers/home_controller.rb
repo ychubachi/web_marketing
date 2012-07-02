@@ -15,19 +15,23 @@ class HomeController < ApplicationController
   end
 
   def javascript
+    logger.info '### HomeControllor#javascript'
+    get_browser() # create a new uuid
   end
 
   #see: https://developer.mozilla.org/en/http_access_control#Access-Control-Allow-Headers
   def page
     logger.info '### HomeControllor#page'
 
-    if request.method == 'OPTIONS' then #OPTION
+    if request.method == 'OPTIONS' then
+      # OPTION
       logger.info "### Return Access-Controll headers"
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Allow-Method'] = '*'
       headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
       render nothing: true
-    else # POST
+    else
+      # POST
       logger.info "### Process actual request."
       headers['Access-Control-Allow-Origin'] = '*' 
       do_page
