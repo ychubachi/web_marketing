@@ -4,7 +4,7 @@ ActiveScaffold.set_defaults do |config|
   config.action_links.add 'index', controller: 'pages', label: 'Pages', page: true
   config.action_links.add 'index', controller: 'targets', label: 'Targets', page: true
   config.action_links.add 'index', controller: 'media', label: 'Media', page: true
-  config.action_links.add 'index', controller: 'redirections', label: 'Redirectionss', page: true
+  config.action_links.add 'index', controller: 'redirections', label: 'Redirections', page: true
   config.action_links.add 'index', controller: 'actions', label: 'Actions', page: true
   config.action_links.add 'index', controller: 'requests', label: 'Requests', page: true
   config.action_links.add 'index', controller: 'browsers', label: 'Browsers', page: true
