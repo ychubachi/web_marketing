@@ -20,6 +20,7 @@ class HomeController < ApplicationController
   end
 
   #see: https://developer.mozilla.org/en/http_access_control#Access-Control-Allow-Headers
+  #https://developer.mozilla.org/En/Server-Side_Access_Control
   def page
     logger.info '### HomeControllor#page'
 
@@ -28,7 +29,7 @@ class HomeController < ApplicationController
       logger.info "### Return Access-Controll headers"
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Allow-Method'] = '*'
-      headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept, cookie'
+      headers['Access-Control-Allow-Headers'] = '*'
       render nothing: true
     else
       # POST
