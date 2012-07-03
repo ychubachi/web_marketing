@@ -16,6 +16,7 @@ class HomeController < ApplicationController
 
   def javascript
     logger.info '### HomeControllor#javascript'
+    logger.info "### Cookie=#{request.headers['Cookie']}"
     get_browser() # create a new uuid
   end
 
