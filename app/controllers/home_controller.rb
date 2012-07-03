@@ -131,10 +131,10 @@ class HomeController < ApplicationController
 
   def get_browser
     # get browser's uuid from the cookies.
-    uuid = cookies[:uuid]
+    uuid = cookies[:web_marketing_uuid]
     if uuid.to_s == '' then
       uuid = UUIDTools::UUID.random_create.to_s
-      cookies[:uuid] = { value: uuid, expires: 365.days.from_now }
+      cookies[:web_marketing_uuid] = { value: uuid, expires: 365.days.from_now }
       logger.info "### new browser. uuid=#{uuid}"
     else
       logger.info "### repeated browser. uuid=#{uuid}"
