@@ -36,6 +36,7 @@ class HomeController < ApplicationController
       headers['Access-Control-Allow-Origin'] = request.headers['Origin']
       headers['Access-Control-Allow-Method'] = 'POST'
       headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept, cookie'
+      headers['Access-Control-Allow-Credentials'] = 'true'
       render nothing: true
     else
       # POST
