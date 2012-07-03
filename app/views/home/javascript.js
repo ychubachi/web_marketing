@@ -1,5 +1,5 @@
 function sendPostRequest() {
-    console.log('cookie : ' + document.cookie);
+    alert('cookie : ' + document.cookie);
 
     uuid = "";
     key = "web_marketing_uuid=";
