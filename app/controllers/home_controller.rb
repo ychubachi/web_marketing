@@ -25,18 +25,19 @@ class HomeController < ApplicationController
   def page
     logger.info '### HomeControllor#page'
 
+    # for cookies.
+    headers['Access-Control-Allow-Origin'] = request.headers['Origin']
+    headers['Access-Control-Allow-Credentials'] = 'true'
+
     if request.method == 'OPTIONS' then
       # OPTION
       logger.info "### OPTION: Request headers"
       logger.info "### Orign=#{request.headers['Origin']}"
       logger.info "### Access-Control-Request-Method=#{request.headers['Access-Control-Request-Method']}"
       logger.info "### Access-Control-Request-Headers=#{request.headers['Access-Control-Request-Headers']}"
-      logger.info "### Cookie=#{request.headers['Cookie']}"
       logger.info "### Return Access-Controll headers"
-      headers['Access-Control-Allow-Origin'] = request.headers['Origin']
       headers['Access-Control-Allow-Method'] = 'POST'
-      headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept, cookie'
-      headers['Access-Control-Allow-Credentials'] = 'true'
+      headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
       render nothing: true
     else
       # POST
