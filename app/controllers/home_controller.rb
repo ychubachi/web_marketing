@@ -25,7 +25,7 @@ class HomeController < ApplicationController
   def page
     logger.info '### HomeControllor#page'
 
-    # for cookies.
+    # for cookie credentials.
     headers['Access-Control-Allow-Origin'] = request.headers['Origin']
     headers['Access-Control-Allow-Credentials'] = 'true'
 

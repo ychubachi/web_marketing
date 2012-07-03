@@ -1,6 +1,4 @@
 function sendPostRequest() {
-    alert('cookie : ' + document.cookie);
-
     uuid = "";
     key = "web_marketing_uuid=";
     i = 0;
