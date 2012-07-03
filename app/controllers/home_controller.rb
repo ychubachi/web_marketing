@@ -43,7 +43,7 @@ class HomeController < ApplicationController
       logger.info "### POST: Request headrs"
       logger.info "### Cookie=#{request.headers['Cookie']}"
       logger.info "### Process actual request."
-      headers['Access-Control-Allow-Origin'] = '*' 
+      headers['Access-Control-Allow-Origin'] = request.headers['Origin']
       do_page
       respond_to do |format|
         format.json { render json: {result: 'ok'} }
