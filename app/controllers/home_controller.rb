@@ -33,7 +33,7 @@ class HomeController < ApplicationController
       logger.info "### Access-Control-Request-Headers=#{request.headers['Access-Control-Request-Headers']}"
       logger.info "### Cookie=#{request.headers['Cookie']}"
       logger.info "### Return Access-Controll headers"
-      headers['Access-Control-Allow-Origin'] = '*' 
+      headers['Access-Control-Allow-Origin'] = request.headers['Origin']
       headers['Access-Control-Allow-Method'] = 'POST'
       headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept, cookie'
       render nothing: true
