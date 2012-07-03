@@ -1,0 +1,210 @@
+@charset "utf-8"
+@import "compass"
+@import "compass/reset"
+@import "compass/css3/border-radius"
+@import "compass/utilities/general/clearfix"
+
+$text:   #2e2e2e
+$orange: #EB6321
+$green:  #63CF1D
+$blue:   #1F5D99
+$brown:  darken($orange, 30%)
+$green_light: lighten($green, 40%)
+
+/* colors */
+$link-color:         $blue
+$link-hover-color:   $orange
+$link-focus-color:   false
+$link-active-color:  false
+$link-visited-color: false
+
+/* 解像度 < 480 の端末用 (iPod touch 縦) */
+body
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
+  line-height: 1.5em
+  color: $text
+  background: pink
+  margin-left: auto
+  margin-right: auto
+  width: 95%
+
+header
+  background: $brown
+  @include clearfix
+  #banner
+    padding-top: 1em
+    padding-bottom: 1em
+    color: $orange
+    text-align: center
+    h1
+      font-weight: bold
+      font-size: 1.7em
+      margin-top: 0.5em
+      margin-bottom: 0.7em
+      
+    h2
+      font-weight: bold
+      font-size: 1.6em
+  nav
+    a
+      display: block
+      padding: 0.4em
+      @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color)
+      text-decoration: none
+      color: white
+      background: $green
+      border-style: dotted
+      border-width: 1px
+      border-color: $brown
+
+section
+  margin-top: 1em
+  margin-bottom: 1em
+  padding: 0.5em
+  background: $green_light
+  @include clearfix
+  @include border-radius(10px, 10px)
+  h3
+    margin-left: 0.2em
+    margin-top: 0.4em
+    margin-bottom: 0.4em
+    font-size: 1.4em
+    font-weight: bold
+    color: $orange
+  p
+    margin-top: 0.5em
+    font-size: 1.0em
+    text-indent: 1.0em
+  a.request
+    clear: both
+    float: right
+    margin-top: 0.2em
+    font-size: 0.8em
+  figure
+    margin-top: 0.5em
+    margin-bottom: 0.5em
+    text-align: center
+
+table#fee, table#time_table
+  margin-top: 0.5em
+  margin-left: auto
+  margin-right: auto
+  font-size: 1.0em
+  th, td
+    border: 2px solid $green
+    padding: 0.3em
+    text-align: center
+
+#map
+  margin-left: 2.5em
+  margin-right: 2.5em
+  margin-top: 0.5em
+  margin-bottom: 0.5em
+  text-align: center
+  iframe
+    width: 100%
+    max-width: 100%
+    height: 300px
+    max-height: 300px
+
+#access
+  font-size: 0.75em
+  line-height: 1.5em
+
+form
+  margin-top: 0.5em
+  margin-bottom: 0.5em
+  padding-top: 0.5em
+  padding-bottom: 0.5em
+  background: $green
+  color: white
+  table
+    width: 100%
+    tr
+      th
+        width: 25%
+        text-align: right
+        padding-top: 0.3em
+        padding-right: 0.3em
+      td
+        padding-top: 0.3em
+        #family_name
+          width: 35%
+        #given_name
+          width: 35%
+        #email
+          width: 90%
+        #postal
+          width: 90%
+        #address
+          width: 90%
+        #comment
+          width: 90%
+        #submit
+          padding-bottom: 0.2em
+          padding-top: 0.3em
+          style: none
+          font-size: 1.2em
+          font-weight: bold
+          color: $green
+          background: white
+          width: 60%
+          /* border: 2px solid lighten(#000, 60%) */
+          border: 3px solid darken($green, 10%)
+          @include border-radius(15px, 15px)
+
+section#links
+  a
+    text-decoration: none
+
+.sizecheck
+  clear: both
+  padding: 1em
+  background: red
+  text-align: center
+
+/* 解像度 481-767 の端末用 (iPod touch 横) */
+@media only screen and (min-width: 480px)
+  .sizecheck
+    background: green
+  #banner
+    float: left
+    width: 75%
+  nav
+    float: left
+    width: 25%
+  article
+    h3
+      clear: both
+  article, aside    
+    figure
+      img
+        float: right
+        padding-left: 0.5em
+        padding-bottom: 0.5em
+
+/* 解像度 768-959 の端末用 (iPad 縦) */
+@media only screen and (min-width: 767px)
+  .sizecheck
+    background: yellow
+  article
+    float: left
+    width: 59%
+    margin-right: 2%
+  aside
+    float: left
+    width: 39%
+  footer
+    clear: both
+  #map
+    margin-left: 1em
+    margin-right: 1em
+
+/* 解像度 960以上 の端末用 (PC, iPad 横) */
+@media only screen and (min-width: 959px)
+  .sizecheck
+    background: white
+  body
+    width: 960px
+
+

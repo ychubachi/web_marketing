@@ -1,0 +1,27 @@
+!!!
+/[if lt IE 7]
+  <html class="ie6 oldie">
+/[if IE 7]
+  <html class="ie7 oldie">
+/[if IE 8]
+  <html class="ie8 oldie">
+/[if IE 9]
+  <html class="ie9 oldie">
+<!-- [if (gt IE 9)|!(IE)]> <!-->
+%html{class: "", lang: "ja"}
+  <!--<![endif]-->
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %title= content_for?(:title) ? yield(:title) : "Web Marketing"
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    = stylesheet_link_tag    "landing/application", :media => "all"
+    = javascript_include_tag "landing/application"
+    /[if lt IE 9]
+      <script src="/assets/html5shiv.js?body=1"></script>
+    = csrf_meta_tags
+    = yield(:head)
+  %body
+    = yield

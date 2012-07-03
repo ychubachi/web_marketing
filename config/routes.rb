@@ -1,4 +1,8 @@
 WebMarketing::Application.routes.draw do
+  namespace :landing do
+    get "page/index"
+  end
+
   get  'home/index'
   get  'home/admin'
   get  'home/redirect'

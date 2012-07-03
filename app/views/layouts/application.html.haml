@@ -7,8 +7,10 @@
     %title= content_for?(:title) ? yield(:title) : "Web Marketing"
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag    "admin/application", :media => "all"
+    = javascript_include_tag "admin/application"
+    /[if lt IE 9]
+      <script src="/assets/html5shiv.js?body=1"></script>
     = csrf_meta_tags
     = yield(:head)
   %body

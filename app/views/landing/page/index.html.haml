@@ -1,0 +1,251 @@
+- content_for :title do
+  AIIT: Landing Page
+  
+- content_for :head do
+  %link{:href => "/assets/landing/favicon.ico", :rel => "shortcut icon", :type => "image/vnd.microsoft.icon"}/
+  %link{:href => "/assets/landing/favicon.ico", :rel => "icon", :type => "image/vnd.microsoft.icon"}/
+  :javascript
+    (function() {
+      var wm = document.createElement('script');
+      wm.type = 'text/javascript';
+      wm.async = true;
+      wm.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//pr.aiit.ac.jp/js.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wm, s);
+    })();
+
+.sizecheck
+  SIZE CHEK [red: < 480, green: < 768, yellow: < 960, white: higher]
+%a{href: 'http://aiit.ac.jp/', target: '_blank'} Jump to AIIT Website
+%header
+  #banner
+    = image_tag 'landing/campus_night.png'
+    %h1 Advanced Institute of Industrial Technology
+    %h2 産業技術大学院大学
+  %nav
+    %ul
+      %li
+        %a{href: '#about'} AIITのご紹介
+      %li
+        %a{href: '#curriculum'} カリキュラム
+      %li
+        %a{href: '#isa'} 情報アーキテクチャ専攻
+      %li
+        %a{href: '#ide'} 創造技術専攻
+      %li
+        %a{href: '#chouki_rishuu'} 長期履修制度
+      %li
+        %a{href: '#aiit_credit_bank'} AIIT単位バンク
+%article
+  %section
+    %h3 AIITのご紹介
+    %figure
+      = image_tag 'landing/shutodaigaku.fw.png'
+    %p AIITは品川シーサイドエリアに立地する、東京都が設置した公立大学です。H18(2006)年に開学した、学部を持たない大学院のみの、まだ新しい専門職大学院です。
+    %p 他の大学院と大きく異なり、研究能力の向上ではなく仕事で実際に役に立つ業務遂行能力を身につけることを主眼としたカリキュラムを用意しています。
+    %p 情報アーキテクチャ専攻と創造技術専攻の2つの専攻からなり、グローバルに通用するレベルのスキルを備え、実社会で活躍できる高度なプロフェッショナルを育成することをミッションとしています。
+    %p また、社会人が働きながら学べるよう、平日の夜間と土曜日のみの通学でも2年間で専門職収支の学位が取得できます。更に、長期履修制度・科目等履修制度などの各種の学習支援体制を整えています。
+    %a.request{href: '#request'} 資料請求
+
+  %section
+    %h3 講義とPBLを柱としたカリキュラム
+    %a{name: 'curriculum'}
+    %p カリキュラムの大きな特色は講義とPBL（Project Based Learning）を2本の柱としていることです。講義は主に1年次に履修する科目で、スクール形式の授業やグループワーク形式の演習などがあります。
+    %p PBLは実践的なテーマに基づきチームでプロジェクトを遂行することによって、徹底的に業務遂行能力を身につける演習形式の授業です。従来の大学院修士課程では修士論文を完成させることが修了の要件となりますが、AIITではPBL科目を履修して単位を取得することが必須です。
+    %a.request{href: '#request'} 資料請求
+
+  %section
+    %a{name: 'isa'} 
+    %h3 情報アーキテクチャ専攻
+    %p 情報システムに関連する様々な業務を円滑に進めるためのメソドロジーや、日々めまぐるしく成長するテクノロジーに即応できる高度な人材が必要とされています。単に最先端の技術動向をウォッチするだけではなく、本質的に重要な知識を体系的に学ぶことこそ、情報システムのアーキテクトに求められる重要な資質と言えるでしょう。
+    %p 企業の CIO やコンサルタント、プロジェクトのマネージャー、ソフトウェアやインフラストラクチャーの高度な専門技術者などを育成する、確かなカリキュラムを用意しています。
+    %p この専攻を修了することで「情報システム学修士（専門職）」の学位が取得できます。
+    %a.request{href: '#request'} 資料請求
+
+  %section
+    %a{name: 'ide'} 
+    %h3 創造技術専攻
+    %p 創造技術専攻では、感性デザイン領域と工学領域を融合した教育でイノベーション人材を育成します。インダストリアル・デザインや、マーケティング、企画、開発など、日本が誇るものづくりの実践的手法を体系的に学びたい方に向けたカリキュラムを提供しています。
+    %p 専攻では大学でデザインやエンジニアリングを学んだ後、更に実践力を伸ばすために進学した学生も在籍しており、若い力と共にプロジェクトを遂行できることも特徴です。
+    %p この専攻を修了することで「創造技術修士（専門職）」の学位が取得できます。
+    %a.request{href: '#request'} 資料請求
+
+  %section
+    %a{name: 'chouki_rishuu'} 
+    %h3 長期履修制度
+    %figure
+      = image_tag 'landing/chouki_rishuu.fw.png', {width: '200px'}
+    %p 『仕事と両立させながら2年間通学して学位を取得するのは難しいかもしれない。』『せっかく入学するのだからじっくりと学修する時間をとりたい。』
+    %p
+      このような要望にお応えするため、AIITには「長期履修制度」があります。2年間で修了する場合と同じ学費で、より長い期間で授業を履修することができます。
+    %p
+      図の中央にある赤い矢印が、長期履修制度を利用した場合の例です。通常、1年間で学習する講義を2年間かけて履修することになりますので、その分余裕をもって授業に出席できるようになります。
+    %p
+      なお、10月入学の場合は、図の右側にある赤い矢印で示すとおり、全体で2年半となる長期履修制度を利用します。
+    %a.request{href: '#request'} 資料請求
+
+  %section
+    %a{name: 'aiit_credit_bank'} 
+    %h3 AIIT単位バンク
+    %figure
+      = image_tag 'landing/kamokutou_rishuu.fw.png'
+    %p 『今すぐ入学するのは難しいけれど、いくつか履修してみたい科目がある。』『4月入学が決まったけれども、入学前に講義を受けておきたい』
+    %p このような方におすすめするのが「AIIT単位バンク」です。これは、入学前に取得した単位を単位バンクにためておいて、入学後にそれを引き出すことができる制度です。
+    %p このとき、授業料も返還されるので、科目を履修するために支払った学費が無駄になることがありません。
+    %p この制度を活用し、まずは興味のある科目を選択して単位を取得しておくことで、入学後に余裕を持って学修をすることができます。
+    %a.request{href: '#request'} 資料請求
+%aside
+  %section
+    %h3 附属図書館のご案内
+    %figure
+      = image_tag 'landing/library.png'
+    %p AIITには約1万4千冊の蔵書を有する図書館があります。専門職大学院の附属図書館らしく、情報技術、経営、工学、デザインなどの各種専門書を数多く取り揃えているのが特徴です。また、同じ建物にある都立高専の170万冊以上の蔵書も閲覧でき、ゆったりとした配置で落ち着いて利用していただけます。
+    %p なお、本学の図書館は東京都で働いている方と京浜地区の事業所にお勤めの方にも無料で開放しています。
+    %a.request{href: '#request'} 資料請求
+  %section
+    %h3 キャンパスの所在地
+    %p AIITはりんかい線の品川シーサイド駅を出て徒歩3分に位置します。京急線青物横丁駅、JR京浜東北線大井町駅を利用することもできます。
+    %p JR品川駅からは[品91]または[品93]系統のバスをご利用ください。
+    %p なお、一部の授業は秋葉原ダイビルにあるサテライトキャンパスでも受講できます。
+    #map
+      %iframe{:frameborder => "0", :scrolling => "no", :src => "https://maps.google.co.jp/maps?f=q&source=s_q&hl=en&geocode=&q=%E7%94%A3%E6%A5%AD%E6%8A%80%E8%A1%93%E5%A4%A7%E5%AD%A6%E9%99%A2%E5%A4%A7%E5%AD%A6&aq=&sll=36.5626,136.362305&sspn=56.990145,47.285156&brcurrent=3,0x60188a622d707eed:0x7d44bb1b33343845,0&ie=UTF8&hq=%E7%94%A3%E6%A5%AD%E6%8A%80%E8%A1%93%E5%A4%A7%E5%AD%A6%E9%99%A2%E5%A4%A7%E5%AD%A6&hnear=&ll=35.607002,139.749107&spn=0.071946,0.071946&t=m&output=embed"}
+      %br/
+      %a{:href => "https://maps.google.co.jp/maps?f=q&source=embed&hl=en&geocode=&q=%E7%94%A3%E6%A5%AD%E6%8A%80%E8%A1%93%E5%A4%A7%E5%AD%A6%E9%99%A2%E5%A4%A7%E5%AD%A6&aq=&sll=36.5626,136.362305&sspn=56.990145,47.285156&brcurrent=3,0x60188a622d707eed:0x7d44bb1b33343845,0&ie=UTF8&hq=%E7%94%A3%E6%A5%AD%E6%8A%80%E8%A1%93%E5%A4%A7%E5%AD%A6%E9%99%A2%E5%A4%A7%E5%AD%A6&hnear=&ll=35.607002,139.749107&spn=0.071946,0.071946&t=m", :style => "color:#0000FF;text-align:left", target: '_blank'}
+        %small 地図を大きく
+    -# #access
+      %ul
+        %li ●りんかい線「品川シーサイド駅」B出口 徒歩3分
+        %li ●京浜急行線「青物横町駅」 徒歩10分
+        %li ●JR京浜東北・根岸線「大井町駅」 徒歩18分
+        %li ●都営バス「都立産業技術高専品川キャンパス前」 徒歩2分
+        %li （品川駅東口-八潮パークタウン［品91］）
+        %li （品川駅西口-大井競馬場［品93］）
+        %li （大井町東口-八潮パークタウン［井92］）
+
+    %a.request{href: '#request'} 資料請求
+  -# %section
+    %h3 履修証明プログラム
+    %p 修士課程よりも短期間で学ぶことができる履修証明プログラムを開講しています。専門分野のエキスパートであることをオフィシャルに証明する「履修証明書」が取得できます。
+    %p 過去には、プロジェクトマネジメント、人間中心デザイン、実践セキュア開発、製品開発プロセスなどを開講しました。最新の情報については本学にお問い合わせください。
+    %a.request{href: '#request'} 資料請求
+  -# %section
+    %h3 フォーラム・勉強会
+    %p IT系の技術に関する勉強会「InfoTalk」を毎月開催しています。また、デザイン分野のプロフェッショナルにご登壇頂く「デザインミニ塾」も開催しています。
+    %p これらの勉強会にはどなたでもご自由にご参加いただけます（日程・内容はこのページの下部にあるリンク集のリンク先をご参照ください）。
+    %a.request{href: '#request'} 資料請求
+  %section
+    %h3 入学料・授業料
+    %p 公立ならではのリーゾナブルな授業料です。各種奨学金や授業料の減免・分納制度もございます。また、教育訓練給付制度指定講座です。
+    %table#fee
+      %tr
+        %th{rowspan: 2} 入学料
+        %th 東京都の住民
+        %td 141,000円
+      %tr
+        %th その他の者
+        %td 232,000円
+      %tr
+        %th{colspan: 2}  授業料（年額）
+        %td 520,800円
+    %a.request{href: '#request'} 資料請求
+  %section
+    %h3 入試説明会
+    %p 研究科・各専攻の紹介やキャンパスツアー、入学試験についてのご案内をする説明会を開催しています。
+    %p AIITにおける学修やキャンパスライフ、お仕事との両立方法など、あらゆることに関して教員がご相談をお受けいたします。
+    %p 会場は品川シーサイドキャンパスです。
+    %table#time_table
+      %tr
+        %th 日付
+        %th 時刻
+      %tr
+        %td 7月5日（木）
+        %td 19:30～21:00
+      %tr
+        %td 7月10日（火）
+        %td 19:30～21:00
+      %tr
+        %td 7月28日（土）
+        %td 15:00～16:30
+      %tr
+        %td 8月8日（水）
+        %td 19:30～21:00
+      %tr
+        %td 8月17日（金）
+        %td 19:30～21:00
+    %a.request{href: '#request'} 資料請求
+  %section
+    %a{name: 'request'} 
+    %h3 資料請求・説明会登録
+    %p 大学案内（パンフレット）や入学試験の募集要項などの詳しい資料等を送付させて頂いております。下記フォームよりお申し込みください。
+    %p なお、備考欄には、説明会に参加される方は出席する日付をご記入ください。その他、特にお知りになりたい情報（例：図書館の利用法など）があればその旨ご記入ください。
+    %form{"accept-charset" => "utf-8", :action => "https://aiit.ac.jp/form/inquiry/add", :method => "post"}
+      %div{:style => "display:none;"}
+        %input{:name => "_method", :type => "hidden", :value => "POST"}
+        %input{:name =>"SUBMIT_MODE", :type =>"hidden", :value => ""}
+        %input{:name => "data[Inquiry][furi_sei]", :type => "hidden", :value => " "}
+        %input{:name => "data[Inquiry][furi_mei]", :type => "text", :value=> " "}
+        %input{:name => "data[Inquiry][sex]", :type => "hidden", :value => ""}
+        %input{:name => "data[Inquiry][year]", :type => "hidden", :value => ""}
+        %input{:name => "data[Inquiry][month]", :type => "hidden"}
+        %input{:name => "data[Inquiry][day]", :type => "hidden"}
+        %input{:name => "data[Inquiry][prefecture]", :type => "hidden"}
+        %input{:name => "data[Inquiry][address2]", :type => "hidden"}
+        %input{:name => "data[Inquiry][tel1]", :type => "hidden"}
+        %input{:name => "data[Inquiry][tel2]", :type => "hidden"}
+        %input{:name => "data[Inquiry][tel3]", :type => "hidden"}
+        %input#email2{:name => "data[Inquiry][email2]", :type => "hidden"}
+        %input{:name => "data[Inquiry][occupation]", :type => "hidden"}
+        %input{:name => "data[Inquiry][school]", :type => "hidden"}
+      %table
+        %tr
+          %th
+            氏名
+          %td#name
+            %input#family_name{type: 'text', name: 'data[Inquiry][sei]', placeholder: '姓'}
+            %input#given_name{type: 'text', name: 'data[Inquiry][mei]', placeholder: '名'}
+            様
+        %tr
+          %th
+            E-Mail
+          %td
+            %input#email{type: 'text', name: 'data[Inquiry][email]', placeholder: '半角英数字でご記入ください'}
+        %tr
+          %th
+            〒
+          %td
+            %input#postal{type: 'text', name: 'data[Inquiry][zipcode]', placeholder: '半角7桁（ハイフン無し）', onKeyUp: "AjaxZip2.zip2addr(this,'data[Inquiry][address1]','data[Inquiry][address1]');"}
+        %tr            
+          %th
+            住所
+          %td
+            %input#address{type: 'text', name: 'data[Inquiry][address1]', placeholder: '郵便物が届くようご記入ください'}
+        %tr
+          %th
+            備考
+          %td
+            %input#comment{type: 'text', name: 'data[Inquiry][comment]', placeholder: "○月○日の説明会に参加、など"}
+        %tr
+          %th
+          %td
+            %input#submit{type: 'submit', name: 'SUBMIT', value: '送信'}
+  
+%footer
+  %section#links
+    %h3 AIITおすすめリンク集
+    %a{href: 'http://aiit.ac.jp/', target: '_blank'}
+      = image_tag 'landing/aiit_logo_300x200.fw.png', {height: '50px'}
+    %a{href: 'https://www.facebook.com/aiit.ac.jp', target: '_blank'}
+      = image_tag 'landing/facebook.fw.png', {height: '50px'}
+    %a{href: 'https://twitter.com/#!/aiit4u', target: '_blank'}
+      = image_tag 'landing/twitter.fw.png', {height: '50px'}
+    %a{href: 'http://aiit.ac.jp/article/student_interview/index.html', target: '_blank', target: '_blank'}
+      = image_tag 'landing/success_story.jpg', {height: '50px'}
+    %a{href: 'http://aiit.ac.jp/article/pbl_interviews/interviews/index.html', target: '_blank'}
+      = image_tag 'landing/pbl_interview.jpg', {height: '50px'}
+    %a{href: 'http://d.hatena.ne.jp/pklib/', target: '_blank'}
+      = image_tag 'landing/toshokan_titleimg.png', {height: '50px'}
+    %a{href: 'http://pk.aiit.ac.jp/', target: '_blank'}
+      = image_tag 'landing/logo_infotalk_c2_320.png', {height: '50px'}
+    %a{href: 'http://www.apen.asia/', target: '_blank'}
+      = image_tag 'landing/apen_logo.png', {height: '50px'}
+  &copy; 2012- AIIT / All rights reserved.
