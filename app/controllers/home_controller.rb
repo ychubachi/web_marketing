@@ -28,7 +28,7 @@ class HomeController < ApplicationController
       logger.info "### Return Access-Controll headers"
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Allow-Method'] = '*'
-      headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
+      headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept, cookie'
       render nothing: true
     else
       # POST
