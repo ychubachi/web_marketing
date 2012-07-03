@@ -26,10 +26,11 @@ class HomeController < ApplicationController
 
     if request.method == 'OPTIONS' then
       # OPTION
-      logger.info "### Request headers"
+      logger.info "### OPTION: Request headers"
       logger.info "### Orign=#{request.headers['Origin']}"
       logger.info "### Access-Control-Request-Method=#{request.headers['Access-Control-Request-Method']}"
       logger.info "### Access-Control-Request-Headers=#{request.headers['Access-Control-Request-Headers']}"
+      logger.info "### Cookie=#{request.headers['Cookie']}"
       logger.info "### Return Access-Controll headers"
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Allow-Method'] = 'POST'
@@ -37,6 +38,8 @@ class HomeController < ApplicationController
       render nothing: true
     else
       # POST
+      logger.info "### POST: Request headrs"
+      logger.info "### Cookie=#{request.headers['Cookie']}"
       logger.info "### Process actual request."
       headers['Access-Control-Allow-Origin'] = '*' 
       do_page
