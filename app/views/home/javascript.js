@@ -19,7 +19,7 @@ function sendPostRequest() {
     });
 
     req = new XMLHttpRequest();
-    req.open("POST", 'http://pr.aiit.ac.jp/pv', false);
+    req.open("POST", 'http://pr.aiit.ac.jp/pv', true);
     req.setRequestHeader('Content-Type', 'application/json');
     req.setRequestHeader('Accept', 'application/json');
     req.withCredentials = true;
