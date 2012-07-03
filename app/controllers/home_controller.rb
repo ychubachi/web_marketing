@@ -26,10 +26,14 @@ class HomeController < ApplicationController
 
     if request.method == 'OPTIONS' then
       # OPTION
+      logger.info "### Request headers"
+      logger.info "### #{request.headers['origin']}"
+      logger.info "### #{request.headers['Access-Control-Request-Method']}"
+      logger.info "### #{request.headers['Access-Control-Request-Headers']}"
       logger.info "### Return Access-Controll headers"
       headers['Access-Control-Allow-Origin'] = '*' 
       headers['Access-Control-Allow-Method'] = '*'
-      headers['Access-Control-Allow-Headers'] = '*'
+      headers['Access-Control-Allow-Headers'] = 'Content-Type, '
       render nothing: true
     else
       # POST
