@@ -24,6 +24,7 @@ function sendPostRequest() {
     req.open("POST", 'http://pr.aiit.ac.jp/pv', false);
     req.setRequestHeader('Content-Type', 'application/json');
     req.setRequestHeader('Accept', 'application/json');
+    req.withCredentials = true;
 
     req.send(body);
     return req;
