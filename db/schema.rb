@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624122215) do
+ActiveRecord::Schema.define(:version => 20120704165442) do
 
   create_table "actions", :force => true do |t|
     t.integer  "redirection_id"
@@ -27,6 +27,19 @@ ActiveRecord::Schema.define(:version => 20120624122215) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "is_admin"
+  end
+
+  create_table "customers", :force => true do |t|
+    t.string   "family_name"
+    t.string   "given_name"
+    t.string   "email"
+    t.string   "postal_code"
+    t.string   "address"
+    t.string   "string"
+    t.string   "comment"
+    t.integer  "browser_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "media", :force => true do |t|

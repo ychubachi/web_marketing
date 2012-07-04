@@ -15,19 +15,20 @@ WebMarketing::Application.routes.draw do
   match '/admin'    => 'admin/users#index'
 
   namespace :admin do
+    resources :customers do as_routes end
     resources :pages do as_routes end
-    resources :pages
     resources :requests do as_routes end
-    resources :requests
     resources :actions do as_routes end
-    resources :actions
     resources :redirections do as_routes end
-    resources :redirections
     resources :targets do as_routes end
-    resources :targets
     resources :media do as_routes end
-    resources :media
     resources :browsers do as_routes end
+    resources :pages
+    resources :requests
+    resources :actions
+    resources :redirections
+    resources :targets
+    resources :media
     resources :browsers
     resources :users, :only => [:show, :index]
   end
