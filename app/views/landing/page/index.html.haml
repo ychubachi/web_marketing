@@ -1,20 +1,7 @@
 - content_for :title do
   AIIT: Landing Page
   
-- content_for :head do
-  %link{:href => "/assets/landing/favicon.ico", :rel => "shortcut icon", :type => "image/vnd.microsoft.icon"}/
-  %link{:href => "/assets/landing/favicon.ico", :rel => "icon", :type => "image/vnd.microsoft.icon"}/
-  :javascript
-    (function() {
-      var wm = document.createElement('script');
-      wm.type = 'text/javascript';
-      wm.async = true;
-      wm.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//pr.aiit.ac.jp/js.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(wm, s);
-    })();
-
-.sizecheck
+-# .sizecheck
   SIZE CHEK [red: < 480, green: < 768, yellow: < 960, white: higher]
 %a{href: 'http://aiit.ac.jp/', target: '_blank'} Jump to AIIT Website
 %header

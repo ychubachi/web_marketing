@@ -22,6 +22,17 @@
     /[if lt IE 9]
       <script src="/assets/html5shiv.js?body=1"></script>
     = csrf_meta_tags
+    %link{:href => "/assets/landing/favicon.ico", :rel => "shortcut icon", :type => "image/vnd.microsoft.icon"}/
+    %link{:href => "/assets/landing/favicon.ico", :rel => "icon", :type => "image/vnd.microsoft.icon"}/
+    :javascript
+      (function() {
+        var wm = document.createElement('script');
+        wm.type = 'text/javascript';
+        wm.async = true;
+        wm.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//pr.aiit.ac.jp/tracker.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wm, s);
+      })();
     = yield(:head)
   %body
     = yield

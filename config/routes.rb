@@ -4,15 +4,15 @@ WebMarketing::Application.routes.draw do
   end
 
   get  'home/index'
-  get  'home/admin'
   get  'home/redirect'
   post 'home/page'
   get  'home/javascript'
 
   match '/rd/:code' => 'home#redirect'
-  match '/pv'      => 'home#page'
-  match '/js'      => 'home#javascript'
-  match '/admin/'   => 'admin/users#index'
+  match '/pv'       => 'home#page'
+  match '/tracker'  => 'home#javascript'
+  match '/lp'       => 'landing/page#index'
+  match '/admin'    => 'admin/users#index'
 
   namespace :admin do
     resources :pages do as_routes end
@@ -31,6 +31,7 @@ WebMarketing::Application.routes.draw do
     resources :browsers
     resources :users, :only => [:show, :index]
   end
+  
   devise_for :users
 
   root to: "home#index"

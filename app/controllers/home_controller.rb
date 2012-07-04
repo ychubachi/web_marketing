@@ -53,12 +53,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def admin
-    respond_to do |format|
-      format.html { render layout: 'application' }
-    end
-  end
-
   private
 
   def do_redirect(code = nil)
