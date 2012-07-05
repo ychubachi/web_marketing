@@ -17,11 +17,13 @@ class Landing::PageController < ApplicationController
 
     puts @customer
     if @customer.save
+      ConvertionMailer.conversion(@customer).deliver
+
       redirect_to '/lp/thank_you'
-      puts 'successfully created.'
+      logger.info 'successfully created.'
     else
       redirect_to '/lp/sorry'
-      puts 'error'
+      logger.info 'error'
     end
   end
 end
