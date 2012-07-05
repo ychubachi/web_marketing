@@ -10,7 +10,11 @@ class Landing::PageController < ApplicationController
   end
 
   def create
+    browser = get_browser
+
     @customer = Customer.new(params[:customer])
+    @customer.browser = browser
+
     puts @customer
     if @customer.save
       redirect_to '/lp/thank_you'
