@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704165442) do
+ActiveRecord::Schema.define(:version => 20120705052231) do
 
   create_table "actions", :force => true do |t|
     t.integer  "redirection_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20120704165442) do
     t.string   "postal_code"
     t.string   "address"
     t.string   "string"
-    t.string   "comment"
+    t.string   "inquiry"
     t.integer  "browser_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

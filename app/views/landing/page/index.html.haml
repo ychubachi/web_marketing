@@ -1,6 +1,8 @@
 - content_for :title do
   AIIT: Landing Page
-  
+
+- guidance_table = [['7/ 5(木)','19:30～21:00'],['7/10(火)','19:30～21:00'],['7/28(土)','15:00～16:30'],['8/ 8(水)','19:30～21:00'],['8/17(金)','19:30～21:00']]
+
 -# .sizecheck
   SIZE CHEK [red: < 480, green: < 768, yellow: < 960, white: higher]
 %a{href: 'http://aiit.ac.jp/', target: '_blank'} Jump to AIIT Website
@@ -144,27 +146,16 @@
       %tr
         %th 日付
         %th 時刻
-      %tr
-        %td 7月5日（木）
-        %td 19:30～21:00
-      %tr
-        %td 7月10日（火）
-        %td 19:30～21:00
-      %tr
-        %td 7月28日（土）
-        %td 15:00～16:30
-      %tr
-        %td 8月8日（水）
-        %td 19:30～21:00
-      %tr
-        %td 8月17日（金）
-        %td 19:30～21:00
+      - guidance_table.each do |data|
+        %tr
+          %td= data[0]
+          %td= data[1]
     %a.request{href: '#request'} 資料請求
   %section
     %a{name: 'request'} 
     %h3 資料請求・説明会登録
     %p 大学案内（パンフレット）や入学試験の募集要項などの詳しい資料等を送付させて頂いております。下記フォームよりお申し込みください。
-    %p なお、備考欄には、説明会に参加される方は出席する日付をご記入ください。その他、特にお知りになりたい情報（例：図書館の利用法など）があればその旨ご記入ください。
+    %p なお、説明会に参加される方は日時を選択してください。備考欄には特にお知りになりたい情報など）があればその旨ご記入ください（空欄でも構いません）。
     = form_for Customer.new, url: '/landing/page' do |f|
       %table
         %tr
@@ -175,7 +166,7 @@
             様
         %tr
           %th= f.label 'E-Mail'
-          %td= f.text_field :email, {class: 'text_field', placeholder: '半角英数字でご記入ください'}
+          %td= f.email_field :email, {class: 'text_field', placeholder: '半角英数字でご記入ください'}
         %tr
           %th= f.label '〒'
           %td= f.text_field :postal_code, {placeholder: '半角7桁（ハイフン不要）', onKeyUp: "AjaxZip2.zip2addr(this, 'customer[address]','customer[address]');"}
@@ -183,8 +174,19 @@
           %th= f.label '住所'
           %td= f.text_area :address, {placeholder: '郵便物が届くようご記入ください', rows: "2"}
         %tr
+          %th= f.label '説明会'
+          %td
+            %select{id: 'guidance'}
+              %option 未定
+              - guidance_table.each do |data|
+                %option= "#{data[0]} #{data[1]}"
+        %tr
           %th= f.label '備考'
-          %td= f.text_area :comment, {placeholder: "○月○日の説明会に参加、など", rows: "2"}
+          %td
+            %textarea{id: 'comment', rows: 2, placeholder: "資料請求、図書館を利用したい、など"}
+        %tr{style: 'display: none'}
+          %th= f.label '問合わせテスト'
+          %td= f.text_area :inquiry, {width: '80%'}
         %tr
           %th
           %td

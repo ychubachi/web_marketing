@@ -13,10 +13,10 @@ class Landing::PageController < ApplicationController
     @customer = Customer.new(params[:customer])
     puts @customer
     if @customer.save
-      render action: 'thank_you'
+      redirect_to '/lp/thank_you'
       puts 'successfully created.'
     else
-      render action: 'sorry'
+      redirect_to '/lp/sorry'
       puts 'error'
     end
   end

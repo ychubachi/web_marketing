@@ -42,10 +42,8 @@ $(document).ready ->
       alert("住所をご記入ください。")
       $("#address").focus()
       return false
-    
-    comment = $("#customer_comment").val()
-    if(comment == null || comment == "")
-      $("#customer_comment").val("資料請求")
 
-    alert "ご記入ありがとうございました。近日中にご連絡を差し上げます。\nAIITのウェブページに移動します。教員からのメッセージなど様々な情報をご覧ください（スマートフォン・携帯には最適化されておりません。ご了承ください。）"
+    inquiry = '{"comment" : "' + $("#comment").val() + '", "guidance" : "' + $("#guidance").val() + '"}'
+    $("#customer_inquiry").val(inquiry)
+
     return true
