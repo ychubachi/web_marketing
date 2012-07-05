@@ -22,11 +22,11 @@ class HomeController < ApplicationController
 
   #see: https://developer.mozilla.org/en/http_access_control#Access-Control-Allow-Headers
   #https://developer.mozilla.org/En/Server-Side_Access_Control
-  def page
+  def page #todo: rename to page_view
     logger.info '### HomeControllor#page'
 
     # for cookie credentials.
-    headers['Access-Control-Allow-Origin'] = request.headers['Origin']
+    headers['Access-Control-Allow-Origin'] = request.headers['Origin'].to_s
     headers['Access-Control-Allow-Credentials'] = 'true'
 
     if request.method == 'OPTIONS' then
@@ -36,20 +36,22 @@ class HomeController < ApplicationController
       logger.info "### Access-Control-Request-Method=#{request.headers['Access-Control-Request-Method']}"
       logger.info "### Access-Control-Request-Headers=#{request.headers['Access-Control-Request-Headers']}"
       logger.info "### Return Access-Controll headers"
+      # for access controls.
       headers['Access-Control-Allow-Method'] = 'POST'
       headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
       render nothing: true
-    else
+    elsif request.method == 'POST' then
       # POST
       logger.info "### POST: Request headrs"
       logger.info "### Cookie=#{request.headers['Cookie']}"
       logger.info "### Process actual request."
-      headers['Access-Control-Allow-Origin'] = request.headers['Origin']
-      headers['Access-Control-Allow-Credentials'] = 'true'
+      # record the page view.
       do_page
-      respond_to do |format|
-        format.json { render json: {result: 'ok'} }
-      end
+      render json: {result: 'ok'}
+    else
+      # other (GET)
+      do_page
+      render json: {result: 'ok'}
     end
   end
 
@@ -79,15 +81,10 @@ class HomeController < ApplicationController
     end
     logger.info "### redirection url is #{redirect_url}"
 
-    # save a new action
-    action = Action.new
-    action.redirection = redirection
-    action.save
-
     # save a new request.
     my_request = Request.new
-    my_request.referrer = request.referer
-    my_request.action = action
+    my_request.referrer = request.referer.to_s
+    my_request.action = redirection
     my_request.browser = browser
     my_request.save
 
@@ -97,33 +94,25 @@ class HomeController < ApplicationController
 
   def do_page
     # find the page specified by url.
-    referrer = request.referer
-    logger.info '### referrer = ' + referrer.to_s
-    page = Page.where('url = :url', {url: referrer}).first_or_initialize
-    if page.new_record? then
+    referrer = request.referer.to_s
+    logger.info '### referrer = ' + referrer
+    page_view = PageView.where('url = :url', {url: referrer}).first_or_initialize
+    if page_view.new_record? then
       logger.info '### create a new page and save it'
-      page.url = referrer
+      page_view.url = referrer
     end
 
-    # set a title to the page
+    # set a title to the page view.
     title = params[:title]
     logger.info '### title = ' + title.to_s
-    page.title = title # keep page titles update.
-    page.save
-
-    # get a new action
-    action = Action.new
-    action.page = page
-    action.save
-
-    # get the browser
-    browser = get_browser
+    page_view.title = title # keep page titles update.
+    page_view.save
 
     # save a new request.
     my_request = Request.new
-    my_request.referrer = request.referer
-    my_request.action = action
-    my_request.browser = browser
+    my_request.referrer = referrer
+    my_request.action = page_view
+    my_request.browser = get_browser
     my_request.save
   end
 end

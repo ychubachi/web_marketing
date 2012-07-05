@@ -2,7 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
-  console.log $("#submit")
   $("#submit").click (event) ->
     family_name = $("#customer_family_name").val()
     if(family_name == null || family_name == "")
@@ -43,7 +42,10 @@ $(document).ready ->
       $("#address").focus()
       return false
 
-    inquiry = '{"comment" : "' + $("#comment").val() + '", "guidance" : "' + $("#guidance").val() + '"}'
-    $("#customer_inquiry").val(inquiry)
+    inquiry = {}
+    inquiry["備考"] = $("#comment").val()
+    inquiry["説明会"] = $("#guidance").val()
+    json = JSON.stringify(inquiry)
+    $("#customer_inquiry").val(json)
 
     return true

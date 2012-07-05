@@ -19,6 +19,8 @@ WebMarketing::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :conversions do as_routes end
+    resources :page_views do as_routes end
     resources :customers do as_routes end
     resources :pages do as_routes end
     resources :requests do as_routes end
@@ -28,13 +30,13 @@ WebMarketing::Application.routes.draw do
     resources :media do as_routes end
     resources :browsers do as_routes end
     # followings will be deleted?
-    resources :pages
-    resources :requests
-    resources :actions
-    resources :redirections
-    resources :targets
-    resources :media
-    resources :browsers
+    # resources :pages
+    # resources :requests
+    # resources :actions
+    # resources :redirections
+    # resources :targets
+    # resources :media
+    # resources :browsers
     resources :users, :only => [:show, :index]
   end
   

@@ -1,0 +1,26 @@
+【このメールは自動送信メールです】
+
+ご担当者さま
+
+　AIITランディングページからお問い合わせがありました。
+　至急、メールにて連絡をさし上げ、大学院案内、出願書類などを郵送してください。
+
+ーーー
+お名前：<%= @customer.family_name %> <%= @customer.given_name %> 様
+E-Mail: <%= @customer.email %>
+ご住所: 〒<%= @customer.postal_code %> <%= @customer.address %>
+お問い合わせ内容:
+<%- @inquiry.each do |key, value| %>
+  <%= key %> ＝ <%= value %>
+<%- end %>
+ーーー
+
+この方のコンバーション経路は次のとおりです。
+ーーー
+<%- @conversion_path.each do |request| %>
+  <%= request.created_at %> <%= request.action.title %>
+<%- end %>
+ーーー
+
+---
+Do not reply.
