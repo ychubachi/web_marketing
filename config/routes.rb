@@ -38,7 +38,7 @@ WebMarketing::Application.routes.draw do
     resources :users, :only => [:show, :index]
   end
   
-  devise_for :users
+  devise_for :users, :skip => [:registrations, :passwords]
 
   root to: "home#index"
 
