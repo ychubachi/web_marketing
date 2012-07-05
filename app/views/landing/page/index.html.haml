@@ -165,74 +165,27 @@
     %h3 資料請求・説明会登録
     %p 大学案内（パンフレット）や入学試験の募集要項などの詳しい資料等を送付させて頂いております。下記フォームよりお申し込みください。
     %p なお、備考欄には、説明会に参加される方は出席する日付をご記入ください。その他、特にお知りになりたい情報（例：図書館の利用法など）があればその旨ご記入ください。
-    %form{"accept-charset" => "utf-8", :action => "https://aiit.ac.jp/form/inquiry/add", :method => "post"}
-      %div{:style => "display:none;"}
-        %input{:name => "_method", :type => "hidden", :value => "POST"}
-        %input{:name =>"SUBMIT_MODE", :type =>"hidden", :value => ""}
-        %input{:name => "data[Inquiry][furi_sei]", :type => "hidden", :value => " "}
-        %input{:name => "data[Inquiry][furi_mei]", :type => "text", :value=> " "}
-        %input{:name => "data[Inquiry][sex]", :type => "hidden", :value => ""}
-        %input{:name => "data[Inquiry][year]", :type => "hidden", :value => ""}
-        %input{:name => "data[Inquiry][month]", :type => "hidden"}
-        %input{:name => "data[Inquiry][day]", :type => "hidden"}
-        %input{:name => "data[Inquiry][prefecture]", :type => "hidden"}
-        %input{:name => "data[Inquiry][address2]", :type => "hidden"}
-        %input{:name => "data[Inquiry][tel1]", :type => "hidden"}
-        %input{:name => "data[Inquiry][tel2]", :type => "hidden"}
-        %input{:name => "data[Inquiry][tel3]", :type => "hidden"}
-        %input#email2{:name => "data[Inquiry][email2]", :type => "hidden"}
-        %input{:name => "data[Inquiry][occupation]", :type => "hidden"}
-        %input{:name => "data[Inquiry][school]", :type => "hidden"}
+    = form_for Customer.new, url: '/landing/page' do |f|
       %table
         %tr
-          %th
-            氏名
-          %td#name
-            %input#family_name{type: 'text', name: 'data[Inquiry][sei]', placeholder: '姓'}
-            %input#given_name{type: 'text', name: 'data[Inquiry][mei]', placeholder: '名'}
+          %th= f.label '氏名'
+          %td
+            = f.text_field :family_name, {placeholder: '姓'}
+            = f.text_field :given_name, {placeholder: '名'}
             様
         %tr
-          %th
-            E-Mail
-          %td
-            %input#email{type: 'text', name: 'data[Inquiry][email]', placeholder: '半角英数字でご記入ください'}
+          %th= f.label 'E-Mail'
+          %td= f.text_field :email, {class: 'text_field', placeholder: '半角英数字でご記入ください'}
         %tr
-          %th
-            〒
-          %td
-            %input#postal{type: 'text', name: 'data[Inquiry][zipcode]', placeholder: '半角7桁（ハイフン無し）', onKeyUp: "AjaxZip2.zip2addr(this,'data[Inquiry][address1]','data[Inquiry][address1]');"}
+          %th= f.label '〒'
+          %td= f.text_field :postal_code, {placeholder: '半角7桁（ハイフン不要）', onKeyUp: "AjaxZip2.zip2addr(this, 'customer[address]','customer[address]');"}
         %tr            
-          %th
-            住所
-          %td
-            %input#address{type: 'text', name: 'data[Inquiry][address1]', placeholder: '郵便物が届くようご記入ください'}
+          %th= f.label '住所'
+          %td= f.text_area :address, {placeholder: '郵便物が届くようご記入ください', rows: "2"}
         %tr
-          %th
-            備考
-          %td
-            %input#comment{type: 'text', name: 'data[Inquiry][comment]', placeholder: "○月○日の説明会に参加、など"}
+          %th= f.label '備考'
+          %td= f.text_area :comment, {placeholder: "○月○日の説明会に参加、など", rows: "2"}
         %tr
           %th
           %td
-            %input#submit{type: 'submit', name: 'SUBMIT', value: '送信'}
-  
-%footer
-  %section#links
-    %h3 AIITおすすめリンク集
-    %a{href: 'http://aiit.ac.jp/', target: '_blank'}
-      = image_tag 'landing/aiit_logo_300x200.fw.png', {height: '50px'}
-    %a{href: 'https://www.facebook.com/aiit.ac.jp', target: '_blank'}
-      = image_tag 'landing/facebook.fw.png', {height: '50px'}
-    %a{href: 'https://twitter.com/#!/aiit4u', target: '_blank'}
-      = image_tag 'landing/twitter.fw.png', {height: '50px'}
-    %a{href: 'http://aiit.ac.jp/article/student_interview/index.html', target: '_blank', target: '_blank'}
-      = image_tag 'landing/success_story.jpg', {height: '50px'}
-    %a{href: 'http://aiit.ac.jp/article/pbl_interviews/interviews/index.html', target: '_blank'}
-      = image_tag 'landing/pbl_interview.jpg', {height: '50px'}
-    %a{href: 'http://d.hatena.ne.jp/pklib/', target: '_blank'}
-      = image_tag 'landing/toshokan_titleimg.png', {height: '50px'}
-    %a{href: 'http://pk.aiit.ac.jp/', target: '_blank'}
-      = image_tag 'landing/logo_infotalk_c2_320.png', {height: '50px'}
-    %a{href: 'http://www.apen.asia/', target: '_blank'}
-      = image_tag 'landing/apen_logo.png', {height: '50px'}
-  &copy; 2012- AIIT / All rights reserved.
+            = f.submit '送信', {id: 'submit'}

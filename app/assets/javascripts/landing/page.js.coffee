@@ -2,20 +2,21 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
+  console.log $("#submit")
   $("#submit").click (event) ->
-    family_name = $("#family_name").val()
+    family_name = $("#customer_family_name").val()
     if(family_name == null || family_name == "")
       alert("「姓」をご記入ください。")
       $("#family_name").focus()
       return false
 
-    given_name = $("#given_name").val()
+    given_name = $("#customer_given_name").val()
     if(given_name == null || given_name == "")
       alert("「名」をご記入ください。")
       $("#given_name").focus()
       return false
 
-    email = $("#email").val()
+    email = $("#customer_email").val()
     if(email == null || email == "")
       alert("「E-Mail」をご記入ください。")
       $("#email").focus()
@@ -29,22 +30,22 @@ $(document).ready ->
       return false
     $("#email2").val(email)
 
-    postal = $("#postal").val()
+    postal = $("#customer_postal_code").val()
     numericExpression = /^[0-9]+$/
-    if (! postal.match(numericExpression) || postal.length != 7)
-      alert("郵便番号は数字7桁でご記入ください。")
-      $("#postal").focus()
+    if (! postal.match(/^\d{3}-?\d{4}$/))
+      alert("郵便番号は半角数字で123-4567または1234567の形式でご記入ください。")
+      $("#postal_code").focus()
       return false
 
-    address = $("#address").val()
+    address = $("#customer_address").val()
     if(address == null || address == "")
       alert("住所をご記入ください。")
       $("#address").focus()
       return false
     
-    comment = $("#comment").val()
+    comment = $("#customer_comment").val()
     if(comment == null || comment == "")
-      $("#comment").val("資料請求")
+      $("#customer_comment").val("資料請求")
 
     alert "ご記入ありがとうございました。近日中にご連絡を差し上げます。\nAIITのウェブページに移動します。教員からのメッセージなど様々な情報をご覧ください（スマートフォン・携帯には最適化されておりません。ご了承ください。）"
     return true

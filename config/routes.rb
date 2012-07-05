@@ -1,8 +1,4 @@
 WebMarketing::Application.routes.draw do
-  namespace :landing do
-    get "page/index"
-  end
-
   get  'home/index'
   get  'home/redirect'
   post 'home/page'
@@ -14,6 +10,12 @@ WebMarketing::Application.routes.draw do
   match '/lp'       => 'landing/page#index'
   match '/admin'    => 'admin/users#index'
 
+  namespace :landing do
+    resources :page, :only => [:index, :create]
+    get 'page/thank_you'
+    get 'page/sorry'
+  end
+
   namespace :admin do
     resources :customers do as_routes end
     resources :pages do as_routes end
@@ -23,6 +25,7 @@ WebMarketing::Application.routes.draw do
     resources :targets do as_routes end
     resources :media do as_routes end
     resources :browsers do as_routes end
+    # followings will be deleted?
     resources :pages
     resources :requests
     resources :actions

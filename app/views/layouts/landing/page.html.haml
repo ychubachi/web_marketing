@@ -36,3 +36,23 @@
     = yield(:head)
   %body
     = yield
+    %footer
+      %section#links
+        %h3 AIITおすすめリンク集
+        %a{href: 'http://aiit.ac.jp/', target: '_blank'}
+          = image_tag 'landing/aiit_logo_300x200.fw.png', {height: '50px'}
+        %a{href: 'https://www.facebook.com/aiit.ac.jp', target: '_blank'}
+          = image_tag 'landing/facebook.fw.png', {height: '50px'}
+        %a{href: 'https://twitter.com/#!/aiit4u', target: '_blank'}
+          = image_tag 'landing/twitter.fw.png', {height: '50px'}
+        %a{href: 'http://aiit.ac.jp/article/student_interview/index.html', target: '_blank', target: '_blank'}
+          = image_tag 'landing/success_story.jpg', {height: '50px'}
+        %a{href: 'http://aiit.ac.jp/article/pbl_interviews/interviews/index.html', target: '_blank'}
+          = image_tag 'landing/pbl_interview.jpg', {height: '50px'}
+        %a{href: 'http://d.hatena.ne.jp/pklib/', target: '_blank'}
+          = image_tag 'landing/toshokan_titleimg.png', {height: '50px'}
+        %a{href: 'http://pk.aiit.ac.jp/', target: '_blank'}
+          = image_tag 'landing/logo_infotalk_c2_320.png', {height: '50px'}
+        %a{href: 'http://www.apen.asia/', target: '_blank'}
+          = image_tag 'landing/apen_logo.png', {height: '50px'}
+      &copy; 2012- AIIT / All rights reserved.
