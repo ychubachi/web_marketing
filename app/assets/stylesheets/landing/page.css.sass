@@ -19,13 +19,18 @@ $link-active-color:  false
 $link-visited-color: false
 
 /* 解像度 < 480 の端末用 (iPod touch 縦) */
+html
+  height: 100%
 body
+  height: 100%
+  margin: 0px
+  padding: 0px
+  margin-left: auto
+  margin-right: auto
   font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
   line-height: 1.5em
   color: $text
   background: pink
-  margin-left: auto
-  margin-right: auto
   width: 95%
 
 header
@@ -93,7 +98,7 @@ table#fee, table#time_table
     padding: 0.3em
     text-align: center
 
-#map
+#map_canvas
   margin-left: 2.5em
   margin-right: 2.5em
   margin-top: 0.5em

@@ -13,7 +13,7 @@
   %head
     %meta{:charset => "utf-8"}
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"}
     %title= content_for?(:title) ? yield(:title) : "Web Marketing"
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
@@ -34,7 +34,7 @@
         s.parentNode.insertBefore(wm, s);
       })();
     = yield(:head)
-  %body
+  %body{onload: "initialize()"}
     = yield
     %footer
       %section#links
