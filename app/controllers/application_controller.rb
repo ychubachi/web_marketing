@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       browser.user_agent = request.user_agent.to_s
       browser.save
     else
-      logger.info '### the browser already exists in DB.'
+      logger.debug '### the browser already exists in DB.'
     end
     return browser
   end

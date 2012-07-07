@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class ConversionMailer < ActionMailer::Base
-  default from: "noreply@pr.aiit.ac.jp"
+  default from: "AIIT Landing Page <noreply@pr.aiit.ac.jp>"
 
   def conversion(customer, conversion_path)
     @customer = customer
