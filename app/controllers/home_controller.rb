@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def initialize
-    @default_redirect = 'http://aiit.ac.jp/'
+    @default_redirect = 'https://pr.aiit.ac.jp/'
   end
 
   def index
