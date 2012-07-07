@@ -4,26 +4,26 @@ class HomeController < ApplicationController
   end
 
   def index
-    logger.info '### HomeControllor#index'
+    logger.debug '### HomeControllor#index'
     do_redirect # defaulct redirect
   end
 
   def redirect
-    logger.info '### HomeControllor#redirect'
+    logger.debug '### HomeControllor#redirect'
     code = params[:code]
     do_redirect code
   end
 
   def javascript
-    logger.info '### HomeControllor#javascript'
-    logger.info "### Cookie=#{request.headers['Cookie']}"
+    logger.debug '### HomeControllor#javascript'
+    logger.debug "### Cookie=#{request.headers['Cookie']}"
     get_browser() # create a new uuid
   end
 
   #see: https://developer.mozilla.org/en/http_access_control#Access-Control-Allow-Headers
   #https://developer.mozilla.org/En/Server-Side_Access_Control
   def page #todo: rename to page_view
-    logger.info '### HomeControllor#page'
+    logger.debug '### HomeControllor#page'
 
     # for cookie credentials.
     headers['Access-Control-Allow-Origin'] = request.headers['Origin'].to_s
@@ -31,20 +31,20 @@ class HomeController < ApplicationController
 
     if request.method == 'OPTIONS' then
       # OPTION
-      logger.info "### OPTION: Request headers"
-      logger.info "### Orign=#{request.headers['Origin']}"
-      logger.info "### Access-Control-Request-Method=#{request.headers['Access-Control-Request-Method']}"
-      logger.info "### Access-Control-Request-Headers=#{request.headers['Access-Control-Request-Headers']}"
-      logger.info "### Return Access-Controll headers"
+      logger.debug "### OPTION: Request headers"
+      logger.debug "### Orign=#{request.headers['Origin']}"
+      logger.debug "### Access-Control-Request-Method=#{request.headers['Access-Control-Request-Method']}"
+      logger.debug "### Access-Control-Request-Headers=#{request.headers['Access-Control-Request-Headers']}"
+      logger.debug "### Return Access-Controll headers"
       # for access controls.
       headers['Access-Control-Allow-Method'] = 'POST'
       headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
       render nothing: true
     elsif request.method == 'POST' then
       # POST
-      logger.info "### POST: Request headrs"
-      logger.info "### Cookie=#{request.headers['Cookie']}"
-      logger.info "### Process actual request."
+      logger.debug "### POST: Request headrs"
+      logger.debug "### Cookie=#{request.headers['Cookie']}"
+      logger.debug "### Process actual request."
       # record the page view.
       do_page
       render json: {result: 'ok'}
@@ -58,16 +58,16 @@ class HomeController < ApplicationController
   private
 
   def do_redirect(code = nil)
-    logger.info "### HomeController#do_redirect(id=#{code})"
+    logger.debug "### HomeController#do_redirect(id=#{code})"
 
     browser = get_browser()
 
     # lookup redirection
     if code == nil then
-      logger.info "### default redirection"
+      logger.debug "### default redirection"
       redirection = Redirection.where('is_default = :flag', {flag: true}).first
     else
-      logger.info "### redirect code = #{code}"
+      logger.debug "### redirect code = #{code}"
       redirection = Redirection.where('code = :code',{code: code}).first
     end
 
@@ -76,7 +76,7 @@ class HomeController < ApplicationController
       logger.info "### redirection to #{redirection.title}"
       redirect_url = redirection.target.url
     else
-      logger.info '### unknown redirection is specified. use default.'
+      logger.warn '### unknown redirection is specified. use default.'
       redirect_url = @default_redirect
     end
     logger.info "### redirection url is #{redirect_url}"
@@ -95,16 +95,17 @@ class HomeController < ApplicationController
   def do_page
     # find the page specified by url.
     referrer = request.referer.to_s
-    logger.info '### referrer = ' + referrer
+    logger.debug '### referrer = ' + referrer
     page_view = PageView.where('url = :url', {url: referrer}).first_or_initialize
     if page_view.new_record? then
-      logger.info '### create a new page and save it'
+      logger.debug '### create a new page and save it'
       page_view.url = referrer
     end
 
     # set a title to the page view.
-    title = params[:title]
-    logger.info '### title = ' + title.to_s
+    title = params[:title].to_s
+    logger.info "### page view:  #{title}"
+
     page_view.title = title # keep page titles update.
     page_view.save
 
