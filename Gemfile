@@ -45,3 +45,5 @@ gem "therubyracer", :group => :assets, :platform => :ruby
 gem "active_scaffold"
 gem 'uuidtools'
 gem 'log4r'
+gem 'foreigner'
+gem 'immigrant'

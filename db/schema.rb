@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705172857) do
+ActiveRecord::Schema.define(:version => 20120707142057) do
 
   create_table "actions", :force => true do |t|
     t.integer  "convertion_id"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(:version => 20120705172857) do
     t.string   "email"
     t.string   "postal_code"
     t.string   "address"
-    t.string   "string"
     t.string   "inquiry"
     t.integer  "browser_id"
     t.datetime "created_at",  :null => false
@@ -65,9 +64,9 @@ ActiveRecord::Schema.define(:version => 20120705172857) do
   create_table "requests", :force => true do |t|
     t.string   "referrer"
     t.integer  "action_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "browser_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "browser_id", :limit => 255
   end
 
   create_table "targets", :force => true do |t|
