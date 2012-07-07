@@ -3,7 +3,7 @@ log4r_config:
   loggers:
     - name      : production
       level     : WARN
-      trace     : 'false'
+      trace     : 'true'
       outputters :
       - datefile
     - name      : development
