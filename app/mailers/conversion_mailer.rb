@@ -6,6 +6,6 @@ class ConversionMailer < ActionMailer::Base
     @customer = customer
     @inquiry = ActiveSupport::JSON.decode(customer.inquiry)
     @conversion_path = conversion_path
-    mail(to: "yc@aiit.ac.jp", subject: "AIIT Landing Pageからのお問い合わせ")
+    mail(to: ["yc@aiit.ac.jp", "info@aiit.ac.jp"], subject: "AIIT Landing Pageからのお問い合わせ")
   end
 end
