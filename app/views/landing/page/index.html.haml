@@ -1,11 +1,11 @@
 - content_for :title do
-  AIIT: Landing Page
+  AIITのご案内 〜コンパクト版〜
 
 - guidance_table = [['7/10(火)','19:30～21:00'],['7/28(土)','15:00～16:30'],['8/ 8(水)','19:30～21:00'],['8/17(金)','19:30～21:00']]
 
 -# .sizecheck
   SIZE CHEK [red: < 480, green: < 768, yellow: < 960, white: higher]
-%a{href: 'http://aiit.ac.jp/', target: '_blank'} Jump to AIIT Website
+%a{href: 'http://aiit.ac.jp/', target: '_blank'} Jump to AIIT website
 %header
   #banner
     = image_tag 'landing/aiit_logo_200x200.fw.png', {width: '150px'}
@@ -145,7 +145,7 @@
     %p 研究科・各専攻の紹介やキャンパスツアー、入学試験についてのご案内をする説明会を開催しています。
     %p AIITにおける学修やキャンパスライフ、お仕事との両立方法など、あらゆることに関して教員がご相談をお受けいたします。
     %p 会場は品川シーサイドキャンパスです。
-    %table#time_table
+    %table#guidance
       %tr
         %th 日付
         %th 時刻

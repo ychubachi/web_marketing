@@ -9,7 +9,7 @@ $green:  #63CF1D
 $blue:   #1F5D99
 $brown:  darken($orange, 40%)
 $green_light: lighten($green, 40%)
-$text:   #2e2e2e
+$text:   lighten(black, 20%)
 $back:   lighten($orange, 40%)
 
 /* colors */
@@ -57,9 +57,9 @@ header
       text-decoration: none
       color: white
       background: $green
-      border-style: dotted
       border-width: 1px
       border-color: $brown
+      border-style: dotted
 
 section
   margin-top: 1em
@@ -73,7 +73,6 @@ section
     margin-top: 0.4em
     margin-bottom: 0.4em
     font-size: 1.4em
-    font-weight: bold
     color: $orange
   p
     margin-top: 0.5em
@@ -89,7 +88,7 @@ section
     margin-bottom: 0.5em
     text-align: center
 
-table#fee, table#time_table
+table#fee, table#guidance
   margin-top: 0.5em
   margin-left: auto
   margin-right: auto
@@ -111,16 +110,12 @@ table#fee, table#time_table
     height: 300px
     max-height: 300px
 
-#access
-  font-size: 0.75em
-  line-height: 1.5em
-
 form
   margin-top: 0.5em
   margin-bottom: 0.5em
   padding-top: 0.5em
   padding-bottom: 0.5em
-  background: $green
+  background:  $green
   color: white
   table
     width: 100%
@@ -152,10 +147,9 @@ form
           style: none
           font-size: 1.2em
           font-weight: bold
-          color: $green
+          color: darken($green, 10%)
           background: white
           width: 60%
-          /* border: 2px solid lighten(#000, 60%) */
           border: 3px solid darken($green, 10%)
           @include border-radius(15px, 15px)
 
