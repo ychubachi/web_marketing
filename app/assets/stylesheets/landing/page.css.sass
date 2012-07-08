@@ -36,6 +36,7 @@ body
 
 header
   background: $brown
+  margin-bottom: 0.8em
   @include clearfix
   #banner
     padding-top: 1em
@@ -62,8 +63,7 @@ header
       border-style: dotted
 
 section
-  margin-top: 1em
-  margin-bottom: 1em
+  margin-bottom: 0.8em
   padding: 0.5em
   background: $green_light
   @include clearfix
@@ -127,20 +127,15 @@ form
         padding-right: 0.3em
       td
         padding-top: 0.3em
-        #customer_family_name
+        #customer_family_name, #customer_given_name
           width: 35%
-        #customer_given_name
-          width: 35%
-        #customer_email
+          border: 2px white inset
+        #customer_email, #customer_postal_code, #customer_address, #comment
           width: 90%
-        #customer_postal_code
-          width: 90%
-        #customer_address
-          width: 90%
+          border: 2px white inset
         #guidance
           width: 90%
-        #comment
-          width: 90%
+          border: 2px white outset
         #submit
           padding-bottom: 0.2em
           padding-top: 0.3em
@@ -150,7 +145,8 @@ form
           color: darken($green, 10%)
           background: white
           width: 60%
-          border: 3px solid darken($green, 10%)
+          border: 2px darken($green, 10%) outset
+          // border: 3px solid darken($green, 10%)
           @include border-radius(15px, 15px)
 
 section#links

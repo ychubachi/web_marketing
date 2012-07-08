@@ -177,18 +177,18 @@
           %th= f.label '住所'
           %td= f.text_area :address, {placeholder: '郵便物が届くようご記入ください', rows: "2"}
         %tr
+          %th= f.label '備考'
+          %td
+            %textarea{id: 'comment', rows: 2, placeholder: "資料請求、図書館を利用したい、など"}
+        %tr
           %th= f.label '説明会'
           %td
             %select{id: 'guidance'}
               %option 未定
               - guidance_table.each do |data|
                 %option= "#{data[0]} #{data[1]}"
-        %tr
-          %th= f.label '備考'
-          %td
-            %textarea{id: 'comment', rows: 2, placeholder: "資料請求、図書館を利用したい、など"}
         %tr{style: 'display: none'}
-          %th= f.label '問合わせテスト'
+          %th= f.label '問合わせ'
           %td= f.text_area :inquiry, {width: '80%'}
         %tr
           %th
