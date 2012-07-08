@@ -9,6 +9,7 @@ $green:  #63CF1D
 $blue:   #1F5D99
 $brown:  darken($orange, 40%)
 $green_light: lighten($green, 40%)
+$green_dark: darken($green, 15%)
 $text:   lighten(black, 20%)
 $back:   lighten($orange, 40%)
 
@@ -52,7 +53,7 @@ body
         @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color)
         text-decoration: none
         color: white
-        background: $green
+        background: $green_dark
         border-width: 1px
         border-color: $brown
         border-style: dotted
@@ -105,7 +106,7 @@ form
   margin-bottom: 0.5em
   padding-top: 0.5em
   padding-bottom: 0.5em
-  background:  $green
+  background: $green_dark
   color: white
   table
     width: 100%
