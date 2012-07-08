@@ -2,6 +2,21 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
+  # for google map
+  console.log("google map")
+  latlng = new google.maps.LatLng(35.607002,139.749107)
+  myOptions =
+    zoom: 13
+    center: latlng
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
+  marker = new google.maps.Marker(
+    position: latlng
+    title: "AIIT"
+  )
+  marker.setMap map
+
+  # for form submition
   $("#submit").click (event) ->
     family_name = $("#customer_family_name").val()
     if(family_name == null || family_name == "")
