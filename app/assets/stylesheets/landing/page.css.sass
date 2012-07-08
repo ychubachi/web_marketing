@@ -4,12 +4,13 @@
 @import "compass/css3/border-radius"
 @import "compass/utilities/general/clearfix"
 
-$text:   #2e2e2e
 $orange: #EB6321
 $green:  #63CF1D
 $blue:   #1F5D99
 $brown:  darken($orange, 40%)
 $green_light: lighten($green, 40%)
+$text:   #2e2e2e
+$back:   lighten($orange, 40%)
 
 /* colors */
 $link-color:         $blue
@@ -30,7 +31,7 @@ body
   font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
   line-height: 1.5em
   color: $text
-  background: pink
+  background: $back
   width: 95%
 
 header
