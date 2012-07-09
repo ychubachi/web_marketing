@@ -1,6 +1,6 @@
 function sendPostRequest() {
     req = new XMLHttpRequest();
-<% if Rails.env == :production %>
+<% if Rails.env.production? %>
     req.open("POST", 'http://pr.aiit.ac.jp/pv', true);
 <% else %>
     req.open("POST", 'http://localhost:3000/pv', true);
