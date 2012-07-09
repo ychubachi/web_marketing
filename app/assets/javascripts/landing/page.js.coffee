@@ -3,13 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(document).ready ->
   # for google map
-  console.log("google map")
-  latlng = new google.maps.LatLng(35.607002,139.749107)
+  center_latlng = new google.maps.LatLng(35.6878802, 139.757344)
+  latlng = new google.maps.LatLng(35.607002, 139.749107)
   myOptions =
-    zoom: 13
-    center: latlng
+    zoom: 11
+    center: center_latlng
     mapTypeId: google.maps.MapTypeId.ROADMAP
   map = new google.maps.Map(document.getElementById("map_canvas"), myOptions)
+
   marker = new google.maps.Marker(
     position: latlng
     title: "AIIT"
