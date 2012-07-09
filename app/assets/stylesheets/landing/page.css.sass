@@ -4,6 +4,7 @@
 @import "compass/css3/border-radius"
 @import "compass/utilities/general/clearfix"
 
+/* colors */
 $orange: #EB6321
 $green:  #63CF1D
 $blue:   #1F5D99
@@ -12,13 +13,6 @@ $green_light: lighten($green, 40%)
 $green_dark: darken($green, 15%)
 $text:   lighten(black, 20%)
 $back:   lighten($orange, 40%)
-
-/* colors */
-$link-color:         $blue
-$link-hover-color:   $orange
-$link-focus-color:   false
-$link-active-color:  false
-$link-visited-color: false
 
 /* 解像度 < 480 の端末用 (iPod touch 縦) */
 body
@@ -50,9 +44,8 @@ body
       a
         display: block
         padding: 0.4em
-        @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color)
+        @include link-colors(white, $orange, false, false, white)
         text-decoration: none
-        color: white
         background: $green_dark
         border-width: 1px
         border-color: $brown
@@ -80,6 +73,7 @@ body
         float: right
         margin-top: 0.2em
         font-size: 0.8em
+        @include link-colors($blue, $orange, false, false, $blue)
       figure
         margin-top: 0.5em
         margin-bottom: 0.5em
