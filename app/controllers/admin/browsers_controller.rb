@@ -2,5 +2,7 @@ class Admin::BrowsersController < ApplicationController
   before_filter :authenticate_user!
 
   active_scaffold :browser do |conf|
+    conf.columns = [:uuid, :user_agent, :is_admin, :customers, :requests, :created_at, :updated_at]
+    conf.list.sorting = {created_at: 'DESC'}
   end
 end 

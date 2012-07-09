@@ -35,15 +35,26 @@
     /[if lt IE 9]
       <script src="/assets/html5shiv.js?body=1"></script>
     %script{type: "text/javascript", src: "https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false"}
-    :javascript
-      (function() {
-        var wm = document.createElement('script');
-        wm.type = 'text/javascript';
-        wm.async = true;
-        wm.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//pr.aiit.ac.jp/tracker.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wm, s);
-      })();
+    - if Rails.env == :production
+      :javascript
+        (function() {
+          var wm = document.createElement('script');
+          wm.type = 'text/javascript';
+          wm.async = true;
+          wm.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//pr.aiit.ac.jp/tracker.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wm, s);
+        })();
+    - else
+      :javascript
+        (function() {
+          var wm = document.createElement('script');
+          wm.type = 'text/javascript';
+          wm.async = true;
+          wm.src = 'http://localhost:3000/tracker.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wm, s);
+        })();
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-4739369-2']);
