@@ -1,8 +1,6 @@
 - content_for :title do
   AIITのご案内 〜コンパクト版〜
 
-- guidance_table = [['7/10(火)','19:30～21:00'],['7/28(土)','15:00～16:30'],['8/ 8(水)','19:30～21:00'],['8/17(金)','19:30～21:00']]
-
 -# .sizecheck
   SIZE CHEK [red: < 480, green: < 768, yellow: < 960, white: higher]
 %a{href: 'http://aiit.ac.jp/', target: '_blank'} Jump to AIIT website
@@ -26,16 +24,7 @@
       %li
         %a{href: '#aiit_credit_bank'} AIIT単位バンク
 %article
-  %section
-    %h3 AIITのご紹介
-    %p AIITは品川シーサイドエリアに立地する、東京都が設置した公立大学です。平成18（2006）年に開学した、学部を持たない大学院のみの、まだ新しい専門職大学院です。
-    %figure
-      = image_tag 'landing/shutodaigaku.fw.png'
-    %p 他の大学院と大きく異なり、研究能力の向上ではなく仕事で実際に役に立つ業務遂行能力を身につけることを主眼としたカリキュラムを用意しています。
-    %p 情報アーキテクチャ専攻と創造技術専攻の2つの専攻からなり、グローバルに通用するレベルのスキルを備え、実社会で活躍できる高度なプロフェッショナルを育成することをミッションとしています。
-    %p また、社会人が働きながら学べるよう、平日の夜間と土曜日のみの通学でも2年間で専門職修士の学位が取得できます。更に、長期履修制度・AIIT単位バンクなどの各種の学修支援体制を整えています。
-    %a.request{href: '#request'} 資料請求
-
+  = render 'about'
   %section
     %h3 講義とPBLを柱としたカリキュラム
     %a{name: 'curriculum'}
@@ -104,13 +93,7 @@
     %p 同じ建物にある都立高専の170万冊以上の蔵書も閲覧でき、ゆったりとした配置の館内で、落ち着いて図書の閲覧をしていただけます。
     %p なお、本学の図書館は東京都で働いている方と京浜地区の事業所にお勤めの方にも無料で開放しています。
     %a.request{href: '#request'} 資料請求
-  %section
-    %h3 キャンパスの所在地
-    %p AIITはりんかい線の品川シーサイド駅を出て徒歩3分に位置します。京急線青物横丁駅、JR京浜東北線大井町駅を利用することもできます。
-    %p JR品川駅からは[品91]または[品93]系統のバスをご利用ください。
-    #map_canvas
-    %p なお、一部の授業は秋葉原ダイビルにあるサテライトキャンパスでも受講できます。
-    %a.request{href: '#request'} 資料請求
+  = render 'access'
   -# %section
     %h3 履修証明プログラム
     %p 修士課程よりも短期間で学ぶことができる履修証明プログラムを開講しています。専門分野のエキスパートであることをオフィシャルに証明する「履修証明書」が取得できます。
@@ -157,49 +140,9 @@
       %tr
         %th 日付
         %th 時刻
-      - guidance_table.each do |data|
+      - @guidance_table.each do |data|
         %tr
           %td= data[0]
           %td= data[1]
     %a.request{href: '#request'} 資料請求
-  %section
-    %a{name: 'request'} 
-    %h3 資料請求・説明会登録
-    %p 大学案内（パンフレット）や入学試験の募集要項などの詳しい資料等を送付させて頂いております。下記フォームよりお気軽にお申し込みください。
-    %p 備考欄には特にお知りになりたい情報があればその旨ご記入ください。説明会に参加される方は日時を選択してください。
-    = form_for Customer.new, url: '/landing/page' do |f|
-      %table
-        %tr
-          %th= f.label '氏名'
-          %td
-            = f.text_field :family_name, {placeholder: '姓'}
-            = f.text_field :given_name, {placeholder: '名'}
-            様
-        %tr
-          %th= f.label 'E-Mail'
-          %td= f.email_field :email, {class: 'text_field', placeholder: '半角英数字でご記入ください'}
-        %tr
-          %th= f.label '〒'
-          %td= f.text_field :postal_code, {placeholder: '半角7桁（ハイフン不要）', onKeyUp: "AjaxZip2.zip2addr(this, 'customer[address]','customer[address]');"}
-        %tr            
-          %th= f.label '住所'
-          %td= f.text_area :address, {placeholder: '郵便物が届くようご記入ください', rows: "2"}
-        %tr
-          %th= f.label '備考'
-          %td
-            %textarea{id: 'comment', rows: 2, placeholder: "資料請求、図書館を利用したい、など"}
-        %tr
-          %th= f.label '説明会'
-          %td
-            %select{id: 'guidance'}
-              %option 未定
-              - guidance_table.each do |data|
-                %option= "#{data[0]} #{data[1]}"
-        %tr{style: 'display: none'}
-          %th= f.label '問合わせ'
-          %td= f.text_area :inquiry, {width: '80%'}
-        %tr
-          %th
-          %td
-            = f.submit '送信', {id: 'submit'}
-    -# = image_tag 'landing/campus_night.png'
+  = render 'request'

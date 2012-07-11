@@ -1,0 +1,40 @@
+%section
+  %a{name: 'request'} 
+  %h3 資料請求・入試説明会登録
+  %p 大学案内（パンフレット）や入学試験の募集要項などの詳しい資料等を送付させて頂いております。下記フォームよりお気軽にお申し込みください。
+  %p 備考欄には特にお知りになりたい情報があればその旨ご記入ください。入試説明会に参加される方は日時を選択してください。
+  = form_for Customer.new, url: '/landing/page' do |f|
+    %table
+      %tr
+        %th= f.label '氏名'
+        %td
+          = f.text_field :family_name, {placeholder: '姓'}
+          = f.text_field :given_name, {placeholder: '名'}
+          様
+      %tr
+        %th= f.label 'E-Mail'
+        %td= f.email_field :email, {class: 'text_field', placeholder: '半角英数字でご記入ください'}
+      %tr
+        %th= f.label '〒'
+        %td= f.text_field :postal_code, {placeholder: '半角7桁（ハイフン不要）', onKeyUp: "AjaxZip2.zip2addr(this, 'customer[address]','customer[address]');"}
+      %tr            
+        %th= f.label '住所'
+        %td= f.text_area :address, {placeholder: '郵便物が届くようご記入ください', rows: "2"}
+      %tr
+        %th= f.label '備考'
+        %td
+          %textarea{id: 'comment', rows: 2, placeholder: "資料請求、図書館を利用したい、など"}
+      %tr
+        %th= f.label '説明会'
+        %td
+          %select{id: 'guidance'}
+            %option 未定
+            - @guidance_table.each do |data|
+              %option= "#{data[0]} #{data[1]}"
+      %tr{style: 'display: none'}
+        %th= f.label '問合わせ'
+        %td= f.text_area :inquiry, {width: '80%'}
+      %tr
+        %th
+        %td
+          = f.submit '送信', {id: 'submit'}

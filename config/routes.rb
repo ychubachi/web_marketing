@@ -7,10 +7,11 @@ WebMarketing::Application.routes.draw do
   match '/rd/:code' => 'home#redirect'
   match '/pv'       => 'home#page'
   match '/tracker'  => 'home#javascript'
+  match '/admin'    => 'admin/users#index'
   match '/lp'           => 'landing/page#index'
   match '/lp/thank_you' => 'landing/page#thank_you'
   match '/lp/sorry'     => 'landing/page#sorry'
-  match '/admin'    => 'admin/users#index'
+  match '/lp/pm'        => 'landing/page#pm'
 
   namespace :landing do
     resources :page, :only => [:index, :create]

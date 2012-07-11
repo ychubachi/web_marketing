@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 class Landing::PageController < ApplicationController
   def index
-    @customer = Customer.new
+    @guidance_table = [['7/28(土)','15:00～16:30'],['8/ 8(水)','19:30～21:00'],['8/17(金)','19:30～21:00']]
   end
 
-  def thank_you
-  end
-
-  def sorry
+  def pm
+    @guidance_table = [['7/28(土)','15:00～16:30'],['8/ 8(水)','19:30～21:00'],['8/17(金)','19:30～21:00']]
   end
 
   def create
