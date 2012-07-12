@@ -94,12 +94,12 @@ class HomeController < ApplicationController
 
   def do_page
     # find the page specified by url.
-    referrer = request.referer.to_s
-    logger.debug '### referrer = ' + referrer
-    page_view = PageView.where('url = :url', {url: referrer}).first_or_initialize
+    url = params[:url].to_s
+    logger.debug '### url = ' + url
+    page_view = PageView.where('url = :url', {url: url}).first_or_initialize
     if page_view.new_record? then
       logger.debug '### create a new page and save it'
-      page_view.url = referrer
+      page_view.url = url
     end
 
     # set a title to the page view.
@@ -111,7 +111,7 @@ class HomeController < ApplicationController
 
     # save a new request.
     my_request = Request.new
-    my_request.referrer = referrer
+    my_request.referrer = url
     my_request.action = page_view
     my_request.browser = get_browser
     my_request.save

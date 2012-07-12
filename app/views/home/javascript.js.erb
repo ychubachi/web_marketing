@@ -21,6 +21,7 @@ function sendPostRequest() {
 
     body = JSON.stringify({
 	title: document.title,
+	url: document.URL,
     });
     req.send(body);
     return req;
