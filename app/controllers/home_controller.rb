@@ -38,7 +38,7 @@ class HomeController < ApplicationController
       logger.debug "### Return Access-Controll headers"
       # for access controls.
       headers['Access-Control-Allow-Method'] = 'POST'
-      headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept, referer'
+      headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
       render nothing: true
     elsif request.method == 'POST' then
       # POST
