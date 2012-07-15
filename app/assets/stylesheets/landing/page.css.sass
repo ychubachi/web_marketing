@@ -1,6 +1,5 @@
 @charset "utf-8"
 @import "compass"
-@import "compass/reset"
 @import "compass/css3/border-radius"
 @import "compass/utilities/general/clearfix"
 
@@ -9,6 +8,7 @@ $orange: #EB6321
 $green:  #63CF1D
 $blue:   #1F5D99
 $brown:  darken($orange, 40%)
+/* $brown: #221815 */
 $green_light: lighten($green, 40%)
 $green_dark: darken($green, 15%)
 $text:   lighten(black, 20%)
@@ -16,30 +16,32 @@ $back:   lighten($orange, 40%)
 
 /* 解像度 < 480 の端末用 (iPod touch 縦) */
 body
+  /* bodyを中央揃えする */
   margin-left: auto
   margin-right: auto
+  width: 95%
+  /* fontと文字色、行間を指定する */
   font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
-  line-height: 1.5em
   color: $text
   background: $back
-  width: 95%
+  line-height: 1.5em
 
   header
     background: $brown
     margin-bottom: 0.8em
     @include clearfix
     #banner
-      padding-top: 1em
-      padding-bottom: 1em
-      color: $orange
       text-align: center
       h1
         font-size: 1.7em
+        color: darken(white, 15%)
+        line-height: 1.2em
         margin-top: 0.5em
         margin-bottom: 0.7em
-
       h2
-        font-size: 1.6em
+        font-size: 1.5em
+        color: darken(white, 15%)
+        line-height: 1.2em
     nav
       a
         display: block
@@ -53,30 +55,33 @@ body
 
   article, aside, footer
     section
+      margin-left: 0.2em
       margin-bottom: 0.8em
-      padding: 0.5em
       background: $green_light
+      padding: 0.5em
       @include clearfix
       @include border-radius(10px, 10px)
       h3
-        margin-left: 0.2em
         margin-top: 0.4em
         margin-bottom: 0.4em
         font-size: 1.4em
         color: $orange
+      h4
+        margin-bottom: 0.4em
+        font-size: 1.2em
+        color: $blue
       p
-        margin-top: 0.5em
         font-size: 1.0em
         text-indent: 1.0em
       a.request
         clear: both
         float: right
-        margin-top: 0.2em
         font-size: 0.8em
         @include link-colors($blue, $orange, false, false, $blue)
+      ul
+        list-style: square outside none
       figure
-        margin-top: 0.5em
-        margin-bottom: 0.5em
+        margin-left: 1em
         text-align: center
       table.common
         width: 85%
