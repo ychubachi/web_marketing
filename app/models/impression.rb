@@ -2,6 +2,6 @@ class Impression < Action
   attr_accessible :title, :display
 
   def title
-    return "[IP]#{display}"
+    return "[IMP]#{(super ? super : display)}"
   end
 end
