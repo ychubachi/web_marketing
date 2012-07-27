@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 class Landing::PageController < ApplicationController
-  def index
+  def initialize
     @guidance_table = [['7/28(土)','15:00～16:30'],['8/ 8(水)','19:30～21:00'],['8/17(金)','19:30～21:00']]
-  end
-
-  def pm
-    @guidance_table = [['7/28(土)','15:00～16:30'],['8/ 8(水)','19:30～21:00'],['8/17(金)','19:30～21:00']]
+    super
   end
 
   def display
