@@ -51,11 +51,14 @@ body
         display: block
         padding: 0.4em
         @include link-colors(white, $orange, false, false, white)
-        text-decoration: none
         background: $green_dark
-        border-width: 1px
-        border-color: $brown
-        border-style: dotted
+        border:
+          width: 1px
+          color: $brown
+          style: dotted
+        text:
+          decoration: none
+          shadow: 2px 2px 3px $text
 
   article, aside, footer
     section
@@ -66,9 +69,14 @@ body
       @include clearfix
       @include border-radius(10px, 10px)
       h3
-        margin-top: 0.4em
-        margin-bottom: 0.4em
-        font-size: 1.4em
+        margin:
+          top: 0.4em
+          bottom: 0.4em
+        font:
+          size: 1.4em
+          weight: normal
+        text:
+          shadow: 1px 1px 2px $text
         color: $orange
       h4
         margin-bottom: 0.4em
