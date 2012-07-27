@@ -1,17 +1,12 @@
 WebMarketing::Application.routes.draw do
-  get  'home/index'
-  get  'home/redirect'
-  post 'home/page'
-  get  'home/javascript'
-
-  match '/rd/:code' => 'home#redirect'
-  match '/pv'       => 'home#page'
-  match '/tracker'  => 'home#javascript'
-  match '/admin'    => 'admin/users#index'
+  match '/rd/:code'         => 'home#redirect'
+  match '/pv'               => 'home#page'
+  match '/tracker'          => 'home#javascript'
+  match '/admin'            => 'admin/users#index'
   match '/lp'               => 'landing/page#index'
+  match '/lp/pm'            => 'landing/page#pm'
   match '/lp/thank_you'     => 'landing/page#thank_you'
   match '/lp/sorry'         => 'landing/page#sorry'
-  match '/lp/pm'            => 'landing/page#pm'
   match '/lp/display/:file' => 'landing/page#display'
 
   namespace :landing do
@@ -33,10 +28,9 @@ WebMarketing::Application.routes.draw do
   end
   
   devise_for :users, :skip => [:registrations, :passwords]
-
-  root to: "home#index"
-
   authenticated :user do
     root :to => 'admin/users#index'
   end
+
+  root to: "home#index"
 end
