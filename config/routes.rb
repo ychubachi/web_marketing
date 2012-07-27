@@ -8,11 +8,11 @@ WebMarketing::Application.routes.draw do
   match '/pv'       => 'home#page'
   match '/tracker'  => 'home#javascript'
   match '/admin'    => 'admin/users#index'
-  match '/lp'            => 'landing/page#index'
-  match '/lp/thank_you'   => 'landing/page#thank_you'
-  match '/lp/sorry'       => 'landing/page#sorry'
-  match '/lp/pm'          => 'landing/page#pm'
-  match '/lp/image/:file' => 'landing/page#image'
+  match '/lp'               => 'landing/page#index'
+  match '/lp/thank_you'     => 'landing/page#thank_you'
+  match '/lp/sorry'         => 'landing/page#sorry'
+  match '/lp/pm'            => 'landing/page#pm'
+  match '/lp/display/:file' => 'landing/page#display'
 
   namespace :landing do
     resources :page, :only => [:create]

@@ -8,10 +8,10 @@ class Landing::PageController < ApplicationController
     @guidance_table = [['7/28(土)','15:00～16:30'],['8/ 8(水)','19:30～21:00'],['8/17(金)','19:30～21:00']]
   end
 
-  def image
+  def display
     begin
       file_base_name = params[:file]
-      image_file_path = "app/views/landing/page/images/#{file_base_name}.gif"
+      image_file_path = "app/views/landing/page/impressions/#{file_base_name}.gif"
       send_file(image_file_path, :disposition => 'inline')
     rescue => e
       logger.error 'error on reading image file'
