@@ -48,6 +48,8 @@ class Landing::PageController < ApplicationController
     end
   end
 
+  private
+
   def save_request!(browser, action)
     # save a new request.
     my_request = Request.new
