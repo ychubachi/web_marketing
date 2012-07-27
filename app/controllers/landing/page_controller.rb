@@ -54,8 +54,8 @@ class Landing::PageController < ApplicationController
     # save a new request.
     my_request = Request.new
     my_request.referrer = request.referer.to_s
-    my_request.action = action
-    my_request.browser = browser
+    my_request.action   = action
+    my_request.browser  = browser
     my_request.save!
   end
 end
