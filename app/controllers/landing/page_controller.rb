@@ -6,8 +6,26 @@ class Landing::PageController < ApplicationController
   end
 
   def display
+    file_base_name = params[:file]
+    
     begin
-      file_base_name = params[:file]
+      # get this browser.
+      browser = get_browser
+      
+      # record a conversion with a new request.
+      impression = Impression.where('display = :display', {display: file_base_name}).first_or_initialize
+      if impression.new_record? then
+        impression.display = file_base_name
+        impression.save!
+      end
+      save_request!(browser, impression)
+    rescue => e
+      logger.error 'error on saving an impression'
+      puts e
+      redirect_to '/lp/sorry' and return
+    end
+
+    begin
       image_file_path = "app/views/landing/page/impressions/#{file_base_name}.gif"
       send_file(image_file_path, :disposition => 'inline')
     rescue => e
@@ -21,11 +39,6 @@ class Landing::PageController < ApplicationController
     begin
       # get this browser.
       browser = get_browser
-
-      # save a new customer information.
-      customer = Customer.new(params[:customer])
-      customer.browser = browser
-      customer.save!
       
       # record a conversion with a new request.
       conversion = Conversion.where('title = :title', {title: "資料請求"}).first_or_initialize
@@ -34,6 +47,11 @@ class Landing::PageController < ApplicationController
         conversion.save!
       end
       save_request!(browser, conversion)
+
+      # save a new customer information.
+      customer = Customer.new(params[:customer])
+      customer.browser = browser
+      customer.save!
 
       # send an email with a conversion path.
       conversion_path = browser.requests.order("created_at ASC")
