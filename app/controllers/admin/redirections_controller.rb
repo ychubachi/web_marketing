@@ -3,6 +3,6 @@ class Admin::RedirectionsController < ApplicationController
 
   active_scaffold :redirection do |conf|
     conf.columns = [:code, :is_default, :medium, :target, :requests, :created_at, :updated_at]
-    conf.list.sorting = {code: 'DESC'}
+    conf.list.sorting = {created_at: 'DESC'}
   end
 end 
