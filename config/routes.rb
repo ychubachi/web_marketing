@@ -20,7 +20,6 @@ WebMarketing::Application.routes.draw do
     resources :pages do as_routes end
     resources :requests do as_routes end
     resources :actions do as_routes end
-    resources :impressions do as_routes end
     resources :redirections do as_routes end
     resources :targets do as_routes end
     resources :media do as_routes end
