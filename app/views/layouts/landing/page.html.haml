@@ -20,7 +20,7 @@
     %meta{property: "og:title", content: "#{content_for?(:title) ? yield(:title) : 'AIITのご案内 〜コンパクト版〜'}"}
     %meta{property: "og:description", content: "#{content_for?(:description) ? yield(:description) : '品川シーサイドエリアにある専門職大学院です。情報アーキテクチャ専攻・創造技術専攻の紹介や、社会人に配慮した長期履修制度、AIIT単位バンク、付属図書館の情報などをまとめました。お問い合わせフォームもありますのでどうぞご利用ください。'}"}
     %meta{property: "og:image", content: "https://pr.aiit.ac.jp/images/landing/campus_night.png"}
-    %meta{property: "og:url", content: "https://pr.aiit.ac.jp/lp"}
+    %meta{property: "og:url", content: "#{content_for?(:url) ? yield(:url) : 'https://pr.aiit.ac.jp/lp'}"}
     %meta{property: "og:type", content: "university"}/
     %meta{property: "og:site_name", content: "AIIT: Advanced Institute of Industrial Technology"}/
     / %meta{property: "fb:admins", content: "154020014683759"}/
