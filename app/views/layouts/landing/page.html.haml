@@ -17,7 +17,7 @@
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"}
     / OG
-    %meta{property: "og:title", content: "AIITのご案内 〜コンパクト版〜"}
+    %meta{property: "og:title", content: "#{content_for?(:title) ? yield(:title) : 'AIITのご案内 〜コンパクト版〜'}"}
     %meta{property: "og:description", content: "#{content_for?(:description) ? yield(:description) : '品川シーサイドエリアにある専門職大学院です。情報アーキテクチャ専攻・創造技術専攻の紹介や、社会人に配慮した長期履修制度、AIIT単位バンク、付属図書館の情報などをまとめました。お問い合わせフォームもありますのでどうぞご利用ください。'}"}
     %meta{property: "og:image", content: "https://pr.aiit.ac.jp/images/landing/campus_night.png"}
     %meta{property: "og:url", content: "https://pr.aiit.ac.jp/lp"}
