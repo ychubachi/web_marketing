@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
     if uuid.to_s == '' then
       uuid = UUIDTools::UUID.random_create.to_s
       cookies[:web_marketing_uuid] = { value: uuid, expires: 365.days.from_now }
-      logger.info "### new browser. uuid=#{uuid}"
+      logger.info "### browser uuid=#{uuid} [NEW]"
     else
-      logger.info "### repeated browser. uuid=#{uuid}"
+      logger.info "### browser uuid=#{uuid}"
     end
 
     # lookup the browser from DB
