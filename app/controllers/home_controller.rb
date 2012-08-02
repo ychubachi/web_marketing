@@ -79,7 +79,7 @@ class HomeController < ApplicationController
       logger.warn '### unknown redirection is specified. use default.'
       redirect_url = @default_redirect
     end
-    logger.info "### redirection url is #{redirect_url}"
+    logger.debug "### redirection url is #{redirect_url}"
 
     # save a new request.
     my_request = Request.new
