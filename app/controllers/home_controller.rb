@@ -1,3 +1,16 @@
+=begin
+To create a new user
+
+# rails c
+
+User.create! do |u|
+  u.email = 'user@example.com'
+  u.password = 'please'
+  u.password_confirmation = 'please'
+end
+
+=end
+
 class HomeController < ApplicationController
   def initialize
     @default_redirect = 'https://pr.aiit.ac.jp/'
