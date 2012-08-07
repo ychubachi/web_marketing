@@ -48,4 +48,4 @@ gem 'uuidtools'
 gem 'log4r'
 gem 'foreigner'
 gem 'immigrant'
-# gem "thin", :group => :development
+gem "thin", :group => :development
