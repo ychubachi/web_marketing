@@ -10,7 +10,7 @@
 
 class Landing::PageController < ApplicationController
   def initialize
-    @guidance_table = [['11/10(土)','13:30-15:30'],['11/16(金)','19:30-21:30'],['11/30(金)','19:30-21:30']]
+    @guidance_table = [['1/11(金)','19:30-21:00'],['1/19(土)','13:30-15:00'],['2/2(土)','13:30-15:00'],['2/8(金)','19:30-21:00']]
     super
   end
 
