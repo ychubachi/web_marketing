@@ -13,7 +13,13 @@ end
 
 class HomeController < ApplicationController
   def initialize
-    @default_redirect = 'https://pr.aiit.ac.jp/'
+    logger.debug "### HomeController#initialize"
+    if Rails.env == 'production' then
+      @default_redirect = 'https://pr.aiit.ac.jp/'
+    else
+      @default_redirect = 'http://localhost:3000/lp'
+    end
+    logger.debug "### Default redirect is #{@default_redirect}"
   end
 
   def index

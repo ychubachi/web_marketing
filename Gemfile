@@ -7,7 +7,7 @@ case HOST_OS
     gem 'growl', :group => :development
   when /linux/i
     gem 'libnotify', :group => :development
-    gem 'rb-inotify', :group => :development
+    gem 'rb-inotify', '~> 0.8.8'
   when /mswin|windows|mingw32/i
     gem 'rb-fchange', :group => :development
     gem 'win32console', :group => :development
@@ -49,3 +49,4 @@ gem 'log4r'
 gem 'foreigner'
 gem 'immigrant'
 gem "thin", :group => :development
+gem 'rb-inotify', '~> 0.8.8'
