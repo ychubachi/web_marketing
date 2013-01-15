@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 =begin
 To create a new user
 
@@ -12,21 +13,13 @@ end
 =end
 
 class HomeController < ApplicationController
-  def initialize
-    logger.debug "### HomeController#initialize"
-    if Rails.env == 'production' then
-      @default_redirect = 'https://pr.aiit.ac.jp/'
-    else
-      @default_redirect = 'http://localhost:3000/lp'
-    end
-    logger.debug "### Default redirect is #{@default_redirect}"
-  end
-
+  # GET /
   def index
     logger.debug '### HomeControllor#index'
     do_redirect # defaulct redirect
   end
 
+  # GET /rd/:code
   def redirect
     logger.debug '### HomeControllor#redirect'
     code = params[:code]
@@ -95,8 +88,12 @@ class HomeController < ApplicationController
       logger.info "### redirection to #{redirection.title}"
       redirect_url = redirection.target.url
     else
-      logger.warn '### unknown redirection is specified. use default.'
-      redirect_url = @default_redirect
+      logger.warn 'DBからデフォルトのリダイレクションURLが検索できませんでした．ハードコードされたURLを利用します．'
+      if Rails.env.production? then
+        redirect_url = 'https://pr.aiit.ac.jp/'
+      else
+        redirect_url = 'http://localhost:3000/lp'
+      end
     end
     logger.debug "### redirection url is #{redirect_url}"
 
