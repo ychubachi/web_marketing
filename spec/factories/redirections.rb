@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :redirection do
-    code "MyString"
-    default_redirect false
-    medium_id 1
-    target_id 1
+    code "1"
+    is_default false
+    medium_id 0
+    target_id 0
   end
 end

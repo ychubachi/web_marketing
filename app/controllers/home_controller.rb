@@ -76,7 +76,7 @@ class HomeController < ApplicationController
 
     # lookup redirection
     if code == nil then
-      logger.debug "### default redirection"
+      logger.debug "コードが指定されていないのでデフォルトを検索します．"
       redirection = Redirection.where('is_default = :flag', {flag: true}).first
     else
       logger.debug "### redirect code = #{code}"
