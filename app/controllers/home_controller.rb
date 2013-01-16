@@ -26,15 +26,16 @@ class HomeController < ApplicationController
     do_redirect code
   end
 
-  def javascript
+  def tracker
     logger.debug '### HomeControllor#javascript'
     logger.debug "### Cookie=#{request.headers['Cookie']}"
-    get_browser() # create a new uuid
+    get_browser() # create a new uuid for this browser.
+    render "tracker.js"
   end
 
   #see: https://developer.mozilla.org/en/http_access_control#Access-Control-Allow-Headers
   #https://developer.mozilla.org/En/Server-Side_Access_Control
-  def page #todo: rename to page_view
+  def page_view
     logger.debug '### HomeControllor#page'
 
     # for cookie credentials.

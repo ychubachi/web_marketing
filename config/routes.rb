@@ -1,7 +1,7 @@
 WebMarketing::Application.routes.draw do
   match '/rd/:code'         => 'home#redirect'
-  match '/pv'               => 'home#page'
-  match '/tracker'          => 'home#javascript'
+  match '/pv'               => 'home#page_view'
+  match '/tracker'          => 'home#tracker'
   match '/admin'            => 'admin/users#index'
   match '/lp'               => 'landing/page#index'
   match '/lp/pm'            => 'landing/page#pm'
