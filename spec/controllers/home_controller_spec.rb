@@ -6,6 +6,8 @@ describe HomeController do
     @my_url_test = "http://localhost:3000/lp"
     @url_production = "https://pr.aiit.ac.jp/"
 
+    it "てすとだよ"
+
     it "ハードコードしたURLへリダイレクトする（production以外）" do
       get 'index'
       response.should redirect_to "http://localhost:3000/lp"

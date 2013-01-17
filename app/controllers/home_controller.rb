@@ -13,22 +13,31 @@ end
 =end
 
 class HomeController < ApplicationController
+  #
   # GET /
+  # ・デフォルトのURLにリダイレクトします．
+  #
   def index
     logger.debug '### HomeControllor#index'
     do_redirect # defaulct redirect
   end
 
+  #
   # GET /rd/:code
+  # ・:codeで指定されたURLを探し，リダイレクトします．
+  #
   def redirect
     logger.debug '### HomeControllor#redirect'
     code = params[:code]
     do_redirect code
   end
 
+  #
+  # GET /tracker
+  # ・トラッカーのJava Scriptをレンダリングします．
+  # 
   def tracker
     logger.debug '### HomeControllor#javascript'
-    logger.debug "### Cookie=#{request.headers['Cookie']}"
     get_browser() # create a new uuid for this browser.
     render "tracker.js"
   end
@@ -43,7 +52,7 @@ class HomeController < ApplicationController
     headers['Access-Control-Allow-Credentials'] = 'true'
 
     if request.method == 'OPTIONS' then
-      # OPTION
+      # 1回目はOPTIONメソッドで呼ばれます．Access-Controlを返します．
       logger.debug "### OPTION: Request headers"
       logger.debug "### Orign=#{request.headers['Origin']}"
       logger.debug "### Access-Control-Request-Method=#{request.headers['Access-Control-Request-Method']}"
@@ -54,7 +63,7 @@ class HomeController < ApplicationController
       headers['Access-Control-Allow-Headers'] = 'origin, content-type, accept'
       render nothing: true
     elsif request.method == 'POST' then
-      # POST
+      # 2回目はPOSTメソッドで呼ばれます．これが実際のメソッドです．
       logger.debug "### POST: Request headrs"
       logger.debug "### Cookie=#{request.headers['Cookie']}"
       logger.debug "### Process actual request."
