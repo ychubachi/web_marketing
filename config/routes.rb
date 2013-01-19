@@ -24,12 +24,14 @@ WebMarketing::Application.routes.draw do
     resources :targets do as_routes end
     resources :media do as_routes end
     resources :browsers do as_routes end
-    resources :users, :only => [:show, :index]
   end
   
-  devise_for :users, only: [:sign_in, :sign_out, :session]
+  devise_for :users#, skip: [:registrations, :confirmations] # only: [:sign_in, :sign_out, :edit, :session]
+  namespace :users do
+    resources :users, :only => [:show, :index]
+  end
   authenticated :user do
-    root :to => 'admin/users#index'
+    root :to => 'users/users#index'
   end
 
   root to: "home#index"
