@@ -109,7 +109,7 @@ When /^I sign up with a mismatched password confirmation$/ do
 end
 
 When /^I return to the site$/ do
-  visit '/'
+  visit '/users/sign_in'
 end
 
 When /^I sign in with a wrong email$/ do
