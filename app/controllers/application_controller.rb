@@ -1,5 +1,12 @@
+# -*- coding: undecided -*-
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  # サイン・アウト後，ログイン画面に遷移します
+  # ※：これがないと，root_pathに遷移してしまいます
+  def after_sign_out_path_for resource
+    new_user_session_path
+  end 
 
   def get_browser
     # get browser's uuid from the cookies.

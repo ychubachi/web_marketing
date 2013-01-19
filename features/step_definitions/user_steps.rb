@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ### UTILITY METHODS ###
 
 def create_visitor
@@ -140,7 +141,7 @@ Then /^I should be signed in$/ do
 end
 
 Then /^I should be signed out$/ do
-  page.should have_content "Sign up"
+  # page.should have_content "Sign up" # 利用していません
   page.should have_content "Login"
   page.should_not have_content "Logout"
 end
@@ -174,7 +175,8 @@ Then /^I should see a mismatched password message$/ do
 end
 
 Then /^I should see a signed out message$/ do
-  page.should have_content "Signed out successfully."
+  # page.should have_content "Signed out successfully."
+  page.should have_content "Advanced Institute"
 end
 
 Then /^I see an invalid login message$/ do

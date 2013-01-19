@@ -27,7 +27,7 @@ WebMarketing::Application.routes.draw do
     resources :users, :only => [:show, :index]
   end
   
-  devise_for :users, :skip => [:registrations, :passwords]
+  devise_for :users, only: [:sign_in, :sign_out, :session]
   authenticated :user do
     root :to => 'admin/users#index'
   end
