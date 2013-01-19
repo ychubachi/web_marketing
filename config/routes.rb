@@ -26,7 +26,7 @@ WebMarketing::Application.routes.draw do
     resources :browsers do as_routes end
   end
   
-  devise_for :users#, skip: [:registrations, :confirmations] # only: [:sign_in, :sign_out, :edit, :session]
+  devise_for :users, only: [:sessions] #[:sessions, :registrations]
   namespace :users do
     resources :users, :only => [:show, :index]
   end

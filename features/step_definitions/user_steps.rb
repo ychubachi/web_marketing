@@ -100,15 +100,18 @@ When /^I sign in with a wrong password$/ do
   sign_in
 end
 
-When /^I edit my account details$/ do
-  click_link "Edit account"
-  fill_in "Name", :with => "newname"
-  fill_in "Current password", :with => @visitor[:password]
-  click_button "Update"
+When /^I edit my account details it should fail with an error$/ do
+  expect {
+    click_link "Edit account"
+    fill_in "Name", :with => "newname"
+    fill_in "Current password", :with => @visitor[:password]
+    click_button "Update"
+  }.to raise_error(Capybara::ElementNotFound)
 end
 
 When /^I look at the list of users$/ do
-  visit '/'
+  # visit '/users'
+  visit users_users_path
 end
 
 ### THEN ###
@@ -137,8 +140,7 @@ Then /^I should not see a successful sign up message$/ do
 end
 
 Then /^I should see a signed out message$/ do
-  # page.should have_content "Signed out successfully."
-  page.should have_content "Advanced Institute"
+  page.should have_content "Signed out successfully."
 end
 
 Then /^I see an invalid login message$/ do
@@ -149,7 +151,7 @@ Then /^I should see an account edited message$/ do
   page.should have_content "You updated your account successfully."
 end
 
-Then /^I should see my name$/ do
+Then /^I should see my email$/ do
   create_user
-  page.should have_content @user[:name]
+  page.should have_content @user[:email]
 end

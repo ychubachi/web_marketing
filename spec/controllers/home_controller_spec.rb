@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe HomeController do
   describe "GET 'index'" do
-    
+
     it "DBにあるデフォルトのURLへリダイレクトする" do
       # ターゲットを生成します
       @target = FactoryGirl.create(:target)
