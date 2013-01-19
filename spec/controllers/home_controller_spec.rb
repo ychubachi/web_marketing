@@ -3,21 +3,6 @@ require 'spec_helper'
 
 describe HomeController do
   describe "GET 'index'" do
-    @my_url_test = "http://localhost:3000/lp"
-    @url_production = "https://pr.aiit.ac.jp/"
-
-    it "てすとだよばかばかあほあほ"
-
-    it "ハードコードしたURLへリダイレクトする（production以外）" do
-      get 'index'
-      response.should redirect_to "http://localhost:3000/lp"
-    end
-
-    it "ハードコードしたURLへリダイレクトする（production）" do
-      Rails.stub(env: ActiveSupport::StringInquirer.new("production"))
-      get 'index'
-      response.should redirect_to "https://pr.aiit.ac.jp/"
-    end
     
     it "DBにあるデフォルトのURLへリダイレクトする" do
       # ターゲットを生成します
@@ -47,6 +32,19 @@ describe HomeController do
       response.should redirect_to "http://localhost:3000/lp"
     end
   end
+  
+  describe "GET 'index'", "DBにリダイレクトのエントリーがない場合" do
+    it "ハードコードしたURLへリダイレクトする（production以外）" do
+      get 'index'
+      response.should redirect_to "http://localhost:3000/lp"
+    end
+
+    it "ハードコードしたURLへリダイレクトする（production）" do
+      Rails.stub(env: ActiveSupport::StringInquirer.new("production"))
+      get 'index'
+      response.should redirect_to "https://pr.aiit.ac.jp/"
+    end
+  end
 
   describe "GET 'redirect'" do
     it "IDを指定してURLへリダイレクトする（正常）" do
@@ -74,6 +72,12 @@ describe HomeController do
       # テストします
       get 'redirect', code: '2'
       response.should redirect_to "http://localhost:3000/lp"
+    end
+  end
+
+  describe "GET '/tracker'" do
+    it "Javascriptをレンダリングする" do
+      visit '/tracker'
     end
   end
 end
