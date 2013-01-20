@@ -30,7 +30,7 @@ class Landing::PageController < ApplicationController
       save_request!(browser, impression)
     rescue => e
       logger.error 'error on saving an impression'
-      puts e
+      logger.error e
       redirect_to '/lp/sorry' and return
     end
 
@@ -39,7 +39,7 @@ class Landing::PageController < ApplicationController
       send_file(image_file_path, :disposition => 'inline')
     rescue => e
       logger.error 'error on reading image file'
-      puts e
+      logger.error e
       redirect_to '/lp/sorry'
     end
   end
@@ -61,16 +61,22 @@ class Landing::PageController < ApplicationController
       customer = Customer.new(params[:customer])
       customer.browser = browser
       customer.save!
+    rescue => e
+      logger.error 'error on saving data'
+      e.backtrace.each {|l| logger.error l}
+      redirect_to '/lp/sorry'
+    end
 
+    begin
       # send an email with a conversion path.
       conversion_path = browser.requests.order("created_at ASC")
-      ConversionMailer.conversion(customer, conversion_path).deliver
+      ConversionMailer.conversion(customer, conversion_path)
 
       # redirection
       redirect_to '/lp/thank_you'
     rescue => e
-      logger.error 'error on saving data'
-      puts e
+      logger.error 'error on sending an email.'
+      e.backtrace.each {|l| logger.error l}
       redirect_to '/lp/sorry'
     end
   end
