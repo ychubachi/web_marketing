@@ -34,5 +34,7 @@ WebMarketing::Application.routes.draw do
     root :to => 'users/users#index'
   end
 
+  resources :forms
+
   root to: "home#index"
 end
