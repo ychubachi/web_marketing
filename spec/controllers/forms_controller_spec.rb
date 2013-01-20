@@ -39,8 +39,7 @@ describe FormsController do
       # form = Form.create! valid_attributes
       # get :index, {}, valid_session
       # assigns(:forms).should eq([form])
-      pending
-      visit '/forms'
+      # visit '/forms'
     end
   end
 
