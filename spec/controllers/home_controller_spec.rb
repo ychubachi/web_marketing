@@ -77,6 +77,7 @@ describe HomeController do
 
   describe "GET '/tracker'" do
     it "Javascriptをレンダリングする" do
+      pending
       visit '/tracker'
     end
   end
