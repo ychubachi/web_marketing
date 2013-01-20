@@ -36,17 +36,17 @@ group :development do
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'thin'
 end
 
 group :development, :test do
+  gem 'webrick'
   gem 'rspec-rails'
   gem 'spork', '~> 1.0rc' # for its recent version.
 end
 
 group :test do
   # gem 'capybara'
-  # gem 'webrat' # ERROR! when run rake spec. Not neccesary?
+  gem 'webrat'
   gem 'cucumber-rails', :require => false	# test group only -> OK
   gem 'database_cleaner'			# test group only -> OK
   gem 'email_spec'      			# test group only -> OK
