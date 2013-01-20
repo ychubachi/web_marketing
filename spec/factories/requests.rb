@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :request do
-    referred "MyString"
-    env "MyString"
-    action_id 1
+    referrer "http://referrer.com/"
+    action FactoryGirl.create(:action)
+    browser FactoryGirl.create(:browser)
   end
 end

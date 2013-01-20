@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :action do
-    redirect_id 1
-    convertion_id 1
+    type 'Action Type'
+    title 'Action Title'
   end
 end

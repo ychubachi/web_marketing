@@ -9,4 +9,8 @@ describe Landing::PageController do
     end
   end
 
+  describe "POST 'create'" do
+    it "sends an email"
+  end
+
 end

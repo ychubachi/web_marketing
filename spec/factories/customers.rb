@@ -2,13 +2,13 @@
 
 FactoryGirl.define do
   factory :customer do
-    family_name "MyString"
-    given_name "MyString"
-    email "MyString"
-    postal_code "MyString"
-    address "MyString"
-    string "MyString"
-    comment "MyString"
-    browser_id 1
+    family_name "Family"
+    given_name "Given"
+    email "test@example.com"
+    postal_code "000-0000"
+    address "Somewhere"
+    inquiry "[\"inquiry1\",\"inquiry2\"]"
+    # browser_id 1
+    browser FactoryGirl.create(:browser)
   end
 end
