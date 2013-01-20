@@ -2,8 +2,8 @@
 require 'spec_helper'
 
 describe ConversionMailer do
-  describe 'send' do
-    it '資料請求メールを送信します' do
+  describe '「資料請求メールを送信する」とは' do
+    it 'Customerを生成し，メールを送信します' do
       customer = FactoryGirl.create(:customer)
       request = FactoryGirl.create(:request)
       conversion_path = [request]
