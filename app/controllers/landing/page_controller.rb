@@ -9,11 +9,6 @@
 #  2/ 8(金) 19:30-
 
 class Landing::PageController < ApplicationController
-  def initialize
-    @guidance_table = [['1/11(金)','19:30-21:00'],['1/19(土)','13:30-15:00'],['2/2(土)','13:30-15:00'],['2/8(金)','19:30-21:00']]
-    super
-  end
-
   def display
     file_base_name = params[:file]
     
