@@ -2,11 +2,11 @@ class FormsController < ApplicationController
   # GET /forms
   # GET /forms.json
   def index
-    @forms = Form.all
-
+    # @forms = Form.all
+    p "GET /forms"
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @forms }
+      format.json { render json: nil }
     end
   end
 
