@@ -22,6 +22,14 @@ end
   page.should_not have_content "Login"
 end
 
+ならば /^郵便番号変換スクリプトが埋め込まれている$/ do
+  page.should_not have_content "ajaxzip2.js"
+end
+
+ならば /^入力値検証スクリプトが埋め込まれている$/ do
+  page.should_not have_content "validator.js"
+end
+
 もし /^住所氏名を記入した$/ do
   fill_in 'customer_family_name', with: 'Test'
   fill_in 'customer_given_name', with: 'User'
