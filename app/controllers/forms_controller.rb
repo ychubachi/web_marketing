@@ -2,7 +2,7 @@ class FormsController < ApplicationController
   # GET /forms/new
   # GET /forms/new.json
   def new
-    @form = Form.new
+    # @form = Form.new
 
     respond_to do |format|
       format.html # new.html.erb
