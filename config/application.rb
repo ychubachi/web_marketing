@@ -85,5 +85,20 @@ module WebMarketing
     log4r_config= YAML.load_file(File.join(File.dirname(__FILE__),"log4r.yml"))
     YamlConfigurator.decode_yaml( log4r_config['log4r_config'] )
     config.logger = Log4r::Logger[Rails.env]
+
+    # configure layouts
+    config.to_prepare do
+      Admin::ActionsController.layout "admin"
+      Admin::BrowsersController.layout "admin"
+      Admin::ConversionsController.layout "admin"
+      Admin::CustomersController.layout "admin"
+      Admin::MediaController.layout "admin"
+      Admin::PageViewsController.layout "admin"
+      Admin::RedirectionsController.layout "admin"
+      Admin::RequestsController.layout "admin"
+      Admin::TargetsController.layout "admin"
+      Devise::SessionsController.layout "admin"
+      Users::UsersController.layout "admin"
+    end
   end
 end
