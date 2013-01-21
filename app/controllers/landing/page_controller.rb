@@ -42,11 +42,15 @@ class Landing::PageController < ApplicationController
       # save a new customer information.
       customer = Customer.new(params[:customer])
       customer.browser = browser
+      comment = params[:comment]
+      guidance = params[:guidance]
+      customer.inquiry = "{\"備考\":\"#{comment}\",\"説明会\":\"#{guidance}\"}"
       customer.save!
     rescue => e
       logger.error 'error on saving data'
       e.backtrace.each {|l| logger.error l}
       redirect_to '/lp/sorry'
+      return
     end
 
     begin
@@ -60,6 +64,7 @@ class Landing::PageController < ApplicationController
       logger.error 'error on sending an email.'
       e.backtrace.each {|l| logger.error l}
       redirect_to '/lp/sorry'
+      return
     end
   end
 

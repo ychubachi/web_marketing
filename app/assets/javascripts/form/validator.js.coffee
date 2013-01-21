@@ -40,10 +40,4 @@ $(document).ready ->
       $("#address").focus()
       return false
 
-    inquiry = {}
-    inquiry["備考"] = $("#comment").val()
-    inquiry["説明会"] = $("#guidance").val()
-    json = JSON.stringify(inquiry)
-    $("#customer_inquiry").val(json)
-
     return true
