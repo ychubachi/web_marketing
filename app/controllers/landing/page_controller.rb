@@ -32,12 +32,22 @@ class Landing::PageController < ApplicationController
       browser = get_browser
       
       # record a conversion with a new request.
-      conversion = Conversion.where('title = :title', {title: "資料請求"}).first_or_initialize
+      conversion = Conversion
+        .where('title = :title', {title: "資料請求"}).first_or_initialize
       if conversion.new_record? then
         conversion.title = "資料請求"
         conversion.save!
       end
-      save_request!(browser, conversion)
+
+      # save a new request.
+      logger.debug 'Requestインスタンスを生成して保存します．'
+      my_request = Request.new
+      # my_request.referrer = request.referer.to_s
+      #my_request.referrer = 'abc'
+      #p my_request.referrer
+      my_request.action   = conversion
+      my_request.browser  = browser
+      my_request.save!
 
       # save a new customer information.
       customer = Customer.new(params[:customer])
@@ -45,9 +55,10 @@ class Landing::PageController < ApplicationController
       comment = params[:comment]
       guidance = params[:guidance]
       customer.inquiry = "{\"備考\":\"#{comment}\",\"説明会\":\"#{guidance}\"}"
+        .replaceAll("\n", "\\\\n").replaceAll("\r", ""); # 改行コードをエスケープ
       customer.save!
     rescue => e
-      logger.error 'error on saving data'
+      logger.error 'error on saving data: ' + e.message
       e.backtrace.each {|l| logger.error l}
       redirect_to '/lp/sorry'
       return
@@ -62,20 +73,10 @@ class Landing::PageController < ApplicationController
       redirect_to '/lp/thank_you'
     rescue => e
       logger.error 'error on sending an email.'
+      logger.error e.message
       e.backtrace.each {|l| logger.error l}
       redirect_to '/lp/sorry'
       return
     end
-  end
-
-  private
-
-  def save_request!(browser, action)
-    # save a new request.
-    my_request = Request.new
-    my_request.referrer = request.referer.to_s
-    my_request.action   = action
-    my_request.browser  = browser
-    my_request.save!
   end
 end
