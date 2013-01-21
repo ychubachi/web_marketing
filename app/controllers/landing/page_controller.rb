@@ -25,36 +25,6 @@ class Landing::PageController < ApplicationController
   def sorry
   end
   
-  def display
-    file_base_name = params[:file]
-    
-    begin
-      # get this browser.
-      browser = get_browser
-      
-      # record a conversion with a new request.
-      impression = Impression.where('display = :display', {display: file_base_name}).first_or_initialize
-      if impression.new_record? then
-        impression.display = file_base_name
-        impression.save!
-      end
-      save_request!(browser, impression)
-    rescue => e
-      logger.error 'error on saving an impression'
-      logger.error e
-      redirect_to '/lp/sorry' and return
-    end
-
-    begin
-      image_file_path = "app/views/landing/page/impressions/#{file_base_name}.gif"
-      send_file(image_file_path, :disposition => 'inline')
-    rescue => e
-      logger.error 'error on reading image file'
-      logger.error e
-      redirect_to '/lp/sorry'
-    end
-  end
-  
   # POST /landing/page
   def create
     begin

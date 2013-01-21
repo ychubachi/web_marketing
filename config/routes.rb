@@ -7,7 +7,6 @@ WebMarketing::Application.routes.draw do
   match '/lp/pm'            => 'landing/page#pm'
   match '/lp/thank_you'     => 'landing/page#thank_you'
   match '/lp/sorry'         => 'landing/page#sorry'
-  match '/lp/display/:file' => 'landing/page#display'
 
   namespace :landing do
     resources :page, :only => [:create]
