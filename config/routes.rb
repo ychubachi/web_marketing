@@ -13,6 +13,8 @@ WebMarketing::Application.routes.draw do
     resources :page, :only => [:create]
   end
 
+  resources :forms, only: [:new, :create]
+
   namespace :admin do
     resources :conversions do as_routes end
     resources :page_views do as_routes end
@@ -33,8 +35,6 @@ WebMarketing::Application.routes.draw do
   authenticated :user do
     root :to => 'users/users#index'
   end
-
-  resources :forms
 
   root to: "home#index"
 end
