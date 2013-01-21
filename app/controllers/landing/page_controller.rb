@@ -42,9 +42,7 @@ class Landing::PageController < ApplicationController
       # save a new request.
       logger.debug 'Requestインスタンスを生成して保存します．'
       my_request = Request.new
-      # my_request.referrer = request.referer.to_s
-      #my_request.referrer = 'abc'
-      #p my_request.referrer
+      my_request.referrer = request.referer.to_s
       my_request.action   = conversion
       my_request.browser  = browser
       my_request.save!
@@ -54,8 +52,8 @@ class Landing::PageController < ApplicationController
       customer.browser = browser
       comment = params[:comment]
       guidance = params[:guidance]
-      customer.inquiry = "{\"備考\":\"#{comment}\",\"説明会\":\"#{guidance}\"}"
-        .replaceAll("\n", "\\\\n").replaceAll("\r", ""); # 改行コードをエスケープ
+      # customer.inquiry = ActiveSupport::JSON.encode({"備考" => comment, "説明会" => guidance})
+      customer.inquiry = {"備考" => comment, "説明会" => guidance}.to_json
       customer.save!
     rescue => e
       logger.error 'error on saving data: ' + e.message

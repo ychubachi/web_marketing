@@ -3,7 +3,7 @@
 # form.feature
 
 前提 /^資料請求フォームを開いている$/ do
-  visit forms_path
+  visit new_form_path
 end
 
 前提 /^ランディングページを開いている$/ do
@@ -34,7 +34,7 @@ end
   fill_in 'customer_family_name', with: 'Test'
   fill_in 'customer_given_name', with: 'User'
   fill_in 'customer_email', with: 'test@example.com'
-  fill_in 'comment', with: 'Comment'
+  fill_in 'comment', with: 'コメント\r\nABC'
   click_button '送信'
 end
 
