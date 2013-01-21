@@ -6,6 +6,10 @@
   visit forms_path
 end
 
+前提 /^ランディングページを開いている$/ do
+  visit lp_path
+end
+
 前提 /^メールが送信されていない$/ do
   reset_mailer
 end
