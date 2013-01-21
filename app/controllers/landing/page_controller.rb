@@ -9,6 +9,22 @@
 #  2/ 8(金) 19:30-
 
 class Landing::PageController < ApplicationController
+  # GET /lp
+  def index
+  end
+  
+  # GET /lp/pm
+  def pm
+  end
+
+  # GET /lp/thank_you
+  def thank_you
+  end
+
+  # GET /lp/sorry
+  def sorry
+  end
+  
   def display
     file_base_name = params[:file]
     
@@ -38,7 +54,8 @@ class Landing::PageController < ApplicationController
       redirect_to '/lp/sorry'
     end
   end
-
+  
+  # POST /landing/page
   def create
     begin
       # get this browser.
