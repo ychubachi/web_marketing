@@ -1,5 +1,6 @@
 class Admin::RedirectionsController < ApplicationController
   before_filter :authenticate_user!
+  layout 'admin'
 
   active_scaffold :redirection do |conf|
     conf.columns = [:title, :code, :is_default, :medium, :target, :today, :requests, :created_at, :updated_at]

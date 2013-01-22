@@ -1,5 +1,6 @@
 class Admin::BrowsersController < ApplicationController
   before_filter :authenticate_user!
+  layout 'admin'
 
   active_scaffold :browser do |conf|
     conf.columns = [:uuid, :user_agent, :is_admin, :customers, :requests, :created_at, :updated_at]
