@@ -77,8 +77,8 @@ describe HomeController do
 
   describe "GET '/tracker'" do
     it "Javascriptをレンダリングする" do
-      pending
-      visit '/tracker'
+      get 'tracker'
+      response.should render_template("tracker")
     end
   end
 end

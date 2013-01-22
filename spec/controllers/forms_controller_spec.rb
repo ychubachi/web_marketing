@@ -56,9 +56,8 @@ describe FormsController do
       end
 
       it "redirects to the created form" do
-        pending
         post :create, {:form => valid_attributes}, valid_session
-        response.should redirect_to('/forms/thank_you')
+        response.should redirect_to('/form/thank_you')
       end
     end
 
