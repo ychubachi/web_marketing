@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+require 'email_spec'
+require 'email_spec/cucumber'
+
 # form.feature
 
 前提 /^資料請求フォームを開いている$/ do

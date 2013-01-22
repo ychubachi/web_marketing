@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'spec_helper'
+require 'email_spec'
 
 describe ConversionMailer do
   describe '「資料請求メールを送信する」とは' do

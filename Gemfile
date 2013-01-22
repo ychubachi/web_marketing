@@ -1,3 +1,35 @@
+# ------------------------------------------------------------------------
+# See: https://gist.github.com/1191428
+
+gem 'jquery-rails'
+gem 'haml-rails'
+gem 'simple_form'
+
+group :development do
+  gem 'rails3-generators' # for factory_girl_rails and simple_form
+end
+
+group :test, :development do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'guard-bundler'
+  gem 'guard-migrate'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'launchy'
+  gem 'pry'
+  gem 'rspec-instafail'
+  # gem 'rspec-rails'
+  gem "rspec-rails",        :git => "git://github.com/rspec/rspec-rails.git"
+  gem "rspec",              :git => "git://github.com/rspec/rspec.git"
+  gem "rspec-core",         :git => "git://github.com/rspec/rspec-core.git"
+  gem "rspec-expectations", :git => "git://github.com/rspec/rspec-expectations.git"
+  gem "rspec-mocks",        :git => "git://github.com/rspec/rspec-mocks.git"
+end
+
+
+# ------------------------------------------------------------------------
 require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
 source 'https://rubygems.org'
@@ -15,44 +47,15 @@ case HOST_OS
     gem 'eventmachine', '>= 1.0.0.beta', :group => :development
 end
 
-gem 'active_scaffold'
-gem 'bootstrap-sass'
-gem 'devise'
-gem 'foreigner'
-gem 'haml-rails'
-gem 'immigrant'
-gem 'jquery-rails'
-gem 'log4r'
-gem 'rails'
-gem 'simple_form'
-gem 'sqlite3'
-gem 'uuidtools'
-
-group :development do
-  gem 'guard'
-  gem 'guard-bundler'
+# ------------------------------------------------------------------------
+group :test, :development do
+  gem 'spork', '~> 1.0rc' # for its recent version.
+  gem 'cucumber-rails', :require => false
   gem 'guard-cucumber'
   gem 'guard-livereload'
   gem 'guard-rails'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-end
-
-group :development, :test do
   gem 'webrick'
-  gem 'rspec-rails'
-  gem 'spork', '~> 1.0rc' # for its recent version.
-end
-
-group :test do
-  # gem 'capybara'
-  gem 'webrat'
-  gem 'cucumber-rails', :require => false	# test group only -> OK
-  gem 'database_cleaner'			# test group only -> OK
-  gem 'email_spec'      			# test group only -> OK
-  gem 'factory_girl_rails'			# test group only -> Not specified
-  # gem 'launchy'		# launching a browser
-  gem 'machinist'		# test group only -> OK
+  gem 'email_spec'
 end
 
 group :assets do
@@ -62,3 +65,13 @@ group :assets do
   gem 'therubyracer'
   gem 'uglifier'
 end
+
+gem 'active_scaffold'
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'foreigner'
+# gem 'immigrant' # version conflicts
+gem 'log4r'
+gem 'rails'
+gem 'sqlite3'
+gem 'uuidtools'
