@@ -1,8 +1,8 @@
+# -*- coding: utf-8 -*-
 class FormsController < ApplicationController
   # GET /forms/new
   def new
     @form = Customer.new
-
     respond_to do |format|
       format.html # new.html.erb
     end

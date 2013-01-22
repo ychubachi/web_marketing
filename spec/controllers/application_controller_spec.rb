@@ -6,6 +6,7 @@ end
 describe ApplicationController do
   controller do
     def index
+      p 'index'
       @browser =  get_browser
       p @browser
       redirect_to '/'

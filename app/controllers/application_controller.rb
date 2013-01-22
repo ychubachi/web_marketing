@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+# 2013-01-23
+# - このファイルを変更しても，自動的にリロードされません．
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
 

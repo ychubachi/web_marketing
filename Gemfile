@@ -26,6 +26,7 @@ group :test, :development do
   gem "rspec-core",         :git => "git://github.com/rspec/rspec-core.git"
   gem "rspec-expectations", :git => "git://github.com/rspec/rspec-expectations.git"
   gem "rspec-mocks",        :git => "git://github.com/rspec/rspec-mocks.git"
+  gem 'thin'
 end
 
 
@@ -54,7 +55,6 @@ group :test, :development do
   gem 'guard-cucumber'
   gem 'guard-livereload'
   gem 'guard-rails'
-  gem 'webrick'
   gem 'email_spec'
 end
 
