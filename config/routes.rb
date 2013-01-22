@@ -12,7 +12,12 @@ WebMarketing::Application.routes.draw do
     resources :page, :only => [:create]
   end
 
-  resources :forms, only: [:new, :create]
+  resource :form, only: [:new, :create] do
+    member do
+      get 'thank_you'
+      get 'sorry'
+    end
+  end
 
   namespace :admin do
     resources :conversions do as_routes end

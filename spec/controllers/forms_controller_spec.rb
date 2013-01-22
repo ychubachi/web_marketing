@@ -36,48 +36,42 @@ describe FormsController do
 
   describe "GET new" do
     it "assigns a new form as @form" do
-      pending
       get :new, {}, valid_session
-      assigns(:form).should be_a_new(Form)
+      assigns(:form).should be_a_new(Customer)
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Form" do
-        pending
         expect {
           post :create, {:form => valid_attributes}, valid_session
-        }.to change(Form, :count).by(1)
+        }.to change(Customer, :count).by(1)
       end
 
       it "assigns a newly created form as @form" do
-        pending
         post :create, {:form => valid_attributes}, valid_session
-        assigns(:form).should be_a(Form)
+        assigns(:form).should be_a(Customer)
         assigns(:form).should be_persisted
       end
 
       it "redirects to the created form" do
-        pending
         post :create, {:form => valid_attributes}, valid_session
-        response.should redirect_to(Form.last)
+        response.should redirect_to('/form/thank_you')
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved form as @form" do
-        pending
         # Trigger the behavior that occurs when invalid params are submitted
-        Form.any_instance.stub(:save).and_return(false)
+        Customer.any_instance.stub(:save).and_return(false)
         post :create, {:form => {  }}, valid_session
-        assigns(:form).should be_a_new(Form)
+        assigns(:form).should be_a_new(Customer)
       end
 
       it "re-renders the 'new' template" do
-        pending
         # Trigger the behavior that occurs when invalid params are submitted
-        Form.any_instance.stub(:save).and_return(false)
+        Customer.any_instance.stub(:save).and_return(false)
         post :create, {:form => {  }}, valid_session
         response.should render_template("new")
       end

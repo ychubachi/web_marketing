@@ -39,7 +39,7 @@ class HomeController < ApplicationController
   def tracker
     logger.debug '### HomeControllor#javascript'
     get_browser() # create a new uuid for this browser.
-    render "tracker.js"
+    render "tracker", formats: [:js]
   end
 
   #see: https://developer.mozilla.org/en/http_access_control#Access-Control-Allow-Headers
