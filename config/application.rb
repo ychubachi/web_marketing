@@ -88,17 +88,7 @@ module WebMarketing
 
     # configure layouts
     config.to_prepare do
-      Admin::ActionsController.layout "admin"
-      Admin::BrowsersController.layout "admin"
-      Admin::ConversionsController.layout "admin"
-      Admin::CustomersController.layout "admin"
-      Admin::MediaController.layout "admin"
-      Admin::PageViewsController.layout "admin"
-      Admin::RedirectionsController.layout "admin"
-      Admin::RequestsController.layout "admin"
-      Admin::TargetsController.layout "admin"
       Devise::SessionsController.layout "admin"
-      Users::UsersController.layout "admin"
     end
   end
 end
