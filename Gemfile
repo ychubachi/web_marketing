@@ -53,14 +53,14 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'jquery-rails'
-gem 'haml-rails'
-gem 'simple_form'
 gem 'active_scaffold'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'foreigner'
+gem 'haml-rails'
+gem 'jquery-rails'
 gem 'log4r'
 gem 'rails'
+gem 'simple_form'
 gem 'sqlite3'
 gem 'uuidtools'
