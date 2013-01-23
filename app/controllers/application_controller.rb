@@ -14,27 +14,67 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end 
 
-  # cookieにbrowserのuuidがあるか調べ，なければ新たに生成します．
+  # DEPRECATED: Please use search_browser instead.
   def get_browser
-    logger.debug '# cookieからbrowserのuuidを取得します．'
+    warn "[DEPRECATION] 'get_browser' is deprecated. Please use 'search_browser' instead."
+    search_browser
+  end
+
+  # アクセスしてきたブラウザをDBから検索します．
+  def search_browser
+    logger.debug '# cookieからbrowserのuuidを取得します．'.green
     @browser_uuid = cookies[:web_marketing_uuid]
     if @browser_uuid.to_s == '' then
-      logger.debug "# uuidが無かったので新規に生成します．"
+      logger.debug "  - uuidが無かったので新規に生成します．".green
       @browser_uuid = UUIDTools::UUID.random_create.to_s
       cookies[:web_marketing_uuid] = { value: @browser_uuid, expires: 365.days.from_now }
     end
-    logger.info "# browserのuuidは#{@browser_uuid}です．"
+    logger.debug "  - browserのuuidは#{@browser_uuid}です．".green
 
-    # lookup the browser from DB
-    browser = Browser.where('uuid = :uuid', {uuid: @browser_uuid}).first_or_initialize
-    if browser.new_record?
-      logger.debug '# そのuuidを持つ新たなbrowserを作成してDBに保存します．'
-      browser.uuid = @browser_uuid
-      browser.user_agent = request.user_agent.to_s
-      browser.save
+    logger.debug '# uuidで指定されたbrowserを検索します．'.green
+    @browser = Browser.where('uuid = :uuid', {uuid: @browser_uuid}).first_or_initialize
+    if @browser.new_record?
+      logger.debug '  - そのuuidを持つ新たなbrowserを作成してDBに保存します．'.green
+      @browser.uuid = @browser_uuid
+      @browser.user_agent = request.user_agent.to_s
+      @browser.save
     else
-      logger.debug '# そのuuidを持つbrowserはすでにDBに存在しています．'
+      logger.debug '  - そのuuidを持つbrowserはすでにDBに存在しています．'.green
     end
-    return browser
+    logger.debug "  - browserは#{@browser}です．".green
+
+    return @browser
+  end
+
+  # コンバーションを記録し，顧客情報を登録します．
+  def record_conversion
+      search_browser
+      
+      logger.debug '# コンバーションを記録し，顧客情報を登録します．'.green
+      logger.debug '  - 「資料請求」コンバーションを準備します．'.green
+      conversion = Conversion
+        .where('title = :title', {title: "資料請求"}).first_or_initialize
+      if conversion.new_record? then
+        conversion.title = "資料請求"
+        conversion.save!
+      end
+
+      logger.debug '  - コンバージョンのリクエストがあったことを記録します'.green
+      my_request = Request.new
+      my_request.referrer = request.referer.to_s
+      my_request.action   = conversion
+      my_request.browser  = @browser
+      my_request.save!
+
+      logger.debug '  - 顧客情報を登録します．'.green
+      @customer = Customer.new(params[:customer])
+      @customer.browser = @browser
+      comment = params[:comment]
+      guidance = params[:guidance]
+      @customer.inquiry = {"備考" => comment, "説明会" => guidance}.to_json
+      @customer.save!
+
+      logger.debug '  - コンバーション経路を参照します．'.green
+      @conversion_path = @browser.requests.order("created_at ASC")
   end
 end

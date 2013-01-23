@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :browser do
-    uuid "MyString"
-    user_agent "MyString"
+    uuid "test_browser_uuid"
+    user_agent "test_browser_user_agent"
   end
 end

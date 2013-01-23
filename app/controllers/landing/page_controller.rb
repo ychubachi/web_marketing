@@ -27,54 +27,27 @@ class Landing::PageController < ApplicationController
   
   # POST /landing/page
   def create
+    logger.debug '# 資料請求メールを送信します'.green
     begin
-      # get this browser.
-      browser = get_browser
-      
-      # record a conversion with a new request.
-      conversion = Conversion
-        .where('title = :title', {title: "資料請求"}).first_or_initialize
-      if conversion.new_record? then
-        conversion.title = "資料請求"
-        conversion.save!
-      end
-
-      # save a new request.
-      logger.debug 'Requestインスタンスを生成して保存します．'
-      my_request = Request.new
-      my_request.referrer = request.referer.to_s
-      my_request.action   = conversion
-      my_request.browser  = browser
-      my_request.save!
-
-      # save a new customer information.
-      customer = Customer.new(params[:customer])
-      customer.browser = browser
-      comment = params[:comment]
-      guidance = params[:guidance]
-      # customer.inquiry = ActiveSupport::JSON.encode({"備考" => comment, "説明会" => guidance})
-      customer.inquiry = {"備考" => comment, "説明会" => guidance}.to_json
-      customer.save!
+      record_conversion
     rescue => e
-      logger.error 'error on saving data: ' + e.message
-      e.backtrace.each {|l| logger.error l}
+      logger.error ('# error on recording a conversion: ' + e.message).red
+      e.backtrace.each {|l| logger.error l.red}
       redirect_to '/lp/sorry'
       return
     end
 
     begin
-      # send an email with a conversion path.
-      conversion_path = browser.requests.order("created_at ASC")
-      ConversionMailer.conversion(customer, conversion_path)
-
-      # redirection
-      redirect_to '/lp/thank_you'
+      ConversionMailer.conversion(@customer, @conversion_path)
     rescue => e
-      logger.error 'error on sending an email.'
-      logger.error e.message
-      e.backtrace.each {|l| logger.error l}
+      logger.error ('error on sending an email:' + e.message).red
+      e.backtrace.each {|l| logger.error l.red}
       redirect_to '/lp/sorry'
       return
     end
+    logger.debug '# 資料請求メールを送信しました'.green
+
+    redirect_to '/lp/thank_you'
+    return
   end
 end

@@ -94,6 +94,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    colorize (0.5.8)
     compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -284,6 +285,7 @@ DEPENDENCIES
   bootstrap-sass
   capybara
   coffee-rails
+  colorize
   compass-rails
   cucumber-rails
   database_cleaner

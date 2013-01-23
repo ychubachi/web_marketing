@@ -55,6 +55,7 @@ end
 
 gem 'active_scaffold'
 gem 'bootstrap-sass'
+gem 'colorize'		# colorful logs
 gem 'devise'
 gem 'foreigner'
 gem 'haml-rails'
