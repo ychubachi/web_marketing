@@ -19,6 +19,7 @@ case HOST_OS
 end
 
 group :development, :test do
+  gem 'capistrano'
   gem 'capybara'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'

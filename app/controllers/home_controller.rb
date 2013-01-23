@@ -100,7 +100,7 @@ class HomeController < ApplicationController
     else
       logger.warn 'DBからデフォルトのリダイレクションURLが検索できませんでした．ハードコードされたURLを利用します．'
       if Rails.env.production? then
-        redirect_url = 'https://pr.aiit.ac.jp/'
+        redirect_url = 'https://pr.aiit.ac.jp/lp'
       else
         redirect_url = 'http://localhost:3000/lp'
       end
