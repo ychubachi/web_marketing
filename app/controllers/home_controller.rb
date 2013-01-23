@@ -109,7 +109,8 @@ class HomeController < ApplicationController
 
     # save a new request.
     my_request = Request.new
-    my_request.referrer = request.referer.to_s
+    # ↓Binary data inserted for `string` type on column `referrer`となる
+    # my_request.referrer = request.referer.to_s
     my_request.action = redirection
     my_request.browser = browser
     my_request.save

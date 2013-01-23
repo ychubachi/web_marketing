@@ -42,33 +42,34 @@ class ApplicationController < ActionController::Base
 
   # コンバーションを記録し，顧客情報を登録します．
   def record_conversion
-      search_browser
+    search_browser
       
-      logger.debug '# コンバーションを記録し，顧客情報を登録します．'.green
-      logger.debug '  - 「資料請求」コンバーションを準備します．'.green
+    logger.debug '# コンバーションを記録し，顧客情報を登録します．'.green
+    logger.debug '  - 「資料請求」コンバーションを準備します．'.green
       conversion = Conversion
-        .where('title = :title', {title: "資料請求"}).first_or_initialize
-      if conversion.new_record? then
-        conversion.title = "資料請求"
-        conversion.save!
-      end
+      .where('title = :title', {title: "資料請求"}).first_or_initialize
+    if conversion.new_record? then
+      conversion.title = "資料請求"
+      conversion.save!
+    end
 
-      logger.debug '  - コンバージョンのリクエストがあったことを記録します'.green
-      my_request = Request.new
-      my_request.referrer = request.referer.to_s
-      my_request.action   = conversion
-      my_request.browser  = @browser
-      my_request.save!
-
-      logger.debug '  - 顧客情報を登録します．'.green
-      @customer = Customer.new(params[:customer])
-      @customer.browser = @browser
-      comment = params[:comment]
-      guidance = params[:guidance]
-      @customer.inquiry = {"備考" => comment, "説明会" => guidance}.to_json
-      @customer.save!
-
-      logger.debug '  - コンバーション経路を参照します．'.green
-      @conversion_path = @browser.requests.order("created_at ASC")
+    logger.debug '  - コンバージョンのリクエストがあったことを記録します'.green
+    my_request = Request.new
+    # ↓Binary data inserted for `string` type on column `referrer`となる
+    # my_request.referrer = request.referer.to_s
+    my_request.action   = conversion
+    my_request.browser  = @browser
+    my_request.save!
+    
+    logger.debug '  - 顧客情報を登録します．'.green
+    @customer = Customer.new(params[:customer])
+    @customer.browser = @browser
+    comment = params[:comment]
+    guidance = params[:guidance]
+    @customer.inquiry = {"備考" => comment, "説明会" => guidance}.to_json
+    @customer.save!
+    
+    logger.debug '  - コンバーション経路を参照します．'.green
+    @conversion_path = @browser.requests.order("created_at ASC")
   end
 end
