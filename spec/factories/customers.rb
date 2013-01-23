@@ -9,6 +9,6 @@ FactoryGirl.define do
     address "Somewhere"
     inquiry "[\"inquiry1\",\"inquiry2\"]"
     # browser_id 1
-    browser FactoryGirl.create(:browser)
+    browser {FactoryGirl.create(:browser)}
   end
 end

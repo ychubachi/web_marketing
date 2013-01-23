@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :request do
     referrer "http://referrer.com/"
-    action FactoryGirl.create(:action)
-    browser FactoryGirl.create(:browser)
+    action {FactoryGirl.create(:action)}
+    browser {FactoryGirl.create(:browser)}
   end
 end
