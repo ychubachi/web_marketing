@@ -51,4 +51,10 @@ describe ApplicationController do
       end
     end
   end
+
+  context 'record_conversion' do
+    it 'コンバーションを記録し，顧客情報を登録します．' do
+      pending '一時保留し，FormController関連の実装をします．'
+    end
+  end
 end
