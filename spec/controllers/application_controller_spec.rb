@@ -12,7 +12,7 @@ describe ApplicationController do
     end
   end
 
-  context 'get_browser' do
+  context 'search_browser' do
     context 'browserのuuidがcookieにないとき' do
       it "browserのuuidを新たに生成します．" do
         get :index

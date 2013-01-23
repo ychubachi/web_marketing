@@ -14,12 +14,6 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end 
 
-  # DEPRECATED: Please use search_browser instead.
-  def get_browser
-    warn "[DEPRECATION] 'get_browser' is deprecated. Please use 'search_browser' instead."
-    search_browser
-  end
-
   # アクセスしてきたブラウザをDBから検索します．
   def search_browser
     logger.debug '# cookieからbrowserのuuidを取得します．'.green

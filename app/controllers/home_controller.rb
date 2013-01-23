@@ -38,7 +38,7 @@ class HomeController < ApplicationController
   # 
   def tracker
     logger.debug '### HomeControllor#javascript'
-    get_browser() # create a new uuid for this browser.
+    search_browser() # create a new uuid for this browser.
     render "tracker", formats: [:js]
   end
 
@@ -82,7 +82,7 @@ class HomeController < ApplicationController
   def do_redirect(code = nil)
     logger.debug "### HomeController#do_redirect(id=#{code})"
 
-    browser = get_browser()
+    browser = search_browser()
 
     # lookup redirection
     if code == nil then
@@ -139,7 +139,7 @@ class HomeController < ApplicationController
     my_request = Request.new
     my_request.referrer = url
     my_request.action = page_view
-    my_request.browser = get_browser
+    my_request.browser = search_browser
     my_request.save
   end
 end
