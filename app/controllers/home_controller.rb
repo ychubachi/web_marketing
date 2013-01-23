@@ -1,16 +1,4 @@
 # -*- coding: utf-8 -*-
-=begin
-To create a new user
-
-# rails c
-
-User.create! do |u|
-  u.email = 'user@example.com'
-  u.password = 'please'
-  u.password_confirmation = 'please'
-end
-
-=end
 
 class HomeController < ApplicationController
   #
@@ -68,11 +56,11 @@ class HomeController < ApplicationController
       logger.debug "### Cookie=#{request.headers['Cookie']}"
       logger.debug "### Process actual request."
       # record the page view.
-      do_page
+      do_page_view
       render json: {result: 'ok'}
     else
       # other (GET)
-      do_page
+      do_page_view
       render json: {result: 'ok'}
     end
   end
@@ -80,46 +68,40 @@ class HomeController < ApplicationController
   private
 
   def do_redirect(code = nil)
-    logger.debug "### HomeController#do_redirect(id=#{code})"
-
-    browser = search_browser()
-
-    # lookup redirection
-    if code == nil then
-      logger.debug "コードが指定されていないのでデフォルトを検索します．"
-      redirection = Redirection.where('is_default = :flag', {flag: true}).first
-    else
-      logger.debug "### redirect code = #{code}"
+    logger.debug "# リダイレクト先をDBから検索します".green
+    if code then
+      logger.debug "- 指定されたコードに対応するリダイレクト先を検索します: code = #{code}".green
       redirection = Redirection.where('code = :code',{code: code}).first
+    else
+      logger.debug "- コードが指定されていないのでデフォルトを検索します．".green
+      redirection = Redirection.where('is_default = :flag', {flag: true}).first
     end
 
-    # set url from redirect or use default.
     if redirection then
-      logger.info "### redirection to #{redirection.title}"
+      logger.info "# リダイレクト先: #{redirection.title}"
       redirect_url = redirection.target.url
+      
+      # 変数名が@my_requestになっているのは，
+      # HTTP Requestを示すもともとの変数名と重複するからです．
+      @my_request = Request.new
+      @my_request.referrer = request.referer.to_s
+      @my_request.action = redirection
+      @my_request.browser = search_browser()
+      @my_request.save
     else
-      logger.warn 'DBからデフォルトのリダイレクションURLが検索できませんでした．ハードコードされたURLを利用します．'
+      logger.warn '# DBからデフォルトのリダイレクションURLが検索できませんでした．ハードコードされたURLを利用します．'.red
       if Rails.env.production? then
         redirect_url = 'https://pr.aiit.ac.jp/lp'
       else
         redirect_url = 'http://localhost:3000/lp'
       end
     end
-    logger.debug "### redirection url is #{redirect_url}"
 
-    # save a new request.
-    my_request = Request.new
-    # ↓Binary data inserted for `string` type on column `referrer`となる
-    # my_request.referrer = request.referer.to_s
-    my_request.action = redirection
-    my_request.browser = browser
-    my_request.save
-
-    # redicet
+    logger.debug "# リダイレクトします: url = #{redirect_url}".green
     redirect_to redirect_url
   end
 
-  def do_page
+  def do_page_view
     # find the page specified by url.
     url = params[:url].to_s
     logger.debug '### url = ' + url

@@ -2,12 +2,11 @@
 require 'spec_helper'
 
 describe HomeController do
-  describe "GET 'index'" do
-
+  describe 'GET /index' do
     it "DBにあるデフォルトのURLへリダイレクトする" do
       # ターゲットを生成します
       @target = FactoryGirl.create(:target)
-      @target.save
+        @target.save
       # リダイレクションを生成し，ターゲットを設定します
       @redirection = FactoryGirl.create(:redirection)
       @redirection.is_default = true
@@ -15,7 +14,25 @@ describe HomeController do
       @redirection.save
       # テストします
       get 'index'
+      assigns(:my_request).should be_a(Request)
+      assigns(:my_request).action.should be_a(Action)
+      assigns(:my_request).browser.should be_a(Browser)
       response.should redirect_to "http://test.host/"
+    end
+  end
+  
+  context 'GET /index', '（異常）' do
+    it "ハードコードしたURLへリダイレクトする（production以外）" do
+      get 'index'
+      response.should redirect_to "http://localhost:3000/lp"
+      assigns(:my_request).should be_nil
+    end
+
+    it "ハードコードしたURLへリダイレクトする（production）" do
+      Rails.stub(env: ActiveSupport::StringInquirer.new("production"))
+      get 'index'
+      response.should redirect_to "https://pr.aiit.ac.jp/lp"
+      assigns(:my_request).should be_nil
     end
     
     it "DBにデフォルトのURLがない場合，ハードコードしたURLにリダイレクトする" do
@@ -30,24 +47,12 @@ describe HomeController do
       # テストします
       get 'index'
       response.should redirect_to "http://localhost:3000/lp"
-    end
-  end
-  
-  describe "GET 'index'", "DBにリダイレクトのエントリーがない場合" do
-    it "ハードコードしたURLへリダイレクトする（production以外）" do
-      get 'index'
-      response.should redirect_to "http://localhost:3000/lp"
-    end
-
-    it "ハードコードしたURLへリダイレクトする（production）" do
-      Rails.stub(env: ActiveSupport::StringInquirer.new("production"))
-      get 'index'
-      response.should redirect_to "https://pr.aiit.ac.jp/lp"
+      assigns(:my_request).should be_nil
     end
   end
 
-  describe "GET 'redirect'" do
-    it "IDを指定してURLへリダイレクトする（正常）" do
+  context 'GET /redirect' do
+    it "IDを指定してURLへリダイレクトする" do
       # ターゲットを生成します
       @target = FactoryGirl.create(:target)
       @target.save
@@ -57,10 +62,15 @@ describe HomeController do
       @redirection.save
       # テストします
       get 'redirect', code: '1'
+      assigns(:my_request).should be_a(Request)
+      assigns(:my_request).action.should be_a(Action)
+      assigns(:my_request).browser.should be_a(Browser)
       response.should redirect_to "http://test.host/"
     end
+  end
 
-    it "DBにないIDを指定してURLへリダイレクトする（例外）" do
+  context 'GET /redirect', '（異常）' do
+    it "DBにないIDを指定してURLへリダイレクトする" do
       # ターゲットを生成します
       @target = FactoryGirl.create(:target)
       @target.save
@@ -72,6 +82,7 @@ describe HomeController do
       # テストします
       get 'redirect', code: '2'
       response.should redirect_to "http://localhost:3000/lp"
+      assigns(:my_request).should be_nil
     end
   end
 

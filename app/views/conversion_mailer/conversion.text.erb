@@ -18,7 +18,7 @@ E-Mail: <%= @customer.email %>
 この方のコンバーション経路は次のとおりです。
 ーーー
 <%- @conversion_path.each do |request| %>
-* <%= request.created_at %>: <%= request.action.nil? ? '不明' : request.action.title %>
+* <%= request.created_at %>: <%= request.action.title %>
   Ref: <%= request.referrer %>
 <%- end %>
 ーーー
