@@ -230,6 +230,7 @@ GEM
       json (~> 1.4)
     ref (1.0.2)
     rspec-instafail (0.2.4)
+    rubygems-bundler (1.1.0)
     rubyzip (0.9.9)
     sass (3.2.5)
     sass-rails (3.2.6)
@@ -312,6 +313,7 @@ DEPENDENCIES
   rspec-instafail
   rspec-mocks!
   rspec-rails!
+  rubygems-bundler
   sass-rails
   simple_form
   spork (~> 1.0rc)
