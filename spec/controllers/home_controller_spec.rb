@@ -42,7 +42,7 @@ describe HomeController do
     it "ハードコードしたURLへリダイレクトする（production）" do
       Rails.stub(env: ActiveSupport::StringInquirer.new("production"))
       get 'index'
-      response.should redirect_to "https://pr.aiit.ac.jp/"
+      response.should redirect_to "https://pr.aiit.ac.jp/lp"
     end
   end
 

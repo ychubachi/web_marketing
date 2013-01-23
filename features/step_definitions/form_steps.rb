@@ -42,7 +42,7 @@ end
 end
 
 ならば /^"(.*?)" がメールを受け取る$/ do |address|
-  unread_emails_for(address).size.should == parse_email_count(1)
+  unread_emails_for(address).size.should == 1
 end
 
 # ------------------------------------------------------------------------
