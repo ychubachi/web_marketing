@@ -14,6 +14,8 @@ namespace :deploy do
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
+    t=Time.now
+    run "cp /home/rails/web_marketing/shared/db/production.sqlite3 /home/rails/web_marketing/backup/#{t.year}-#{t.month}-#{t.day}_#{t.hour}:#{t.min}:#{t.sec}_production.sqlite3"
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end

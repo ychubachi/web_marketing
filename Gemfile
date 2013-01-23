@@ -54,7 +54,7 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'active_scaffold'
+gem 'active_scaffold', :git => 'git://github.com/activescaffold/active_scaffold.git'
 gem 'bootstrap-sass'
 gem 'colorize'		# colorful logs
 gem 'devise'
