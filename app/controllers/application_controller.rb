@@ -2,6 +2,8 @@
 
 # 2013-01-23
 # - このファイルを変更しても，自動的にリロードされません．
+# 2013-01-23
+# - Guardfileでこのファイルをwatchするようにしました．
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
@@ -12,26 +14,26 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end 
 
+  # cookieにbrowserのuuidがあるか調べ，なければ新たに生成します．
   def get_browser
-    # get browser's uuid from the cookies.
-    uuid = cookies[:web_marketing_uuid]
-    if uuid.to_s == '' then
-      uuid = UUIDTools::UUID.random_create.to_s
-      cookies[:web_marketing_uuid] = { value: uuid, expires: 365.days.from_now }
-      logger.info "### browser uuid=#{uuid} [NEW]"
-    else
-      logger.info "### browser uuid=#{uuid}"
+    logger.debug '# cookieからbrowserのuuidを取得します．'
+    @browser_uuid = cookies[:web_marketing_uuid]
+    if @browser_uuid.to_s == '' then
+      logger.debug "# uuidが無かったので新規に生成します．"
+      @browser_uuid = UUIDTools::UUID.random_create.to_s
+      cookies[:web_marketing_uuid] = { value: @browser_uuid, expires: 365.days.from_now }
     end
+    logger.info "# browserのuuidは#{@browser_uuid}です．"
 
     # lookup the browser from DB
-    browser = Browser.where('uuid = :uuid', {uuid: uuid}).first_or_initialize
+    browser = Browser.where('uuid = :uuid', {uuid: @browser_uuid}).first_or_initialize
     if browser.new_record?
-      logger.debug '### create a new browser and save it.'
-      browser.uuid = uuid
+      logger.debug '# そのuuidを持つ新たなbrowserを作成してDBに保存します．'
+      browser.uuid = @browser_uuid
       browser.user_agent = request.user_agent.to_s
       browser.save
     else
-      logger.debug '### the browser already exists in DB.'
+      logger.debug '# そのuuidを持つbrowserはすでにDBに存在しています．'
     end
     return browser
   end
