@@ -5,4 +5,8 @@ class Customer < ActiveRecord::Base
   def to_label
     "#{family_name} #{given_name}"
   end
+
+  def parsed_inquiry
+    json = JSON.parse inquiry
+  end
 end
