@@ -12,7 +12,7 @@ WebMarketing::Application.routes.draw do
     resources :page, :only => [:create]
   end
 
-  resource :form, only: [:new, :create] do
+  resource :form, only: [:new, :create, :show] do
     member do
       get 'thank_you'
       get 'sorry'
