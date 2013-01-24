@@ -26,11 +26,7 @@ module WebMarketing
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
-      # See: https://gist.github.com/1191428
-      g.test_framework :rspec, :fixture => true
-      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
-      g.form_builder :simple_form
-      g.template_engine :haml
+      g.test_framework :rspec, :view_specs => false, :webrat => true
     end
 
     # Settings in config/environments/* take precedence over those specified here.
