@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Address:
+  = @form.address
+%p
+  %b Browser:
+  = @form.browser_id
+%p
+  %b Inquire:
+  = @form.inquire
+%p
+  %b Email:
+  = @form.email
+%p
+  %b Family name:
+  = @form.family_name
+%p
+  %b Given name:
+  = @form.given_name
+%p
+  %b Postal code code:
+  = @form.postal_code_code
+
+= link_to 'Edit', edit_form_path(@form)
+\|
+= link_to 'Back', forms_path
