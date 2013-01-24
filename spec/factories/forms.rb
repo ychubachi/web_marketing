@@ -4,10 +4,10 @@ FactoryGirl.define do
   factory :form do
     address "MyString"
     browser_id 1
-    inquire "MyString"
+    inquiry "MyString"
     email "MyString"
     family_name "MyString"
     given_name "MyString"
-    postal_code_code "MyString"
+    postal_code "MyString"
   end
 end
