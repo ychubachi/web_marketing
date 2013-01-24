@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20130124054132) do
     t.boolean  "is_default"
     t.integer  "medium_id"
     t.integer  "target_id"
-    t.string   "display"
   end
 
   create_table "browsers", :force => true do |t|
@@ -61,15 +60,6 @@ ActiveRecord::Schema.define(:version => 20130124054132) do
 
   create_table "media", :force => true do |t|
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "redirections", :force => true do |t|
-    t.string   "code"
-    t.boolean  "is_default"
-    t.integer  "medium_id"
-    t.integer  "target_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
