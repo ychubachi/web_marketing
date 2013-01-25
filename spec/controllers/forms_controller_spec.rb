@@ -33,20 +33,20 @@ describe FormsController do
   def valid_session
     {}
   end
-
-  describe "GET index" do
+  
+  describe "GET index", 'is not in use' do
     it "assigns all forms as @forms" do
-      form = Form.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:forms).should eq([form])
+      expect {
+        get :index, {}, valid_session
+      }.to raise_error(ActionController::RoutingError)
     end
   end
 
-  describe "GET show" do
+  describe "GET show", 'is not in use' do
     it "assigns the requested form as @form" do
-      form = Form.create! valid_attributes
-      get :show, {:id => form.to_param}, valid_session
-      assigns(:form).should eq(form)
+      expect {
+        get :show, {}, valid_session
+      }.to raise_error(ActionController::RoutingError)
     end
   end
 
@@ -59,9 +59,9 @@ describe FormsController do
 
   describe "GET edit" do
     it "assigns the requested form as @form" do
-      form = Form.create! valid_attributes
-      get :edit, {:id => form.to_param}, valid_session
-      assigns(:form).should eq(form)
+      expect {
+        get :edit, {}, valid_session
+      }.to raise_error(ActionController::RoutingError)
     end
   end
 
@@ -81,7 +81,7 @@ describe FormsController do
 
       it "redirects to the created form" do
         post :create, {:form => valid_attributes}, valid_session
-        response.should redirect_to(Form.last)
+        response.should redirect_to('thank_you')
       end
     end
 
@@ -102,62 +102,21 @@ describe FormsController do
     end
   end
 
-  describe "PUT update" do
+  describe "PUT update", 'is not in use' do
     describe "with valid params" do
       it "updates the requested form" do
-        form = Form.create! valid_attributes
-        # Assuming there are no other forms in the database, this
-        # specifies that the Form created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Form.any_instance.should_receive(:update_attributes).with({ "address" => "MyString" })
-        put :update, {:id => form.to_param, :form => { "address" => "MyString" }}, valid_session
-      end
-
-      it "assigns the requested form as @form" do
-        form = Form.create! valid_attributes
-        put :update, {:id => form.to_param, :form => valid_attributes}, valid_session
-        assigns(:form).should eq(form)
-      end
-
-      it "redirects to the form" do
-        form = Form.create! valid_attributes
-        put :update, {:id => form.to_param, :form => valid_attributes}, valid_session
-        response.should redirect_to(form)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the form as @form" do
-        form = Form.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Form.any_instance.stub(:save).and_return(false)
-        put :update, {:id => form.to_param, :form => { "address" => "invalid value" }}, valid_session
-        assigns(:form).should eq(form)
-      end
-
-      it "re-renders the 'edit' template" do
-        form = Form.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Form.any_instance.stub(:save).and_return(false)
-        put :update, {:id => form.to_param, :form => { "address" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        expect {
+          put :update, {}, valid_session
+        }.to raise_error(ActionController::RoutingError)
       end
     end
   end
 
-  describe "DELETE destroy" do
+  describe "DELETE destroy", 'is not in use' do
     it "destroys the requested form" do
-      form = Form.create! valid_attributes
       expect {
-        delete :destroy, {:id => form.to_param}, valid_session
-      }.to change(Form, :count).by(-1)
-    end
-
-    it "redirects to the forms list" do
-      form = Form.create! valid_attributes
-      delete :destroy, {:id => form.to_param}, valid_session
-      response.should redirect_to(forms_url)
+        delete :destroy, {}, valid_session
+      }.to raise_error(ActionController::RoutingError)
     end
   end
 
