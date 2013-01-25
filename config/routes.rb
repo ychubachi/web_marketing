@@ -1,7 +1,4 @@
 WebMarketing::Application.routes.draw do
-  resources :forms
-
-
   match '/rd/:code'         => 'home#redirect'
   match '/pv'               => 'home#page_view'
   match '/tracker'          => 'home#tracker'
@@ -15,12 +12,12 @@ WebMarketing::Application.routes.draw do
     resources :page, :only => [:create]
   end
 
-  # resource :form, only: [:new, :create, :show] do
-  #   member do
-  #     get 'thank_you'
-  #     get 'sorry'
-  #   end
-  # end
+  resource :form, only: [:new, :create, :show] do
+    member do
+      get 'thank_you'
+      get 'sorry'
+    end
+  end
 
   namespace :admin do
     resources :conversions do as_routes end

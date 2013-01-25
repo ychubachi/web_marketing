@@ -26,7 +26,7 @@ module WebMarketing
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
-      g.test_framework :rspec, :view_specs => false, :webrat => true
+      g.test_framework :rspec, :view_specs => false, :routing_specs => false, :webrat => true
     end
 
     # Settings in config/environments/* take precedence over those specified here.
