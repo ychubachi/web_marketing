@@ -2,6 +2,7 @@
 
 require 'email_spec'
 require 'email_spec/cucumber'
+require 'capybara/rails'
 
 # form.feature
 
@@ -18,7 +19,7 @@ end
 end
 
 ならば /^送信ボタンが見える$/ do
-  page.should have_button "送信"
+  page.has_button? 'submit'
 end
 
 ならば /^Loginリンクが表示されない$/ do
@@ -34,10 +35,20 @@ end
 end
 
 もし /^住所氏名を記入した$/ do
+  fill_in 'form_family_name', with: 'Test'
+  fill_in 'form_given_name', with: 'User'
+  fill_in 'form_email', with: 'test@example.com'
+  fill_in 'form_inquiry', with: 'コメント\r\nABC'
+  # click_button 'submit'
+  click_button 'Create Form'
+end
+
+もし /^住所氏名を記入した（LP）$/ do
   fill_in 'customer_family_name', with: 'Test'
   fill_in 'customer_given_name', with: 'User'
   fill_in 'customer_email', with: 'test@example.com'
   fill_in 'comment', with: 'コメント\r\nABC'
+  # click_button 'submit'
   click_button '送信'
 end
 

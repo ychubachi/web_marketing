@@ -20,7 +20,6 @@ end
 
 group :development, :test do
   gem 'capistrano'
-  gem 'webrat'  
   gem 'capybara'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'

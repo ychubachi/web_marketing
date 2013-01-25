@@ -23,7 +23,7 @@ class FormsController < ApplicationController
 
     respond_to do |format|
       if @form.save
-        format.html { redirect_to 'thank_you'}
+        format.html { redirect_to '/form/thank_you'}
       else
         format.html { render action: "new" }
       end
