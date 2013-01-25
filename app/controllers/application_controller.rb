@@ -62,11 +62,7 @@ class ApplicationController < ActionController::Base
     my_request.save!
     
     logger.debug '  - 顧客情報を登録します．'.green
-    @customer = Customer.new(params[:customer])
     @customer.browser = @browser
-    comment = params[:comment]
-    guidance = params[:guidance]
-    @customer.inquiry = {"備考" => comment, "説明会" => guidance}.to_json
     @customer.save!
     
     logger.debug '  - コンバーション経路を参照します．'.green

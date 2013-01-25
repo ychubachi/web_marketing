@@ -29,6 +29,10 @@ class Landing::PageController < ApplicationController
   def create
     logger.debug '# 資料請求メールを送信します'.green
     begin
+      @customer = Customer.new(params[:customer])
+      comment = params[:comment]
+      guidance = params[:guidance]
+      @customer.inquiry = {"備考" => comment, "説明会" => guidance}.to_json
       record_conversion
     rescue => e
       logger.error ('# error on recording a conversion: ' + e.message).red

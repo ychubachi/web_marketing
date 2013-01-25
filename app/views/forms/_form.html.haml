@@ -2,13 +2,13 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :family_name
-    = f.input :given_name
-    = f.input :inquiry
-    = f.input :postal_code
-    = f.input :address
-    = f.input :email
+    = f.input :family_name, label: '姓'
+    = f.input :given_name, label: '名'
+    = f.input :inquiry, label: 'お問い合わせの内容'
+    = f.input :postal_code, label: '郵便番号'
+    = f.input :address, label: '住所'
+    = f.input :email, label: 'E-Mail'
     = f.input :browser_id
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, value: '送信'

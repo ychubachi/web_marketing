@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class FormsController < ApplicationController
 
   # GET /forms/new
@@ -19,14 +20,39 @@ class FormsController < ApplicationController
   # POST /forms
   # POST /forms.json
   def create
+    logger.debug '# 資料請求フォームの内容を記録します'.green
     @form = Form.new(params[:form])
 
-    respond_to do |format|
-      if @form.save
-        format.html { redirect_to '/form/thank_you'}
-      else
-        format.html { render action: "new" }
-      end
+    if ! @form.save
+      render action: "new"
+      return
     end
+
+    logger.debug '# 資料請求メールを送信します'.green
+    begin
+      @customer = @form
+      @customer.inquiry = {"問い合わせ" => params[:comment]}.to_json
+      record_conversion
+    rescue => e
+      logger.error ('# error on recording a conversion: ' + e.message).red
+      e.backtrace.each {|l| logger.error l.red}
+      redirect_to '/form/sorry'
+      return
+    end
+
+
+    begin
+      ConversionMailer.conversion(@customer, @conversion_path)
+    rescue => e
+      logger.error ('error on sending an email:' + e.message).red
+      e.backtrace.each {|l| logger.error l.red}
+      redirect_to '/form/sorry'
+      return
+    end
+    logger.debug '# 資料請求メールを送信しました'.green
+
+    redirect_to '/form/thank_you'
+    return
+    
   end
 end

@@ -34,13 +34,13 @@ end
   page.should_not have_content "validator.js"
 end
 
-もし /^住所氏名を記入した$/ do
-  fill_in 'form_family_name', with: 'Test'
-  fill_in 'form_given_name', with: 'User'
-  fill_in 'form_email', with: 'test@example.com'
+もし /^"(.*?)" "(.*?)" "(.*?)" と "(.*?)" を記入した$/ do |address, family_name, given_name, email|
+  fill_in 'form_family_name', with: family_name
+  fill_in 'form_given_name', with: given_name
+  fill_in 'form_address', with: address
+  fill_in 'form_email', with: email
   fill_in 'form_inquiry', with: 'コメント\r\nABC'
-  # click_button 'submit'
-  click_button 'Create Form'
+  click_button '送信'
 end
 
 もし /^住所氏名を記入した（LP）$/ do
@@ -54,6 +54,14 @@ end
 
 ならば /^"(.*?)" がメールを受け取る$/ do |address|
   unread_emails_for(address).size.should == 1
+end
+
+前提 /^担当者が "(.*?)" 宛のメールを開いた$/ do |address|
+  open_email(address)
+end
+
+ならば /^メールに "(.*?)" が記入されている$/ do |text|
+  current_email.default_part_body.to_s.should include(text)
 end
 
 # ------------------------------------------------------------------------
