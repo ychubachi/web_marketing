@@ -1,4 +1,24 @@
-%h3 資料請求・入試説明会への登録
-%p 大学案内や募集要項などの資料を無料で送付させて頂いております。お気軽にお申し込みください。
+= content_for :title do
+  資料請求 - 産業技術大学院大学（AIIT）
 
-= render 'form'
+= content_for :hero_unit do
+  %h3 資料請求・入試説明会への登録
+  %p 大学案内や募集要項などの資料を無料で送付させて頂いております。お気軽にお申し込みください。
+
+= simple_form_for(@form, :html => { :class => 'form-horizontal'}, url: '/form/') do |f|
+  = f.error_notification
+
+  .form-inputs
+    .row
+      .span3
+        = f.input :family_name, label: '姓', input_html: { :class => "span2" }
+      .span3
+        = f.input :given_name, label: '名', input_html: { :class => "span2" }
+      .span12
+        = f.input :email, label: 'e-mail', input_html: { :class => "span5" }
+        = f.input :postal_code, label: '郵便番号', input_html: { :class => "span2" }
+        = f.input :address, label: '住所', input_html: { :class => "span5" }
+        = f.input :inquiry, label: '備考', input_html: { :class => "span5" }
+
+  .form-actions
+    = f.button :submit, value: '送信'

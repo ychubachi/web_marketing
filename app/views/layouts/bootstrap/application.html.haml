@@ -1,16 +1,17 @@
 !!!
 %html
   %head
-    %title Bootstrap Application
+    %title= yield :title
     = stylesheet_link_tag    "bootstrap/application", :media => "all"
     = csrf_meta_tags
   %body
     %div{class: 'navbar navbar-inverse navbar-fixed-top'}
       .navbar-inner
         .container
-          %a.brand{href: '#'} 資料請求
+          %a.brand{href: '#'} 産業技術大学院大学
     
     .container
       .hero-unit
-        = yield
+        = yield :hero_unit
+      = yield
     = javascript_include_tag "bootstrap/application"
