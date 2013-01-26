@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title Bootstrap Application
+    = stylesheet_link_tag    "bootstrap/application", :media => "all"
+    = csrf_meta_tags
+  %body
+    %div{class: 'navbar navbar-inverse navbar-fixed-top'}
+      .navbar-inner
+        .container
+          %a.brand{href: '#'} 資料請求
+    
+    .container
+      .hero-unit
+        = yield
+    = javascript_include_tag "bootstrap/application"

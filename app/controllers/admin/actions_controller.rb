@@ -1,6 +1,6 @@
 class Admin::ActionsController < ApplicationController
   before_filter :authenticate_user!
-  layout 'admin'
+  layout 'admin/application'
 
   active_scaffold :action do |conf|
     conf.columns = [:type, :title, :today, :requests, :created_at, :updated_at]

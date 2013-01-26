@@ -33,7 +33,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'launchy'			# lounches a browser.
-  gem 'pry'
   gem 'rails3-generators'	# for factory_girl_rails and simple_form
   gem 'rspec',              :git => 'git://github.com/rspec/rspec.git'
   gem 'rspec-core',         :git => 'git://github.com/rspec/rspec-core.git'
@@ -44,6 +43,10 @@ group :development, :test do
   gem 'rubygems-bundler'
   gem 'spork', '~> 1.0rc'	# for its recent version.
   gem 'thin'
+end
+
+group :development do
+  gem 'pry-rails'
 end
 
 group :assets do

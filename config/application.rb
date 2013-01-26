@@ -86,7 +86,7 @@ module WebMarketing
 
     # configure layouts
     config.to_prepare do
-      Devise::SessionsController.layout "admin"
+      Devise::SessionsController.layout "admin/application"
     end
   end
 end

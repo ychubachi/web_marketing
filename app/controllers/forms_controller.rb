@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class FormsController < ApplicationController
+  layout 'bootstrap/application'
 
   # GET /forms/new
   # GET /forms/new.json
