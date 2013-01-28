@@ -1,21 +1,40 @@
-= content_for :title do
-  資料請求
-
 .page-header
-  %h1 資料請求
-%p 大学案内や募集要項などの資料を無料で送付させて頂いております。お気軽にお申し込みください。
+  %h5
+    産業技術大学院大学
+    %small AIIT
+  大学案内や募集要項を無料で送付させて頂いております。お気軽にお申し込みください。
 
-= # simple_form_for(@form, :html => { :class => 'form-horizontal'}, url: '/form/') do |f|
-= simple_form_for(@form, url: '/form/') do |f|
-  = f.error_notification
+.hidden-phone{id: 'capybara'}
+  = simple_form_for(@form, url: '/form/') do |f|
+    = f.error_notification
+    .form-inputs
+      .row
+        .span2
+          = f.input :family_name, label: '姓', input_html: { :class => "span2" }
+        .span2
+          = f.input :given_name, label: '名', input_html: { :class => "span2" }
+        .span4
+          = f.input :email, label: 'e-mail', input_html: { :class => "span4" }
+      .row
+        .span2
+          = f.input :postal_code, label: '郵便番号', input_html: { :class => "span2" }
+        .span6
+          = f.input :address, label: '住所', input_html: { class: 'span6', rows: 2 }
+      = f.input :inquiry, label: '備考', as: :text, input_html: { class: 'span8', rows: 2 }
+    .form-actions
+      = f.button :submit, value: '送信'
 
-  .form-inputs
-    = f.input :family_name, label: '姓', input_html: { :class => "span2" }
-    = f.input :given_name, label: '名', input_html: { :class => "span2" }
-    = f.input :email, label: 'e-mail', input_html: { :class => "span4" }
-    = f.input :postal_code, label: '郵便番号', input_html: { :class => "span2" }
-    = f.input :address, label: '住所', as: :text, input_html: { class: 'span4', rows: 2 }
-    = f.input :inquiry, label: '備考', as: :text, input_html: { class: 'span4', rows: 2 }
+.visible-phone
+  = simple_form_for(@form, url: '/form/') do |f|
+    = f.error_notification
+   
+    .form-inputs
+      = f.input :family_name, label: '姓', input_html: { :class => "span2" }
+      = f.input :given_name, label: '名', input_html: { :class => "span2" }
+      = f.input :email, label: 'e-mail', input_html: { :class => "span4" }
+      = f.input :postal_code, label: '郵便番号', input_html: { :class => "span2" }
+      = f.input :address, label: '住所', as: :text, input_html: { class: 'span4', rows: 2 }
+      = f.input :inquiry, label: '備考', as: :text, input_html: { class: 'span4', rows: 2 }
 
-  .form-actions
-    = f.button :submit, value: '送信'
+    .form-actions
+      = f.button :submit, value: '送信'

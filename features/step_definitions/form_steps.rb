@@ -34,13 +34,16 @@ end
   page.should_not have_content "validator.js"
 end
 
-もし /^"(.*?)" "(.*?)" "(.*?)" と "(.*?)" を記入した$/ do |address, family_name, given_name, email|
-  fill_in 'form_family_name', with: family_name
-  fill_in 'form_given_name', with: given_name
-  fill_in 'form_address', with: address
-  fill_in 'form_email', with: email
-  fill_in 'form_inquiry', with: 'コメント\r\nABC'
-  click_button '送信'
+もし /^"(.*?)" "(.*?)" "(.*?)" と "(.*?)" を記入した$/ do |family_name, given_name, postal_code, email|
+  within('#capybara') do
+    fill_in 'form_family_name', with: family_name
+    fill_in 'form_given_name', with: given_name
+    fill_in 'form_email', with: email
+    fill_in 'form_postal_code', with: postal_code
+    # fill_in 'form_address', with: address
+    fill_in 'form_inquiry', with: 'コメント\r\nABC'
+    click_button '送信'
+  end
 end
 
 もし /^住所氏名を記入した（LP）$/ do
