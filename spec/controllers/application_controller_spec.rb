@@ -16,7 +16,8 @@ describe ApplicationController do
     context 'browserのuuidがcookieにないとき' do
       it "browserのuuidを新たに生成します．" do
         get :index
-        assigns(:browser_uuid).should match /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/
+        assigns(:browser_uuid)
+          .should match /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/ # uuidの正規表現
       end
 
       it "browserのuuidをcookieに設定します．" do

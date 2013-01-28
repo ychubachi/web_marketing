@@ -41,8 +41,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch('spec/spec_helper.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
   watch(%r{features/support/}) { :cucumber }
-  watch('app/controllers/application_controller.rb') # yc
-  watch(%r{spec/factories/.+\.rb$'}) { :rspec } # yc
+  watch(%r{^spec/support/.+\.rb$}) # see: http://ja.asciicasts.com/episodes/285-spork
 end
 
 

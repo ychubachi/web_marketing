@@ -4,8 +4,12 @@
 # - このファイルを変更しても，自動的にリロードされません．
 # 2013-01-23
 # - Guardfileでこのファイルをwatchするようにしました．
+# 2013-01-28
+# - テストをしやすくするためUtilityモジュールに移動しました．
 
 class ApplicationController < ActionController::Base
+  include Utility
+  
   protect_from_forgery
 
   # サイン・アウト後，ログイン画面に遷移します
@@ -16,27 +20,14 @@ class ApplicationController < ActionController::Base
 
   # アクセスしてきたブラウザをDBから検索します．
   def search_browser
+    p 'search_browser aa'
     logger.debug '# cookieからbrowserのuuidを取得します．'.green
-    @browser_uuid = cookies[:web_marketing_uuid]
-    if @browser_uuid.to_s == '' then
-      logger.debug "  - uuidが無かったので新規に生成します．".green
-      @browser_uuid = UUIDTools::UUID.random_create.to_s
-      cookies[:web_marketing_uuid] = { value: @browser_uuid, expires: 365.days.from_now }
-    end
+    @browser_uuid = read_or_create_uuid(cookies)
     logger.debug "  - browserのuuidは#{@browser_uuid}です．".green
 
     logger.debug '# uuidで指定されたbrowserを検索します．'.green
-    @browser = Browser.where('uuid = :uuid', {uuid: @browser_uuid}).first_or_initialize
-    if @browser.new_record?
-      logger.debug '  - そのuuidを持つ新たなbrowserを作成してDBに保存します．'.green
-      @browser.uuid = @browser_uuid
-      @browser.user_agent = request.user_agent.to_s
-      @browser.save
-    else
-      logger.debug '  - そのuuidを持つbrowserはすでにDBに存在しています．'.green
-    end
+    @browser = read_or_create_browser_by_uuid(@browser_uuid)
     logger.debug "  - browserは#{@browser}です．".green
-
     return @browser
   end
 
