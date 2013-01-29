@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :page_view do
+    url 'http://test.com/test.html'
   end
 end

@@ -2,22 +2,59 @@
 require 'spec_helper'
 
 describe HomeController do
+  context 'GET /index', ':browserのcookieについて' do
+    context 'browserのuuidがcookieにないとき' do
+      it "browserのuuidをcookieに設定します．" do
+        get :index
+        response.cookies['web_marketing_uuid'].should match /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/ # uuidの正規表現
+      end
+
+      it 'browserを新規に生成します．' do
+        request.cookies['web_marketing_uuid'] = nil
+        request.user_agent = 'test user agent ver.0'
+        expect {
+          get :index
+        }.to change(Browser, :count).by(1)
+      end
+    end
+
+    context 'browserのuuidがcookieにあるとき' do
+      it '新たなuuidは送信しません．' do
+        request.cookies['web_marketing_uuid'] = 'test_browser_uuid'
+        get :index
+        # すでにcookieがあるので，responseで再設定することはしません．
+        response.cookies['web_marketing_uuid'].should_not == 'test_browser_uuid'
+      end
+
+      it 'DBにuuidがあるbrowserのときは新しくbrowserを作成しません．' do
+        browser = FactoryGirl.create(:browser)
+        request.cookies['web_marketing_uuid'] = browser.uuid
+        expect {
+          get :index
+        }.not_to change(Browser, :count)
+      end
+    end
+  end
+
   describe 'GET /index' do
     it "DBにあるデフォルトのURLへリダイレクトする" do
       # ターゲットを生成します
       @target = FactoryGirl.create(:target)
-        @target.save
-      # リダイレクションを生成し，ターゲットを設定します
+      @target.save
+      # デフォルトのリダイレクションを生成し，ターゲットを設定します
       @redirection = FactoryGirl.create(:redirection)
       @redirection.is_default = true
       @redirection.target = @target
       @redirection.save
       # テストします
       get 'index'
-      assigns(:my_request).should be_a(Request)
-      assigns(:my_request).action.should be_a(Action)
-      assigns(:my_request).browser.should be_a(Browser)
       response.should redirect_to "http://test.host/"
+    end
+
+    it 'requestがあったことを記録します．' do
+      expect {
+        get 'index'
+      }.to change(Request, :count).by(1)
     end
   end
   
@@ -25,29 +62,12 @@ describe HomeController do
     it "ハードコードしたURLへリダイレクトする（production以外）" do
       get 'index'
       response.should redirect_to "http://localhost:3000/lp"
-      assigns(:my_request).should be_nil
     end
 
     it "ハードコードしたURLへリダイレクトする（production）" do
       Rails.stub(env: ActiveSupport::StringInquirer.new("production"))
       get 'index'
       response.should redirect_to "https://pr.aiit.ac.jp/lp"
-      assigns(:my_request).should be_nil
-    end
-    
-    it "DBにデフォルトのURLがない場合，ハードコードしたURLにリダイレクトする" do
-      # ターゲットを生成します
-      @target = FactoryGirl.create(:target)
-      @target.save
-      # リダイレクションを生成し，ターゲットを設定します
-      @redirection = FactoryGirl.create(:redirection)
-      @redirection.is_default = false # デフォルトをなしに設定します
-      @redirection.target = @target
-      @redirection.save
-      # テストします
-      get 'index'
-      response.should redirect_to "http://localhost:3000/lp"
-      assigns(:my_request).should be_nil
     end
   end
 
@@ -62,34 +82,48 @@ describe HomeController do
       @redirection.save
       # テストします
       get 'redirect', code: '1'
-      assigns(:my_request).should be_a(Request)
-      assigns(:my_request).action.should be_a(Action)
-      assigns(:my_request).browser.should be_a(Browser)
       response.should redirect_to "http://test.host/"
     end
   end
 
   context 'GET /redirect', '（異常）' do
     it "DBにないIDを指定してURLへリダイレクトする" do
-      # ターゲットを生成します
-      @target = FactoryGirl.create(:target)
-      @target.save
-      # リダイレクションを生成し，ターゲットを設定します
-      @redirection = FactoryGirl.create(:redirection)
-      @redirection.is_default = true
-      @redirection.target = @target
-      @redirection.save
-      # テストします
       get 'redirect', code: '2'
       response.should redirect_to "http://localhost:3000/lp"
-      assigns(:my_request).should be_nil
     end
   end
 
-  describe "GET '/tracker'" do
-    it "Javascriptをレンダリングする" do
-      get 'tracker'
-      response.should render_template("tracker")
+  context 'page tracking' do
+    describe 'GET /tracker' do
+      it "Javascriptをレンダリングする" do
+        get 'tracker'
+        response.should render_template("tracker")
+      end
+    end
+
+    it 'OPTIONS /page_view' do
+      pending 'option page_viewをテストしておきたいきがするが，呼ばれていない気もする．'
+    end
+
+    describe 'POST /page_view' do
+      it 'requestを追加する．' do
+        expect {
+          post 'page_view'
+        }.to change(Request, :count).by(1)
+      end
+      
+      it '新しいpage_viewであれば追加する．' do
+        expect {
+          post 'page_view'
+        }.to change(PageView, :count).by(1)
+      end
+      
+      it 'すでにあるpage_viewであれば追加しない' do
+        page_view = FactoryGirl.create(:page_view)
+        expect {
+          post 'page_view', {url: page_view.url}
+        }.not_to change(PageView, :count)
+      end
     end
   end
 end

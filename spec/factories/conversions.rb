@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :conversion do
-    title "MyString"
+    title "Conversion"
   end
 end

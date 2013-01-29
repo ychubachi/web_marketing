@@ -9,6 +9,8 @@
 #  2/ 8(金) 19:30-
 
 class Landing::PageController < ApplicationController
+  include Utility
+  
   # GET /lp
   def index
   end
