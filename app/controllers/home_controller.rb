@@ -84,7 +84,6 @@ class HomeController < ApplicationController
       logger.debug "### Orign=#{request.headers['Origin']}"
       logger.debug "### Access-Control-Request-Method=#{request.headers['Access-Control-Request-Method']}"
       logger.debug "### Access-Control-Request-Headers=#{request.headers['Access-Control-Request-Headers']}"
-      logger.debug "### Return Access-Controll headers"
       
       # for access controls.
       headers['Access-Control-Allow-Method'] = 'POST'
@@ -93,7 +92,6 @@ class HomeController < ApplicationController
     elsif request.method == 'POST' then
       # 2回目はPOSTメソッドで呼ばれます．これが実際のメソッドです．
       logger.debug "### POST: Request headrs. Process actual request.".blue
-      logger.debug "### Cookie=#{request.headers['Cookie']}"
       
       # record the page view.
       do_page_view
@@ -113,7 +111,7 @@ class HomeController < ApplicationController
     browser = read_or_create_browser(uuid,
                                      request.user_agent.to_s)
 
-    # urlとtitleに基づき，ページがあったことを記録します．
+    # urlとtitleに基づき，ページ・ビューがあったことを記録します．
     url = params[:url].to_s
     page_view = read_or_create_page_view(url,
                                          params[:title].to_s)

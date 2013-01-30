@@ -3,21 +3,12 @@
 module Utility
   # コンバーションを記録し，顧客情報を登録します．
   def record_conversion
-    warn '[WARN] record_conversion is duplicated.'
-    warn '[WARN] called from:' +  caller[0]
+    warn '[WARN] record_conversion is duplicated.'.red
+    warn ('[WARN] called from:' +  caller[0]).red
     browser_uuid = read_or_create_uuid(cookies)
     browser = read_or_create_browser(browser_uuid,
                                      request.user_agent.to_s)
-    
-    conversion = read_or_create_conversion("資料請求")
-    create_request(browser, conversion)
-    
-    logger.debug '  - 顧客情報を登録します．'.green
-    @customer.browser = browser
-    @customer.save!
-    
-    logger.debug '  - コンバーション経路を参照します．'.green
-    @conversion_path = browser.requests.order("created_at ASC")
+  
   end
 
   def read_or_create_uuid(cookies)
@@ -107,4 +98,35 @@ module Utility
     
     return page_view
   end
+
+  def create_customer_from_form(form)
+    browser = form.browser
+    raise 'formにbrowserが設定されていません．' if browser.nil?
+
+    customer = browser.customer
+    if customer.nil? then
+      # browserに紐付いたcustomerが無かった場合，新規に生成します．
+      customer = Customer.new
+      customer.browser = browser
+      browser.customer = customer
+    end
+    
+    # フォームのデータをコピーします
+    customer.family_name = form.family_name
+    customer.given_name  = form.given_name
+    customer.email       = form.email
+    customer.postal_code = form.postal_code
+    customer.address     = form.address
+    customer.save!
+
+    return customer
+  end
+
+  def get_browser_from(cookies, user_agent)
+    uuid = read_or_create_uuid(cookies)
+    browser = read_or_create_browser(uuid,
+                                     user_agent)
+    return browser
+  end
+  
 end

@@ -101,11 +101,17 @@ describe HomeController do
       end
     end
 
-    it 'OPTIONS /page_view' do
-      pending 'option page_viewをテストしておきたいきがするが，呼ばれていない気もする．'
-    end
-
     describe 'POST /page_view' do
+      it 'アクセスコントロールを得る（OPTIONS）' do
+        request.stub!(:method).and_return('OPTIONS')
+        request.stub!(:headers).and_return({'Origin' => 'test origin'})
+        post 'page_view'
+        response.headers['Access-Control-Allow-Origin'].should == 'test origin'
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+        response.headers['Access-Control-Allow-Method'].should == 'POST'
+        response.headers['Access-Control-Allow-Headers'].should == 'origin, content-type, accept'
+      end
+      
       it 'requestを追加する．' do
         expect {
           post 'page_view'

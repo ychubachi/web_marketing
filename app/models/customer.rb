@@ -1,6 +1,7 @@
 class Customer < ActiveRecord::Base
-  attr_accessible :address, :browser_id, :inquiry, :email, :family_name, :given_name, :postal_code
+  attr_accessible :family_name, :given_name, :email, :postal_code, :address, :inquiry
   belongs_to :browser
+  has_many :forms, dependent: :delete_all
 
   def to_label
     "#{family_name} #{given_name}"

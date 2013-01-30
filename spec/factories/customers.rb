@@ -8,7 +8,6 @@ FactoryGirl.define do
     postal_code "000-0000"
     address "Somewhere"
     inquiry "[\"inquiry1\",\"inquiry2\"]"
-    # browser_id 1
-    browser {FactoryGirl.create(:browser)}
+    browser nil
   end
 end

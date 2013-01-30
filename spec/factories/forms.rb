@@ -2,12 +2,12 @@
 
 FactoryGirl.define do
   factory :form do
-    address "MyString"
-    browser_id 1
-    inquiry "MyString"
-    email "MyString"
+    browser nil
     family_name "MyString"
     given_name "MyString"
+    email "MyString"
     postal_code "MyString"
+    address "MyString"
+    inquiry "MyString"
   end
 end

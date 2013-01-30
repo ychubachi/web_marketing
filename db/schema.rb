@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124161545) do
+ActiveRecord::Schema.define(:version => 20130129120829) do
 
   create_table "actions", :force => true do |t|
     t.integer  "convertion_id"
@@ -29,9 +29,10 @@ ActiveRecord::Schema.define(:version => 20130124161545) do
   create_table "browsers", :force => true do |t|
     t.string   "uuid"
     t.string   "user_agent"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.boolean  "is_admin"
+    t.integer  "customer_id"
   end
 
   create_table "customers", :force => true do |t|
@@ -48,7 +49,6 @@ ActiveRecord::Schema.define(:version => 20130124161545) do
 
   create_table "forms", :force => true do |t|
     t.string   "address"
-    t.integer  "browser_id"
     t.string   "inquiry"
     t.string   "email"
     t.string   "family_name"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20130124161545) do
     t.string   "postal_code"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "customer_id"
+    t.integer  "browser_id"
   end
 
   create_table "media", :force => true do |t|

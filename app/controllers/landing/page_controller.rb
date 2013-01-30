@@ -29,31 +29,32 @@ class Landing::PageController < ApplicationController
   
   # POST /landing/page
   def create
-    logger.debug '# 資料請求メールを送信します'.green
+    logger.debug '# 資料請求メールを送信します．'.green
+    
     begin
+      logger.debug ' - browserを取得します．'.green
+      browser = get_browser_from(cookies, request.user_agent.to_s)
+
+      logger.debug '  - 顧客情報を登録します．'.green
       @customer = Customer.new(params[:customer])
       comment = params[:comment]
       guidance = params[:guidance]
       @customer.inquiry = {"備考" => comment, "説明会" => guidance}.to_json
-      record_conversion
+      @customer.browser = browser
+      @customer.save!
+
+      logger.debug '  - 「資料請求」のコンバーションを登録します．'.green
+      conversion = read_or_create_conversion("資料請求")
+      create_request(browser, conversion)
+
+      ConversionMailer.conversion(@customer)
     rescue => e
-      logger.error ('# error on recording a conversion: ' + e.message).red
-      e.backtrace.each {|l| logger.error l.red}
-      redirect_to '/lp/sorry'
-      return
+      logger.error ('コンバーションの登録・メール配信時に例外が発生しました: ' + e.message).red
+      # e.backtrace.each {|l| logger.error l.red}
+      redirect_to '/lp/sorry' and return
     end
 
-    begin
-      ConversionMailer.conversion(@customer, @conversion_path)
-    rescue => e
-      logger.error ('error on sending an email:' + e.message).red
-      e.backtrace.each {|l| logger.error l.red}
-      redirect_to '/lp/sorry'
-      return
-    end
     logger.debug '# 資料請求メールを送信しました'.green
-
     redirect_to '/lp/thank_you'
-    return
   end
 end

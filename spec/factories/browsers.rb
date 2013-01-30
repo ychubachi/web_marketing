@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :browser do
     uuid "test_browser_uuid"
     user_agent "test_browser_user_agent"
+    customer nil
   end
 end

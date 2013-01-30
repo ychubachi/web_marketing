@@ -6,9 +6,9 @@
 　至急、メールにて連絡をさし上げ、大学院案内、出願書類などを郵送してください。
 
 ーーー
-お名前：<%= @customer.family_name %> <%= @customer.given_name %> 様
-E-Mail: <%= @customer.email %>
-ご住所: 〒<%= @customer.postal_code %> <%= @customer.address %>
+お名前：<%= @form.family_name %> <%= @form.given_name %> 様
+E-Mail: <%= @form.email %>
+ご住所: 〒<%= @form.postal_code %> <%= @form.address %>
 お問い合わせ内容:
 <%- @inquiry.each do |key, value| %>
   <%= key %> ＝ <%= value %>
