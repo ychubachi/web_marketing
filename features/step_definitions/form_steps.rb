@@ -36,12 +36,11 @@ end
 
 もし /^"(.*?)" "(.*?)" "(.*?)" と "(.*?)" を記入した$/ do |family_name, given_name, postal_code, email|
   within('#capybara') do
-    fill_in 'form_family_name', with: family_name
-    fill_in 'form_given_name', with: given_name
-    fill_in 'form_email', with: email
-    fill_in 'form_postal_code', with: postal_code
-    # fill_in 'form_address', with: address
-    fill_in 'form_inquiry', with: 'コメント\r\nABC'
+    fill_in 'customer_family_name', with: family_name
+    fill_in 'customer_given_name', with: given_name
+    fill_in 'customer_email', with: email
+    fill_in 'customer_postal_code', with: postal_code
+    fill_in 'customer_inquiry', with: 'コメント\r\nABC'
     click_button '送信'
   end
 end
@@ -51,7 +50,6 @@ end
   fill_in 'customer_given_name', with: 'User'
   fill_in 'customer_email', with: 'test@example.com'
   fill_in 'comment', with: 'コメント\r\nABC'
-  # click_button 'submit'
   click_button '送信'
 end
 

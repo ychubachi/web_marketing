@@ -5,7 +5,7 @@
   大学案内や募集要項を無料で送付させて頂いております。お気軽にお申し込みください。
 
 .hidden-phone{id: 'capybara'}
-  = simple_form_for(@form, url: '/form/') do |f|
+  = simple_form_for(@customer, url: '/form/') do |f|
     = f.error_notification
     .form-inputs
       .row
@@ -25,7 +25,7 @@
       = f.button :submit, value: '送信'
 
 .visible-phone
-  = simple_form_for(@form, url: '/form/') do |f|
+  = simple_form_for(@customer, url: '/form/') do |f|
     = f.error_notification
    
     .form-inputs

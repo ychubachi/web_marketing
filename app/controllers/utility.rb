@@ -99,29 +99,6 @@ module Utility
     return page_view
   end
 
-  def create_customer_from_form(form)
-    browser = form.browser
-    raise 'formにbrowserが設定されていません．' if browser.nil?
-
-    customer = browser.customer
-    if customer.nil? then
-      # browserに紐付いたcustomerが無かった場合，新規に生成します．
-      customer = Customer.new
-      customer.browser = browser
-      browser.customer = customer
-    end
-    
-    # フォームのデータをコピーします
-    customer.family_name = form.family_name
-    customer.given_name  = form.given_name
-    customer.email       = form.email
-    customer.postal_code = form.postal_code
-    customer.address     = form.address
-    customer.save!
-
-    return customer
-  end
-
   def get_browser_from(cookies, user_agent)
     uuid = read_or_create_uuid(cookies)
     browser = read_or_create_browser(uuid,

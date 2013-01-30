@@ -99,48 +99,6 @@ describe 'Utility' do
     end
   end
 
-  describe 'create_customer_from_form(form)' do
-    it 'formにbrowserが設定されていない場合，例外を発生させます．' do
-      form = FactoryGirl.create(:form)
-      form.browser = nil
-      expect {
-        customer = @dummy_utility.create_customer_from_form(form)
-      }.to raise_error
-    end
-      
-    it 'browser_idに合致するcustomerがない場合，新規にcustomerを生成します．' do
-      form = FactoryGirl.create(:form)
-      browser = FactoryGirl.create(:browser)
-      form.browser = browser
-      customer = nil
-      expect {
-        customer = @dummy_utility.create_customer_from_form(form)
-      }.to change(Customer, :count).by(1)
-      customer.should be_a(Customer)
-    end
-    
-    it 'browser_idに合致するcustomerがある場合，既存のcustomerを上書きします．' do
-      browser = FactoryGirl.create(:browser)
-      customer = FactoryGirl.create(:customer)
-      customer.browser = browser
-      browser.customer = customer
-      form = FactoryGirl.create(:form)
-      form.browser = browser
-      customer = nil
-      expect {
-        customer = @dummy_utility.create_customer_from_form(form)
-      }.not_to change(Customer, :count)
-      customer.should be_a(Customer)
-      customer.family_name.should == form.family_name
-      customer.given_name.should  == form.given_name
-      customer.email.should       == form.email
-      customer.postal_code.should == form.postal_code
-      customer.address.should     == form.address
-    end
-
-    it 'TODO: customerのinquryを削除します'
-  end
-
   describe 'get_browser_from(cookies)' do
     it 'cookiesとuser_agentからbrowserを取得します．' do
       # 以下を結合したメソッドです．
@@ -149,5 +107,9 @@ describe 'Utility' do
       browser = @dummy_utility.get_browser_from(cookies, 'test agent')
       browser.should be_a(Browser)
     end
+  end
+
+  describe 'TODO:' do
+    it 'customerのinquryを削除します'
   end
 end

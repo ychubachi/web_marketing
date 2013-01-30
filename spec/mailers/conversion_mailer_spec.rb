@@ -18,13 +18,14 @@ describe ConversionMailer do
       request2.browser = browser
       request2.action = action2
       request2.save!
-      form = FactoryGirl.create(:form)
-      form.browser = browser
-      form.save!
+      
+      customer = FactoryGirl.create(:customer)
+      customer.browser = browser
+      customer.save!
       
       # メールを送信します
       reset_mailer
-      ConversionMailer.conversion(form)
+      ConversionMailer.conversion(customer)
       unread_emails_for("info@aiit.ac.jp").size.should == parse_email_count(1)
     end
   end

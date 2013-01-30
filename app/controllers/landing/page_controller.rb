@@ -29,9 +29,10 @@ class Landing::PageController < ApplicationController
   
   # POST /landing/page
   def create
-    logger.debug '# 資料請求メールを送信します．'.green
     
     begin
+      logger.debug '# 資料請求フォームの内容を記録します'.green
+      
       logger.debug ' - browserを取得します．'.green
       browser = get_browser_from(cookies, request.user_agent.to_s)
 
@@ -47,14 +48,16 @@ class Landing::PageController < ApplicationController
       conversion = read_or_create_conversion("資料請求")
       create_request(browser, conversion)
 
+      logger.debug '# 資料請求メールを送信します'.green
       ConversionMailer.conversion(@customer)
+      logger.debug '# 資料請求メールを送信しました'.green
+      
+      redirect_to '/lp/thank_you'
+      return
     rescue => e
       logger.error ('コンバーションの登録・メール配信時に例外が発生しました: ' + e.message).red
       # e.backtrace.each {|l| logger.error l.red}
       redirect_to '/lp/sorry' and return
     end
-
-    logger.debug '# 資料請求メールを送信しました'.green
-    redirect_to '/lp/thank_you'
   end
 end
