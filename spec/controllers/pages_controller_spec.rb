@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'spec_helper'
 
-describe Landing::PageController do
+describe PagesController do
 
   def valid_attributes
     {"customer"=>{
@@ -19,9 +19,9 @@ describe Landing::PageController do
     {}
   end
    
-  describe "GET 'index'" do
+  describe "GET 'new'" do
     it "http successが戻ります．" do
-      get 'index'
+      get 'new'
       response.should be_success
     end
   end
@@ -30,7 +30,7 @@ describe Landing::PageController do
     it "sends an email" do
       customer = FactoryGirl.create(:customer)
       post 'create', valid_attributes
-      response.should redirect_to '/lp/thank_you'
+      response.should redirect_to '/page/thank_you'
     end
   end
 

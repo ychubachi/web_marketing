@@ -11,7 +11,7 @@ require 'capybara/rails'
 end
 
 前提 /^ランディングページを開いている$/ do
-  visit lp_path
+  visit new_page_path
 end
 
 前提 /^メールが送信されていない$/ do

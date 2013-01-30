@@ -3,13 +3,17 @@ WebMarketing::Application.routes.draw do
   match '/pv'               => 'home#page_view'
   match '/tracker'          => 'home#tracker'
   match '/admin'            => 'admin/users#index'
-  match '/lp'               => 'landing/page#index'
-  match '/lp/pm'            => 'landing/page#pm'
-  match '/lp/thank_you'     => 'landing/page#thank_you'
-  match '/lp/sorry'         => 'landing/page#sorry'
+  match '/lp'               => 'pages#new'
+  match '/lp/pm'            => 'pages#pm'
+  match '/lp/thank_you'     => 'pages#thank_you'
+  match '/lp/sorry'         => 'pages#sorry'
 
-  namespace :landing do
-    resources :page, :only => [:create]
+  resource :page, :only => [:new, :create] do
+    member do
+      get 'thank_you'
+      get 'sorry'
+      get 'pm'
+    end
   end
 
   resource :form, only: [:new, :create] do
