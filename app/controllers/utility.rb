@@ -105,5 +105,15 @@ module Utility
                                      user_agent)
     return browser
   end
+
+  def record_conversion_and_send_email(customer)
+    logger.debug '  - 「資料請求」のコンバーションを登録します．'.green
+    conversion = read_or_create_conversion("資料請求")
+    create_request(customer.browser, conversion)
+
+    logger.debug '# 資料請求メールを送信します'.green
+    ConversionMailer.conversion(customer)
+    logger.debug '# 資料請求メールを送信しました'.green
+  end
   
 end

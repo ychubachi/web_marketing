@@ -31,12 +31,6 @@ describe FormsController do
         }.to change(Customer, :count).by(1)
       end
 
-      it "assigns a newly created customer as @form" do
-        post :create, {:form => valid_attributes}, valid_session
-        assigns(:customer).should be_a(Customer)
-        assigns(:customer).should be_persisted
-      end
-
       it "redirects to the created form" do
         post :create, {:form => valid_attributes}, valid_session
         response.should redirect_to('/form/thank_you')

@@ -109,6 +109,19 @@ describe 'Utility' do
     end
   end
 
+  describe 'record_conversion_and_send_email(customer)' do
+    it 'コンバーションを記録し，メールを送信します．' do
+      browser = FactoryGirl.create(:browser)
+      customer = FactoryGirl.create(:customer)
+      customer.browser = browser
+      customer.save
+      expect {
+        @dummy_utility.record_conversion_and_send_email(customer)
+      }.to change(Request, :count).by(1)
+      # メール
+    end
+  end
+
   describe 'TODO:' do
     it 'customerのinquryを削除します'
   end

@@ -18,31 +18,20 @@ class FormsController < ApplicationController
 
     begin
       logger.debug '# 資料請求フォームの内容を記録します'.green
-
-      logger.debug ' - browserを取得します．'.green
-      browser = get_browser_from(cookies, request.user_agent.to_s)
+      inquiry = {"問い合わせ" => params[:comment]}.to_json
 
       logger.debug '  - 顧客情報を登録します．'.green
       @customer = Customer.new(params[:customer])
-      @customer.inquiry = {"問い合わせ" => params[:comment]}.to_json
-      @customer.browser = browser
+      @customer.browser = get_browser_from(cookies, request.user_agent.to_s)
+      @customer.inquiry = inquiry
       @customer.save!
 
-      logger.debug '  - 「資料請求」のコンバーションを登録します．'.green
-      conversion = read_or_create_conversion("資料請求")
-      create_request(browser, conversion)
-
-      logger.debug '# 資料請求メールを送信します'.green
-      ConversionMailer.conversion(@customer)
-      logger.debug '# 資料請求メールを送信しました'.green
-
-      redirect_to '/form/thank_you'
-      return
+      record_conversion_and_send_email(@customer)
+      redirect_to '/form/thank_you' and return
     rescue => e
-      logger.error ('# error on recording a conversion: ' + e.message).red
-      e.backtrace.each {|l| logger.error l.red}
-      redirect_to '/form/sorry'
-      return
+      logger.error ('コンバーションの登録・メール配信時に例外が発生しました: ' + e.message).red
+      # e.backtrace.each {|l| logger.error l.red}
+      redirect_to '/form/sorry' and return
     end
     
   end

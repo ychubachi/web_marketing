@@ -10,50 +10,24 @@
 
 class Landing::PageController < ApplicationController
   include Utility
-  
-  # GET /lp
-  def index
-  end
-  
-  # GET /lp/pm
-  def pm
-  end
 
-  # GET /lp/thank_you
-  def thank_you
-  end
-
-  # GET /lp/sorry
-  def sorry
-  end
-  
   # POST /landing/page
   def create
     
     begin
       logger.debug '# 資料請求フォームの内容を記録します'.green
-      
-      logger.debug ' - browserを取得します．'.green
-      browser = get_browser_from(cookies, request.user_agent.to_s)
+      comment = params[:comment]
+      guidance = params[:guidance]
+      inquiry = {"備考" => comment, "説明会" => guidance}.to_json
 
       logger.debug '  - 顧客情報を登録します．'.green
       @customer = Customer.new(params[:customer])
-      comment = params[:comment]
-      guidance = params[:guidance]
-      @customer.inquiry = {"備考" => comment, "説明会" => guidance}.to_json
-      @customer.browser = browser
+      @customer.browser = get_browser_from(cookies, request.user_agent.to_s)
+      @customer.inquiry = inquiry
       @customer.save!
-
-      logger.debug '  - 「資料請求」のコンバーションを登録します．'.green
-      conversion = read_or_create_conversion("資料請求")
-      create_request(browser, conversion)
-
-      logger.debug '# 資料請求メールを送信します'.green
-      ConversionMailer.conversion(@customer)
-      logger.debug '# 資料請求メールを送信しました'.green
       
-      redirect_to '/lp/thank_you'
-      return
+      record_conversion_and_send_email(@customer)
+      redirect_to '/lp/thank_you' and return
     rescue => e
       logger.error ('コンバーションの登録・メール配信時に例外が発生しました: ' + e.message).red
       # e.backtrace.each {|l| logger.error l.red}
