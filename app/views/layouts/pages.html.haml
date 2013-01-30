@@ -1,0 +1,91 @@
+!!!
+/[if lt IE 7]
+  <html class="ie6 oldie">
+/[if IE 7]
+  <html class="ie7 oldie">
+/[if IE 8]
+  <html class="ie8 oldie">
+/[if IE 9]
+  <html class="ie9 oldie">
+<!-- [if (gt IE 9)|!(IE)]> <!-->
+%html{class: "", lang: "ja"}
+  <!--<![endif]-->
+  %head
+    %title= content_for?(:title) ? yield(:title) : "AIITのご案内 〜コンパクト版〜"
+    / meta tags
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"}
+    / OG
+    %meta{property: "og:title", content: "#{content_for?(:title) ? yield(:title) : 'AIITのご案内 〜コンパクト版〜'}"}
+    %meta{property: "og:description", content: "#{content_for?(:description) ? yield(:description) : '品川シーサイドエリアにある専門職大学院です。情報アーキテクチャ専攻・創造技術専攻の紹介や、社会人に配慮した長期履修制度、AIIT単位バンク、付属図書館の情報などをまとめました。お問い合わせフォームもありますのでどうぞご利用ください。'}"}
+    %meta{property: "og:image", content: "https://pr.aiit.ac.jp/assets/campus_night.png"}
+    %meta{property: "og:url", content: "#{content_for?(:url) ? yield(:url) : 'https://pr.aiit.ac.jp/lp'}"}
+    %meta{property: "og:type", content: "university"}/
+    %meta{property: "og:site_name", content: "AIIT: Advanced Institute of Industrial Technology"}/
+    / %meta{property: "fb:admins", content: "154020014683759"}/
+    / CSRF
+    = csrf_meta_tags
+    / style sheets
+    %link{:href => "/assets/landing/favicon.ico", :rel => "shortcut icon", :type => "image/vnd.microsoft.icon"}/
+    %link{:href => "/assets/landing/favicon.ico", :rel => "icon", :type => "image/vnd.microsoft.icon"}/
+    = stylesheet_link_tag    "landing/application", :media => "all"
+    / scripts
+    = javascript_include_tag "landing/application"
+    /[if lt IE 9]
+      <script src="/javascripts/html5shiv.js"></script>
+    %script{type: "text/javascript", src: "https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false"}
+    - if Rails.env.production?
+      :javascript
+        (function() {
+          var wm = document.createElement('script');
+          wm.type = 'text/javascript';
+          wm.async = true;
+          wm.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//pr.aiit.ac.jp/tracker.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wm, s);
+        })();
+    - else
+      :javascript
+        (function() {
+          var wm = document.createElement('script');
+          wm.type = 'text/javascript';
+          wm.async = true;
+          wm.src = 'http://localhost:3000/tracker.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(wm, s);
+        })();
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-4739369-2']);
+      _gaq.push(['_setDomainName', 'aiit.ac.jp']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+  %body
+    = yield
+    %footer
+      %section#links
+        %h3 AIITおすすめリンク集
+        %a{href: 'http://aiit.ac.jp/', target: '_blank'}
+          = image_tag 'aiit_logo_300x200.gif', {height: '50px'}
+        %a{href: 'https://www.facebook.com/aiit.ac.jp', target: '_blank'}
+          = image_tag 'facebook.gif', {height: '50px'}
+        %a{href: 'https://twitter.com/#!/aiit4u', target: '_blank'}
+          = image_tag 'twitter.gif', {height: '50px'}
+        %a{href: 'http://aiit.ac.jp/article/student_interview/index.html', target: '_blank', target: '_blank'}
+          = image_tag 'success_story.jpg', {height: '50px'}
+        %a{href: 'http://aiit.ac.jp/article/pbl_interviews/interviews/index.html', target: '_blank'}
+          = image_tag 'pbl_interview.jpg', {height: '50px'}
+        %a{href: 'http://d.hatena.ne.jp/pklib/', target: '_blank'}
+          = image_tag 'toshokan_titleimg.png', {height: '50px'}
+        %a{href: 'http://pk.aiit.ac.jp/', target: '_blank'}
+          = image_tag 'logo_infotalk_c2_320.png', {height: '50px'}
+        %a{href: 'http://www.apen.asia/', target: '_blank'}
+          = image_tag 'apen_logo.png', {height: '50px'}
+      &copy; 2012- AIIT / All rights reserved.
+      = yield :footer
