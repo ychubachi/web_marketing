@@ -9,18 +9,18 @@
     = f.error_notification
     .form-inputs
       .row
-        .span2
-          = f.input :family_name, label: '姓', input_html: { :class => "span2", placeholder: '姓'}
-        .span2
-          = f.input :given_name, label: '名', input_html: { :class => "span2", placeholder: '名'}
-        .span4
-          = f.input :email, label: 'e-mail', input_html: { :class => "span4", placeholder: '半角英数字でご記入ください'}
-      .row
-        .span2
-          = f.input :postal_code, label: '郵便番号', input_html: { :class => "span2", placeholder: '半角7桁（ハイフン不要）', onKeyUp: "AjaxZip2.zip2addr(this, 'customer[address]','customer[address]');"}
+        .span3
+          = f.input :family_name, label: '姓', input_html: { :class => "span3", placeholder: '姓'}
+        .span3
+          = f.input :given_name, label: '名', input_html: { :class => "span3", placeholder: '名'}
         .span6
-          = f.input :address, label: '住所', input_html: { class: 'span6', placeholder: '郵便物が届くようご記入ください', rows: 2 }
-      = f.input :inquiry, label: '備考', as: :text, input_html: { class: 'span8', placeholder: '「資料請求」「図書館を利用したい」など', rows: 2 }
+          = f.input :email, label: 'e-mail', input_html: { :class => "span6", placeholder: '半角英数字でご記入ください'}
+      .row
+        .span3
+          = f.input :postal_code, label: '郵便番号', input_html: { :class => "span3", placeholder: '半角7桁（ハイフン不要）', onKeyUp: "AjaxZip2.zip2addr(this, 'customer[address]','customer[address]');"}
+        .span9
+          = f.input :address, label: '住所', input_html: { class: 'span9', placeholder: '郵便物が届くようご記入ください', rows: 2 }
+      = f.input :inquiry, label: '備考', as: :text, input_html: { class: 'span12', placeholder: '「資料請求」「図書館を利用したい」など', rows: 2 }
     .form-actions
       = f.button :submit, value: '送信', id: 'submit'
 
