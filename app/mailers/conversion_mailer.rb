@@ -7,13 +7,14 @@ class ConversionMailer < ActionMailer::Base
     logger.debug '# 担当者にメールを送信します．'.green
     @customer = customer
     begin
-      @inquiry = JSON.parse(customer.inquiry)
+      @customer.inquiry ||= '' #もしnilだったら，空文字を設定
+      @inquiry = JSON.parse(@customer.inquiry)
     rescue JSON::ParserError => e
       logger.warn 'JSONのparse時に例外が発生しました．'.green
-      @inquiry = {'内容' => customer.inquiry}
+      @inquiry = {'内容' => @customer.inquiry}
     end
     logger.debug '  - コンバーション経路を参照します．'.green
-    @conversion_path = customer.browser.requests.order("created_at ASC")
+    @conversion_path = @customer.browser.requests.order("created_at ASC")
 
     mail(
          to: ["yc@aiit.ac.jp", "info@aiit.ac.jp"],
