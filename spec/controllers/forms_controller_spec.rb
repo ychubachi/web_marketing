@@ -39,18 +39,16 @@ describe FormsController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved form as @form" do
-        pending
         # Trigger the behavior that occurs when invalid params are submitted
-        Form.any_instance.stub(:save!).and_raise
+        Customer.any_instance.stub(:save!).and_raise
         post :create, {:customer => { "address" => "invalid value" }}, valid_session
         assigns(:customer).should be_a_new(Customer)
       end
 
       it "redirect to /form/sorry" do
-        pending
         # Trigger the behavior that occurs when invalid params are submitted
-        Form.any_instance.stub(:save!).and_raise
-        post :create, {:form => { "address" => "invalid value" }}, valid_session
+        Customer.any_instance.stub(:save!).and_raise
+        post :create, {:customer => { "address" => "invalid value" }}, valid_session
         response.should redirect_to('/form/sorry')
       end
     end
