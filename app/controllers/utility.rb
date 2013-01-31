@@ -106,13 +106,22 @@ module Utility
     return browser
   end
 
-  def record_conversion_and_send_email(customer)
+  def record_conversion_and_send_email(params, cookies, user_agent)
+    logger.debug '# 資料請求フォームの内容を記録します'.green
+    
+    logger.debug '  - 顧客情報を登録します．'.green
+    browser = get_browser_from(cookies, user_agent)
+    
+    @customer = Customer.new(params[:customer])
+    @customer.browser = browser
+    @customer.save!
+
     logger.debug '  - 「資料請求」のコンバーションを登録します．'.green
     conversion = read_or_create_conversion("資料請求")
-    create_request(customer.browser, conversion)
+    create_request(browser, conversion)
 
     logger.debug '# 資料請求メールを送信します'.green
-    ConversionMailer.conversion(customer)
+    ConversionMailer.conversion(@customer)
     logger.debug '# 資料請求メールを送信しました'.green
   end
   

@@ -17,16 +17,12 @@ class FormsController < ApplicationController
   def create
 
     begin
-      logger.debug '# 資料請求フォームの内容を記録します'.green
       inquiry = {"問い合わせ" => params[:comment]}.to_json
+      params[:customer][:inquiry] = inquiry
 
-      logger.debug '  - 顧客情報を登録します．'.green
-      @customer = Customer.new(params[:customer])
-      @customer.browser = get_browser_from(cookies, request.user_agent.to_s)
-      @customer.inquiry = inquiry
-      @customer.save!
-
-      record_conversion_and_send_email(@customer)
+      user_agent = request.user_agent.to_s
+      record_conversion_and_send_email(params, cookies, user_agent)
+      
       redirect_to '/form/thank_you' and return
     rescue => e
       logger.error ('コンバーションの登録・メール配信時に例外が発生しました: ' + e.message).red

@@ -27,12 +27,12 @@ describe FormsController do
     describe "with valid params" do
       it "creates a new Customer" do
         expect {
-          post :create, {:form => valid_attributes}, valid_session
+          post :create, {:customer => valid_attributes}, valid_session
         }.to change(Customer, :count).by(1)
       end
 
-      it "redirects to the created form" do
-        post :create, {:form => valid_attributes}, valid_session
+      it "redirects to the created customer" do
+        post :create, {:customer => valid_attributes}, valid_session
         response.should redirect_to('/form/thank_you')
       end
     end
@@ -42,8 +42,8 @@ describe FormsController do
         pending
         # Trigger the behavior that occurs when invalid params are submitted
         Form.any_instance.stub(:save!).and_raise
-        post :create, {:form => { "address" => "invalid value" }}, valid_session
-        assigns(:form).should be_a_new(Form)
+        post :create, {:customer => { "address" => "invalid value" }}, valid_session
+        assigns(:customer).should be_a_new(Customer)
       end
 
       it "redirect to /form/sorry" do

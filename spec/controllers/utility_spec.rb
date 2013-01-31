@@ -111,18 +111,24 @@ describe 'Utility' do
 
   describe 'record_conversion_and_send_email(customer)' do
     it 'コンバーションを記録し，メールを送信します．' do
-      browser = FactoryGirl.create(:browser)
-      customer = FactoryGirl.create(:customer)
-      customer.browser = browser
-      customer.save
+      params = {customer: {}}
+      params[:customer][:family_name] = '寿限無'
+      params[:customer][:given_name] = '長助'
+      params[:customer][:inquiry] = '名前の付け方' # これがnilだと落ちる
+      
+      cookies[:web_marketing_uuid] = {
+        value: 'dummy_uuid',
+        expires: 365.days.from_now }
+
+      user_agent = 'test user agent'
+
       expect {
-        @dummy_utility.record_conversion_and_send_email(customer)
+        @dummy_utility.record_conversion_and_send_email(params,
+                                                        cookies,
+                                                        user_agent)
       }.to change(Request, :count).by(1)
-      # メール
+      # メールの確認
     end
   end
 
-  describe 'TODO:' do
-    it 'customerのinquryを削除します'
-  end
 end
