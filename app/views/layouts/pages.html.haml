@@ -26,15 +26,15 @@
     / %meta{property: "fb:admins", content: "154020014683759"}/
     / CSRF
     = csrf_meta_tags
+    %link{:href => "/assets/favicon.ico", :rel => "shortcut icon", :type => "image/vnd.microsoft.icon"}/
+    %link{:href => "/assets/favicon.ico", :rel => "icon", :type => "image/vnd.microsoft.icon"}/
     / style sheets
-    %link{:href => "/assets/landing/favicon.ico", :rel => "shortcut icon", :type => "image/vnd.microsoft.icon"}/
-    %link{:href => "/assets/landing/favicon.ico", :rel => "icon", :type => "image/vnd.microsoft.icon"}/
-    = stylesheet_link_tag    "landing/application", :media => "all"
+    = stylesheet_link_tag    "page/application", :media => "all"
     / scripts
-    = javascript_include_tag "landing/application"
+    = javascript_include_tag "shared/application"
+    = javascript_include_tag "page/application"
     /[if lt IE 9]
       <script src="/javascripts/html5shiv.js"></script>
-    %script{type: "text/javascript", src: "https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false"}
     - if Rails.env.production?
       :javascript
         (function() {

@@ -2,11 +2,9 @@ WebMarketing::Application.routes.draw do
   match '/rd/:code'         => 'home#redirect'
   match '/pv'               => 'home#page_view'
   match '/tracker'          => 'home#tracker'
-  match '/admin'            => 'admin/users#index'
   match '/lp'               => 'pages#new'
   match '/lp/pm'            => 'pages#pm'
-  match '/lp/thank_you'     => 'pages#thank_you'
-  match '/lp/sorry'         => 'pages#sorry'
+  match '/admin'            => 'admin/users#index'
 
   resource :page, :only => [:new, :create] do
     member do

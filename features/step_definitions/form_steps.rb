@@ -40,17 +40,9 @@ end
     fill_in 'customer_given_name', with: given_name
     fill_in 'customer_email', with: email
     fill_in 'customer_postal_code', with: postal_code
-    fill_in 'customer_inquiry', with: 'コメント\r\nABC'
+    # fill_in 'customer_inquiry', with: 'コメント\r\nABC'
     click_button '送信'
   end
-end
-
-もし /^住所氏名を記入した（LP）$/ do
-  fill_in 'customer_family_name', with: 'Test'
-  fill_in 'customer_given_name', with: 'User'
-  fill_in 'customer_email', with: 'test@example.com'
-  fill_in 'comment', with: 'コメント\r\nABC'
-  click_button '送信'
 end
 
 ならば /^"(.*?)" がメールを受け取る$/ do |address|
