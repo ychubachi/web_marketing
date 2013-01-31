@@ -7,7 +7,7 @@ FactoryGirl.define do
     email "test@example.com"
     postal_code "000-0000"
     address "Somewhere"
-    inquiry "[\"inquiry1\",\"inquiry2\"]"
+    inquiry({'inquiry1' => 'question 1', 'inquiry2' => 'question 2'}.to_json)
     browser nil
   end
 end

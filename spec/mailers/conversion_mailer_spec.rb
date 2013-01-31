@@ -25,8 +25,23 @@ describe ConversionMailer do
       
       # メールを送信します
       reset_mailer
+      
       ConversionMailer.conversion(customer)
-      unread_emails_for("info@aiit.ac.jp").size.should == parse_email_count(1)
+      
+      unread_emails_for("info@aiit.ac.jp").size.should == 1
+      mail = open_email("info@aiit.ac.jp")
+      mail.should have_content customer.family_name
+      mail.should have_content customer.given_name
+      mail.should have_content customer.email
+      mail.should have_content customer.postal_code
+      mail.should have_content customer.address
+      JSON.parse(customer.inquiry).each_pair {|k,v|
+        mail.should have_content k
+        mail.should have_content v
+      }
+      
+      mail.should have_content action1.title
+      mail.should have_content action2.title
     end
   end
 end
