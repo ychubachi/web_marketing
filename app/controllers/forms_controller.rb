@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 class FormsController < ApplicationController
   include Utility
-  
-  layout 'bootstrap/application'
 
   # GET /forms/new
   def new

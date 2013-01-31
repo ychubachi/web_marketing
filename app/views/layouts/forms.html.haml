@@ -1,0 +1,20 @@
+!!!
+%html{:lang => "ja"}
+  %head
+    %title 産業技術大学院大学(AIIT)
+    =render 'forms/head'
+
+    / Le styles
+    = stylesheet_link_tag    "forms/application"
+  %body
+    .container
+      = yield
+    / /container
+    .javascript
+      / HTML5 shim, for IE6-8 support of HTML5 elements
+      /[if lt IE 9]
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      / Le javascript
+      = javascript_include_tag 'shared/application'
+      = javascript_include_tag 'forms/application'
+      = render 'shared/tracker'

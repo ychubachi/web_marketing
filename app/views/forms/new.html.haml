@@ -23,6 +23,3 @@
       = f.input :inquiry, label: '備考', as: :text, input_html: { class: 'span12', placeholder: '「資料請求」「図書館を利用したい」など', rows: 2 }
     .form-actions
       = f.button :submit, value: '送信', id: 'submit'
-
-- content_for :footer do
-  = render 'shared/conversion_tracking'

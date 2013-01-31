@@ -1,0 +1,20 @@
+- if Rails.env.production?
+  :javascript
+    (function() {
+      var wm = document.createElement('script');
+      wm.type = 'text/javascript';
+      wm.async = true;
+      wm.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + '//pr.aiit.ac.jp/tracker.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wm, s);
+    })();
+- else
+  :javascript
+    (function() {
+      var wm = document.createElement('script');
+      wm.type = 'text/javascript';
+      wm.async = true;
+      wm.src = 'http://localhost:3000/tracker.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wm, s);
+    })();
