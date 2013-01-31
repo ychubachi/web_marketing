@@ -26,13 +26,13 @@ end
   page.should_not have_content "Login"
 end
 
-ならば /^郵便番号変換スクリプトが埋め込まれている$/ do
-  page.should_not have_content "ajaxzip2.js"
-end
+# ならば /^郵便番号変換スクリプトが埋め込まれている$/ do
+#   page.should have_content "ajaxzip2.js"
+# end
 
-ならば /^入力値検証スクリプトが埋め込まれている$/ do
-  page.should_not have_content "validator.js"
-end
+# ならば /^入力値検証スクリプトが埋め込まれている$/ do
+#   page.should have_content "validator.js"
+# end
 
 もし /^"(.*?)" "(.*?)" "(.*?)" と "(.*?)" を記入した$/ do |family_name, given_name, postal_code, email|
   within('#capybara') do
