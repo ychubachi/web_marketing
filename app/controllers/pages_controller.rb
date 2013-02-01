@@ -13,6 +13,13 @@ class PagesController < ApplicationController
 
   # GET /page/new
   def new
+    @guidance_table = [['2/2(土)', '13:30-15:00'],
+                       ['2/6(水)', '19:30-21:00'],
+                       ['2/8(金)', '19:30-21:00'],
+                       ['2/13(水)','19:30-21:00'],
+                       ['2/19(火)','19:30-21:00']
+                      ]
+    
     @customer = Customer.new
 
     respond_to do |format|
