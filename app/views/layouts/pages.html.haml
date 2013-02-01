@@ -12,7 +12,7 @@
   <!--<![endif]-->
   %head
     %title= content_for?(:title) ? yield(:title) : "AIITのご案内 〜コンパクト版〜"
-    =render 'forms/head'
+    =render 'layouts/pages/head'
     / style sheets
     = stylesheet_link_tag    "pages/application", :media => "all"
     / scripts
