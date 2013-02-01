@@ -1,7 +1,7 @@
 WebMarketing::Application.routes.draw do
-  match '/rd/:code'         => 'home#redirect'
-  match '/pv'               => 'home#page_view'
-  match '/tracker'          => 'home#tracker'
+  match '/rd/:code'         => 'redirectors#redirect'
+  match '/pv'               => 'redirectors#page_view'
+  match '/tracker'          => 'redirectors#tracker'
   match '/lp'               => 'pages#new'
   match '/lp/pm'            => 'pages#pm'
   match '/admin'            => 'admin/users#index'
@@ -42,5 +42,5 @@ WebMarketing::Application.routes.draw do
     root :to => 'users/users#index'
   end
 
-  root to: "home#index"
+  root to: "redirectors#index"
 end

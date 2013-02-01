@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 require 'spec_helper'
 
-describe HomeController do
+describe RedirectorsController do
   context 'GET /index', ':browserのcookieについて' do
     context 'browserのuuidがcookieにないとき' do
       it "browserのuuidをcookieに設定します．" do

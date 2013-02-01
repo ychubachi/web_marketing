@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class HomeController < ApplicationController
+class RedirectorsController < ApplicationController
   include Utility
   
   #
@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   # ・デフォルトのURLにリダイレクトします．
   #
   def index
-    logger.debug '### HomeControllor#index'
+    logger.debug '### RedirectorsControllor#index'
     do_redirect # defaulct redirect
   end
 
@@ -17,7 +17,7 @@ class HomeController < ApplicationController
   # ・:codeで指定されたURLを探し，リダイレクトします．
   #
   def redirect
-    logger.debug '### HomeControllor#redirect'
+    logger.debug '### RedirectorsControllor#redirect'
     code = params[:code]
     do_redirect code
   end
@@ -63,7 +63,7 @@ class HomeController < ApplicationController
   # ・トラッカーのJava Scriptをレンダリングします．
   # 
   def tracker
-    logger.debug '### HomeControllor#tracker'.green
+    logger.debug '### RedirectorsControllor#tracker'.green
     uuid = read_or_create_uuid(cookies)
     read_or_create_browser(uuid, request.user_agent.to_s)
     render "tracker", formats: [:js]
@@ -72,7 +72,7 @@ class HomeController < ApplicationController
   #see: https://developer.mozilla.org/en/http_access_control#Access-Control-Allow-Headers
   #https://developer.mozilla.org/En/Server-Side_Access_Control
   def page_view
-    logger.debug '### HomeControllor#page'.green
+    logger.debug '### RedirectorsControllor#page'.green
 
     # for cookie credentials.
     headers['Access-Control-Allow-Origin'] = request.headers['Origin'].to_s
