@@ -87,6 +87,7 @@ describe 'Utility' do
     it 'デフォルトのリダイレクションを作成します' do
       redirection = @dummy_utility.create_default_redirection
       redirection.should be_a(Redirection)
+      redirection.is_default.should be_true
     end
   end
 

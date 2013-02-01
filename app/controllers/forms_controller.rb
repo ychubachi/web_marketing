@@ -15,8 +15,8 @@ class FormsController < ApplicationController
   def create
 
     begin
-      inquiry = {"問い合わせ" => params[:comment]}.to_json
-      params[:customer][:inquiry] = inquiry
+      inquiry_json = {"問い合わせ" => params[:customer][:inquiry]}.to_json
+      params[:customer][:inquiry] = inquiry_json
 
       user_agent = request.user_agent.to_s
       record_conversion_and_send_email(params, cookies, user_agent)

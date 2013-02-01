@@ -22,6 +22,7 @@ group :development, :test do
   gem 'capistrano'
   gem 'capybara'
   gem 'cucumber-rails', :require => false
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'

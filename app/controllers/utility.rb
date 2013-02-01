@@ -78,6 +78,7 @@ module Utility
     redirection = Redirection.new
     redirection.medium = medium
     redirection.target = target
+    redirection.is_default = true
     redirection.save!
     return redirection
   end

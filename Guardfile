@@ -30,7 +30,7 @@ guard 'livereload' do
 end
 
 
-guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
+guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' }, :wait => 60 do
   watch('config/routes.rb')
   watch('config/application.rb')
   watch('config/environment.rb')

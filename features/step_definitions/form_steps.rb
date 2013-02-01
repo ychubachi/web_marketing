@@ -41,6 +41,23 @@ end
     fill_in 'customer_email', with: email
     fill_in 'customer_postal_code', with: postal_code
     # fill_in 'customer_inquiry', with: 'コメント\r\nABC'
+  end
+end
+
+もし /^問い合わせ内容に "(.*?)" を記入した$/ do |inquiry|
+  within('#capybara') do
+    fill_in 'customer_inquiry', with: inquiry
+  end
+end
+
+もし /^コメントに "(.*?)" を記入した$/ do |comment|
+  within('#capybara') do
+    fill_in 'comment', with: comment
+  end
+end
+
+もし /^送信ボタンを押した$/ do
+  within('#capybara') do
     click_button '送信'
   end
 end
