@@ -70,7 +70,7 @@ module Utility
     target = Target.new
     target.title = 'default'
     if Rails.env.production? then
-      target.url = 'https://pr.aiit.ac.jp/lp'
+      target.url = 'https://pr.aiit.ac.jp/wm/lp'
     else
       target.url = 'http://localhost:3000/lp'
     end

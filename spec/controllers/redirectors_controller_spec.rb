@@ -67,7 +67,7 @@ describe RedirectorsController do
     it "ハードコードしたURLへリダイレクトする（production）" do
       Rails.stub(env: ActiveSupport::StringInquirer.new("production"))
       get 'index'
-      response.should redirect_to "https://pr.aiit.ac.jp/lp"
+      response.should redirect_to "https://pr.aiit.ac.jp/wm/lp"
     end
   end
 

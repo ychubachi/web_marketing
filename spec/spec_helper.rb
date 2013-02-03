@@ -31,8 +31,7 @@ Spork.each_run do
   
   # ここでrequireしたファイルは毎回リロードされます．
   # ただし，その分テストの起動は遅くなりますから注意．
-  require 'utility'
-  require 'application_controller'
+  Dir[Rails.root.join('app/**/*.rb')].each{ |file| load file }
 end
 
 
