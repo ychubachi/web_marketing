@@ -52,11 +52,11 @@ class PagesController < ApplicationController
       user_agent = request.user_agent.to_s
       record_conversion_and_send_email(params, cookies, user_agent)
       
-      redirect_to '/page/thank_you' and return
+      redirect_to thank_you_page_path and return
     rescue => e
       logger.error ('コンバーションの登録・メール配信時に例外が発生しました: ' + e.message).red
       # e.backtrace.each {|l| logger.error l.red}
-      redirect_to '/page/sorry' and return
+      redirect_to sorry_page_path and return
     end
   end
 end
