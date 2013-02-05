@@ -22,10 +22,10 @@
     / style sheets
     = stylesheet_link_tag    "pages/application", :media => "all"
     / scripts
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = javascript_include_tag "shared/application"
     = javascript_include_tag "pages/application"
-    /[if lt IE 9]
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     = render 'shared/tracker'
   %body
     = yield

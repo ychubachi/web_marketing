@@ -15,7 +15,7 @@
         %td= f.email_field :email, {class: 'text_field', placeholder: '半角英数字でご記入ください'}
       %tr
         %th= f.label '〒'
-        %td= f.text_field :postal_code, {placeholder: '半角7桁（ハイフン不要）', onKeyUp: "AjaxZip2.zip2addr(this, 'customer[address]','customer[address]');"}
+        %td= f.text_field :postal_code, {placeholder: '半角7桁（ハイフン不要）', onKeyUp: "AjaxZip3.zip2addr(this, '', 'customer[address]','customer[address]');"}
       %tr            
         %th= f.label '住所'
         %td= f.text_area :address, {placeholder: '郵便物が届くようご記入ください', rows: "2"}
@@ -39,3 +39,4 @@
   %small ※個人情報は本学からの資料送付と入試説明会の参加者名簿の作成の目的に限って使用するものとし、第三者に開示することはありません。
   %small ※Webサーバとの通信はSSLにより暗号化しています。
   %small ※お電話による問い合わせは産業技術大学院大学 03-3472-7831 まで。
+  = javascript_include_tag "https://ajaxzip3.googlecode.com/svn/trunk/ajaxzip3/ajaxzip3-https.js"
