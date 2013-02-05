@@ -1,11 +1,21 @@
-.page-header
-  %h5
+.hero-unit
+  %h2
     産業技術大学院大学
-    %small AIIT
-  大学案内や募集要項を無料で送付させて頂いております。お気軽にお申し込みください。
+    %br
+    %small Advanced Institute of Industrial Technology
+  .row
+    = image_tag 'aiit_logo_200x200.gif', class: 'span2'
+    .span8
+      %p
+        大学案内や募集要項を無料で送付させて頂いております。お気軽にお申し込みください。
+      %p
+        %small
+          ※個人情報は本学からの資料送付と入試説明会の参加者名簿の作成の目的に限って使用するものとし、第三者に開示することはありません。
+          %br
+          ※Webサーバとの通信はSSLにより暗号化しています。 
 
 #capybara
-  = simple_form_for(@customer, url: '/form/') do |f|
+  = simple_form_for(@customer, url: form_path) do |f|
     = f.error_notification
     .form-inputs
       .row

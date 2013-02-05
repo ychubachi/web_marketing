@@ -2,7 +2,7 @@
   %a{name: 'request'} 
   %h3 資料請求・入試説明会への登録
   %p 大学案内や募集要項などの資料を無料で送付させて頂いております。お気軽にお申し込みください。
-  = form_for @customer, url: '/page' do |f|
+  = form_for @customer, url: page_path do |f|
     %table
       %tr
         %th= f.label '氏名'
