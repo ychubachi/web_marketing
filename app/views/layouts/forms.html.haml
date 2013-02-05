@@ -1,10 +1,14 @@
 !!!
 %html{:lang => "ja"}
   %head
-    %meta{:charset => "utf-8"}
     %title 産業技術大学院大学（AIIT）
+    / meta tags
+    %meta{:charset => "utf-8"}
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-    / = render 'layouts/forms/head'
+    = favicon_link_tag('favicon.ico')
+    = csrf_meta_tags
+    = render 'layouts/open_graph'
+    / style sheets
     = stylesheet_link_tag    "forms/application"
   %body
     .container

@@ -12,7 +12,13 @@
   <!--<![endif]-->
   %head
     %title= content_for?(:title) ? yield(:title) : "AIITのご案内 〜コンパクト版〜"
-    =render 'layouts/pages/head'
+    / meta tags
+    %meta{:charset => "utf-8"}
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"}
+    = favicon_link_tag('favicon.ico')
+    = csrf_meta_tags
+    = render 'layouts/open_graph'
     / style sheets
     = stylesheet_link_tag    "pages/application", :media => "all"
     / scripts
