@@ -22,11 +22,11 @@
     / style sheets
     = stylesheet_link_tag    "pages/application", :media => "all"
     / scripts
-    /[if lt IE 9]
-      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = render 'layouts/ie'
     = javascript_include_tag "shared/application"
     = javascript_include_tag "pages/application"
-    = render 'shared/tracker'
+    = render 'layouts/tracker'
+    = render 'layouts/google_analytics'
   %body
     = yield
     %footer
