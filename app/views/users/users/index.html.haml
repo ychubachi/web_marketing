@@ -1,9 +1,9 @@
 %h2 メニュー
 %ul
   %li
-    %a{href: '/admin/redirections'} リダイレクト一覧
+    = link_to 'リダイレクト一覧', admin_redirections_path
   %li
-    %a{href: '/admin/customers'} 顧客一覧
+    = link_to '顧客一覧', admin_customers_path
 
 %h2 Users
 - @users.each do |user|
