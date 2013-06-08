@@ -1,8 +1,18 @@
 # -*- coding: utf-8 -*-
+
+# == 概要
+# このコントローラーは，資料請求フォームを取り扱います．
 class FormsController < ApplicationController
   include Utility
 
-  # GET /forms/new
+  #
+  # === GET /forms/new
+  #
+  # 問い合わせフォームを生成します．
+  # 
+  # 1. Customerを新規に生成します．
+  # 2. new.html.hamlテンプレートを用いてフォームを生成します．
+  #
   def new
     @customer = Customer.new
 
@@ -11,7 +21,17 @@ class FormsController < ApplicationController
     end
   end
 
-  # POST /forms
+  #
+  # === POST /forms
+  #
+  # 問い合わせフォームの内容を記録します．
+  #
+  # 1. 問い合わせの内容をjsonに変換します
+  #    （jsonで記録することで柔軟なフォーマットに対応しています）．
+  # 2. user_agentを取得します．
+  # 3. conversionを記録して，emailを送信します．
+  # 4. thank_youページに遷移します．
+  #
   def create
 
     begin

@@ -44,6 +44,9 @@ group :development, :test do
   gem 'rubygems-bundler'
   gem 'spork', '~> 1.0rc'	# for its recent version.
   gem 'thin'
+  gem 'yard'
+  gem 'redcarpet'
+  gem 'github-markup'
 end
 
 group :development do

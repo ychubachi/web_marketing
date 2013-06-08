@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+#
+# 共通するロジックです．
+#
 module Utility
   # コンバーションを記録し，顧客情報を登録します．
   def record_conversion
