@@ -2,9 +2,9 @@
 
 # 準備
 
-Install required libraries.
+必要なライブラリをインストールします．
 
-```
+```bash
   $ sudo apt-get install libxslt-dev
   $ sudo apt-get install libqtwebkit-dev
   $ sudo apt-get install libqt4-dev g++
@@ -13,14 +13,39 @@ Install required libraries.
   $ sudo apt-get build-dep libqtwebkit4
 ```
 
-# Use Bundler
+Bundlerを用い，ライブラリをインストールします．
 
 ```bash
 $ bundle install --path vendor
 ```
 
-# Use Guard
+# Guardの起動方法
 
 ```bash
 $ bundle exec guard start
 ```
+
+# ユーザの生成
+
+railsのコンソールを起動します．
+
+```bash
+# rails c
+```
+
+rubyで下記のコードを実行します．
+
+```ruby
+User.create! do |u|
+  u.email = 'user@example.com'
+  u.password = 'please'
+  u.password_confirmation = 'please'
+end
+```
+
+# Yardの起動方法
+
+```bash
+# bundle exec yard server --reload
+```
+
