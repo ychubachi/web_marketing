@@ -1,0 +1,13 @@
+<table id="<%= sub_form_list_id(:association => column.name, :id => parent_record.try(:id) || generated_id(parent_record) || 99999999999) %>">
+<%
+  @record = show_blank_record || build_associated(column, parent_record)
+  association_scope = column_scope(column, scope)
+-%>
+  <%= render :partial => 'horizontal_subform_header', :locals => {:parent_record => parent_record, :record => @record} %>
+
+  <%= render :partial => 'form_association_record', :collection => associated, :locals => {:scope => association_scope, :parent_record => parent_record, :column => column} %>
+  <%= render :partial => 'form_association_record', :object => show_blank_record, :locals => {:scope => association_scope, :parent_record => parent_record, :column => column, :locked => true, :index => associated.size} if show_blank_record %>
+  <tfoot>
+    <%= render :partial => 'horizontal_subform_footer', :locals => {:scope => column_scope(column, scope), :parent_record => parent_record, :column => column} %>
+  </tfoot>
+</table>
