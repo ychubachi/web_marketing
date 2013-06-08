@@ -81,3 +81,8 @@ db/*.sqlite3
 webrat.log
 vendor/ruby
 RECOVER/
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
