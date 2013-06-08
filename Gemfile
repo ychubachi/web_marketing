@@ -35,27 +35,27 @@ group :development, :test do
   gem 'guard-spork'
   gem 'launchy'			# lounches a browser.
   gem 'rails3-generators'	# for factory_girl_rails and simple_form
-  gem 'rspec',              :git => 'git://github.com/rspec/rspec.git'
-  gem 'rspec-core',         :git => 'git://github.com/rspec/rspec-core.git'
-  gem 'rspec-expectations', :git => 'git://github.com/rspec/rspec-expectations.git'
-  gem 'rspec-instafail'
-  gem 'rspec-mocks',        :git => 'git://github.com/rspec/rspec-mocks.git'
-  gem 'rspec-rails',        :git => 'git://github.com/rspec/rspec-rails.git'
   gem 'rubygems-bundler'
-  gem 'spork', '~> 1.0rc'	# for its recent version.
+  gem 'spork'
   gem 'thin'
 end
 
 group :development do
   # pry
   gem 'pry-rails'
-  # yard
+  # yard (documentation)
   gem 'yard'
   gem 'redcarpet'
   gem 'github-markup'
 end
 
 group :test do
+  gem 'rspec'
+  gem 'rspec-core'
+  gem 'rspec-expectations'
+  gem 'rspec-instafail'
+  gem 'rspec-mocks'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
 

@@ -9,9 +9,8 @@ module Utility
     warn '[WARN] record_conversion is duplicated.'.red
     warn ('[WARN] called from:' +  caller[0]).red
     browser_uuid = read_or_create_uuid(cookies)
-    browser = read_or_create_browser(browser_uuid,
-                                     request.user_agent.to_s)
-  
+    read_or_create_browser(browser_uuid,
+                           request.user_agent.to_s)
   end
 
   def read_or_create_uuid(cookies)
