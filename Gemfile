@@ -44,13 +44,19 @@ group :development, :test do
   gem 'rubygems-bundler'
   gem 'spork', '~> 1.0rc'	# for its recent version.
   gem 'thin'
+end
+
+group :development do
+  # pry
+  gem 'pry-rails'
+  # yard
   gem 'yard'
   gem 'redcarpet'
   gem 'github-markup'
 end
 
-group :development do
-  gem 'pry-rails'
+group :test do
+  gem 'selenium-webdriver'
 end
 
 group :assets do
