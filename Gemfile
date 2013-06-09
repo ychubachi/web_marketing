@@ -5,23 +5,25 @@ require 'rbconfig'
 HOST_OS = RbConfig::CONFIG['host_os']
 source 'https://rubygems.org'
 case HOST_OS
-  when /darwin/i
-    gem 'rb-fsevent', :group => :development
-    gem 'growl', :group => :development
-  when /linux/i
-    gem 'libnotify', :group => :development
-    gem 'rb-inotify'
-  when /mswin|windows|mingw32/i
-    gem 'rb-fchange', :group => :development
-    gem 'win32console', :group => :development
-    gem 'rb-notifu', :group => :development
-    gem 'eventmachine', '>= 1.0.0.beta', :group => :development
+when /darwin/i
+  gem 'rb-fsevent',	:group => :development
+  gem 'growl',		:group => :development
+when /linux/i
+  gem 'libnotify',	:group => :development
+  gem 'rb-inotify',	:group => :development
+when /mswin|windows|mingw32/i
+  gem 'rb-fchange',	:group => :development
+  gem 'win32console',	:group => :development
+  gem 'rb-notifu',	:group => :development
+  gem 'eventmachine', '>= 1.0.0.beta', :group => :development
 end
+
+# group :production, :development do
+# end
 
 group :development, :test do
   gem 'capistrano'
   gem 'capybara'
-  gem 'cucumber-rails', :require => false
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'email_spec'
@@ -57,6 +59,8 @@ group :test do
   gem 'rspec-mocks'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'cucumber'
+  gem 'cucumber-rails', :require => false 
 end
 
 group :assets do

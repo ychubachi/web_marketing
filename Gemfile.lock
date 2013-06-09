@@ -175,6 +175,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
+    mini_portile (0.5.0)
     multi_json (1.7.6)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
@@ -183,7 +184,8 @@ GEM
     net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    nokogiri (1.5.10)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -260,7 +262,7 @@ GEM
       actionpack (~> 3.0)
       activemodel (~> 3.0)
     slop (3.4.5)
-    spork (1.0.0rc3)
+    spork (0.9.2)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -303,6 +305,7 @@ DEPENDENCIES
   coffee-rails
   colorize
   compass-rails
+  cucumber
   cucumber-rails
   database_cleaner
   devise
