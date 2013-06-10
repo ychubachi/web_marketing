@@ -45,4 +45,8 @@ WebMarketing::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Rack::LiveReload
+  # https://github.com/johnbintz/rack-livereload
+  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)  
 end
