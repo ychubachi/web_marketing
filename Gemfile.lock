@@ -108,7 +108,7 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
-    ffi (1.8.1)
+    ffi (1.9.0)
     foreigner (1.4.1)
       activerecord (>= 3.0.0)
     formatador (0.2.4)
