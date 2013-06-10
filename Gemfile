@@ -30,7 +30,6 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'guard-bundler'
   gem 'guard-cucumber'
-  gem 'guard-livereload'
   gem 'guard-migrate'
   gem 'guard-rails'
   gem 'guard-rspec'
@@ -40,6 +39,12 @@ group :development, :test do
   gem 'rubygems-bundler'
   gem 'spork'
   gem 'thin'
+end
+
+# for Livereload
+group :development do
+  gem 'guard-livereload'
+  gem 'rack-livereload'
 end
 
 group :development do
