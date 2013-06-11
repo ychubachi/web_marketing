@@ -1,73 +1,70 @@
 @charset "utf-8"
-@import "compass"
-@import "compass/css3/border-radius"
-@import "compass/utilities/general/clearfix"
+@import compass/utilities
+@import compass/css3
+@import zurui-sass
 
 /* colors */
-$orange: #EB6321
-$green:  #63CF1D
-$blue:   #1F5D99
-$brown:  darken($orange, 40%)
-/* $brown: #221815 */
-$green_light: lighten($green, 40%)
-$green_dark: darken($green, 15%)
-$text:   lighten(black, 20%)
-$back:   lighten($orange, 40%)
+$base_color:    white				// 70%
+$main_color:    #EB6321				// 25% (AIIT orange)
+$accent_color:  adjust-hue($main-color, 200)	// 5%
+$text_color:    lighten(black, 20%)
+$inverse_color: white
+
+// フォント読み込み
+@import url(http://fonts.googleapis.com/css?family=Lato)
 
 /* 解像度 < 480 の端末用 (iPod touch 縦) */
 body
-  /* bodyを中央揃えする */
+  // bodyを中央揃えする
   margin-left: auto
   margin-right: auto
   width: 95%
-  /* fontと文字色、行間を指定する */
-  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
-  color: $text
-  background: $back
-  line-height: 1.5em
+  
+  // fontと文字色、行間を指定する
+  font-family: 'Lato', Arial, 'メイリオ', Meiryo ,'ヒラギノ角ゴPro W3' ,'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', sans-serif //ズルいフォント
+  
+  // 色を設定します
+  color: $text_color
+  background: $base-color url(/images/white_leather.png)//ズルい背景パターン
 
   header
-    background: $brown
-    margin: 0.0em
+    background: $main_color
     margin-bottom: 0.8em
+    padding-top: 0.5em
+    +box-shadow(rgba(0,0,0,.2) 0 2px 5px) //ヘッダに影
+    // +zurui-gradient-top-darken($main_color) //ズルいグラデーション
+    @include border-radius(4px, 4px) // 角に丸み
     @include clearfix
     #banner
-      padding-top: 1.0em
       text-align: center
       color: white
-      h1
+      +zurui-ts-000(.3) //ズルいテキストシャドウ
+      #en_title // 大学名（英文）
         font-size: 1.7em
-        margin-top: 0.5em
-        margin-bottom: 0.7em
-        letter-spacing: -1px
-      h2
-        font-size: 1.5em
-        line-height: 1.2em
+        letter-spacing: -1px // 字詰め
+      #jp_title // 大学名（日本語）
+        font-size: 1.7em
     nav
       ul
         padding: 0.0em
         margin: 0.0em
+        list-style-type: none // 先頭に・をつけない
       a
         display: block
         padding: 0.4em
-        @include link-colors(white, $orange, false, false, white)
-        background: $green_dark
-        border:
-          width: 1px
-          color: $brown
-          style: dotted
+        @include link-colors($accent_color, $inverse_color, false, false, white)
+        +zurui-line-bottom($op1: .1, $op2: .2) //ズルい線
+        // background: $accent_color
+        +zurui-ts-fff(.3) //ズルいテキストシャドウ
         text:
-          decoration: none
-          shadow: 2px 2px 3px $text
+          decoration: none // リンクのアンダーラインを消す
 
   article, aside, footer
     section
+      +zurui-ts-fff(.3) //ズルいテキストシャドウ
       margin-left: 0.2em
-      margin-bottom: 0.5em
-      background: $green_light
       padding: 0.5em
       @include clearfix
-      @include border-radius(10px, 10px)
       h3
         margin:
           top: 0.4em
@@ -75,13 +72,9 @@ body
         font:
           size: 1.4em
           weight: normal
-        text:
-          shadow: 1px 1px 2px $text
-        color: $orange
-      h4
-        margin-bottom: 0.4em
-        font-size: 1.2em
-        color: $blue
+        +zurui-ts-000(.5)  //ズルいテキストシャドウ
+        +zurui-line-bottom($op1: .1, $op2: .2) //ズルい線
+        color: $accent_color
       p
         font-size: 0.9em
         text-indent: 0.9em
@@ -94,7 +87,7 @@ body
         clear: both
         float: right
         font-size: 0.8em
-        @include link-colors($blue, $orange, false, false, $blue)
+        @include link-colors($accent_color, $main_color, false, false, $accent_color)
       ul
         list-style: square outside none
       figure
@@ -109,7 +102,7 @@ body
           font-size: 0.9em
           line-height: 1.4em
           th, td
-            border: 2px solid $green
+            border: 2px solid $main_color
             padding: 0.3em
             text-align: center
       #map_canvas
@@ -124,7 +117,9 @@ form
   margin-bottom: 0.5em
   padding-top: 0.5em
   padding-bottom: 0.5em
-  background: $green_dark
+  background: $accent_color
+  +zurui-gradient-top-lighten($accent_color) //ズルいグラデーション
+  @include border-radius(4px, 4px) // 角に丸み
   color: white
   table
     width: 100%
@@ -151,11 +146,10 @@ form
           style: none
           font-size: 1.2em
           font-weight: bold
-          color: darken($green, 10%)
+          color: $accent_color
           background: white
           width: 60%
-          border: 2px darken($green, 10%) outset
-          // border: 3px solid darken($green, 10%)
+          border: 2px $accent_color outset
           @include border-radius(15px, 15px)
 
 section#links

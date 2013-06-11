@@ -68,10 +68,16 @@ group :test do
   gem 'cucumber-rails', :require => false 
 end
 
+# Using Zurui
+# https://github.com/mahm/zurui-sass-rails
+group :assets do
+  gem 'sass-rails'
+  gem 'compass-rails'
+  gem 'zurui-sass-rails'
+end
+
 group :assets do
   gem 'coffee-rails'
-  gem 'compass-rails'
-  gem 'sass-rails'
   gem 'therubyracer'
   gem 'uglifier'
 end

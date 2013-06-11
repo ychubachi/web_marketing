@@ -6,10 +6,10 @@
 -# %a{href: 'http://aiit.ac.jp/', target: '_blank'} Jump to AIIT website
 %header
   #banner
+    %p#en_title Advanced Institute of Industrial Technology
+    %p#jp_title 産業技術大学院大学
     %a{href: 'http://aiit.ac.jp/', target: '_blank'}
       = image_tag 'aiit_logo_200x200.fw.png', {width: '90px'}
-    %h1 Advanced Institute of Industrial Technology
-    %h2 産業技術大学院大学
   %nav
     %ul
       %li
@@ -55,6 +55,8 @@
     %p この専攻を修了することで「創造技術修士（専門職）」の学位が取得できます。
     %a.request{href: '#request'} 資料請求
 
+  = render 'access'
+  
   %section
     %a{name: 'chouki_rishuu'} 
     %h3 長期履修制度
@@ -86,7 +88,6 @@
     %p なお、AIIT単位バンクに預けた単位は5年間有効です。この制度をどうぞご活用ください。
     %a.request{href: '#request'} 資料請求
 %aside
-  = render 'request'
   %section
     %h3 入試説明会
     %p 研究科・各専攻の紹介やキャンパスツアー、入学試験についてご案内をする入試説明会を開催しています。
@@ -101,7 +102,6 @@
           %td= data[0]
           %td= data[1]
     %a.request{href: '#request'} 資料請求
-  = render 'access'
   -# %section
     %h3 フォーラム・勉強会
     %p IT系の技術に関する勉強会「InfoTalk」を毎月開催しています。また、デザイン分野のプロフェッショナルにご登壇頂く「デザインミニ塾」も開催しています。
@@ -142,8 +142,9 @@
     %p 同じ建物にある都立高専の170万冊以上の蔵書も閲覧でき、ゆったりとした配置の館内で、落ち着いて図書の閲覧をしていただけます。
     %p なお、本学の図書館は東京都で働いている方と京浜地区の事業所にお勤めの方にも無料で開放しています。
     %a.request{href: '#request'} 資料請求
-  %section
-    %h3 QR Code
-    %figure
-      = image_tag 'qr_lp_to_lp.gif', {height: '100px'}
-    %p このページへのQRコードです。スマートフォンにも対応しています。通常の携帯電話ではPCサイトビューアなどで閲覧してください。  
+  = render 'request'
+  -# %section
+  -#   %h3 QR Code
+  -#   %figure
+  -#     = image_tag 'qr_lp_to_lp.gif', {height: '100px'}
+  -#   %p このページへのQRコードです。スマートフォンにも対応しています。通常の携帯電話ではPCサイトビューアなどで閲覧してください。  
