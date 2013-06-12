@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activescaffold/active_scaffold.git
-  revision: 1083d490a5b156d6b65f45ffe66b4f9b6065403a
+  revision: adedcfaf7e116fbbd5ce66c0bc34175956c3e1b0
   specs:
     active_scaffold (3.3.0)
       rails (~> 3.2.0)
@@ -164,7 +164,7 @@ GEM
     libnotify (0.8.0)
       ffi (>= 1.0.11)
     libv8 (3.11.8.17)
-    listen (1.1.6)
+    listen (1.2.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
