@@ -30,23 +30,5 @@
   %body
     = yield
     %footer
-      %section#links
-        %h3 AIITおすすめリンク集
-        %a{href: 'http://aiit.ac.jp/', target: '_blank'}
-          = image_tag 'aiit_logo_300x200.gif', {height: '50px'}
-        %a{href: 'https://www.facebook.com/aiit.ac.jp', target: '_blank'}
-          = image_tag 'facebook.gif', {height: '50px'}
-        %a{href: 'https://twitter.com/#!/aiit4u', target: '_blank'}
-          = image_tag 'twitter.gif', {height: '50px'}
-        %a{href: 'http://aiit.ac.jp/article/student_interview/index.html', target: '_blank', target: '_blank'}
-          = image_tag 'success_story.jpg', {height: '50px'}
-        %a{href: 'http://aiit.ac.jp/article/pbl_interviews/interviews/index.html', target: '_blank'}
-          = image_tag 'pbl_interview.jpg', {height: '50px'}
-        %a{href: 'http://d.hatena.ne.jp/pklib/', target: '_blank'}
-          = image_tag 'toshokan_titleimg.png', {height: '50px'}
-        %a{href: 'http://pk.aiit.ac.jp/', target: '_blank'}
-          = image_tag 'logo_infotalk_c2_320.png', {height: '50px'}
-        %a{href: 'http://www.apen.asia/', target: '_blank'}
-          = image_tag 'apen_logo.png', {height: '50px'}
       &copy; 2012- AIIT / All rights reserved.
       = yield :footer

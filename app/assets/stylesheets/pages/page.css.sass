@@ -13,7 +13,9 @@ $inverse_color: white
 // フォント読み込み
 @import url(http://fonts.googleapis.com/css?family=Lato)
 
+/****************************************/
 /* 解像度 < 480 の端末用 (iPod touch 縦) */
+/****************************************/
 body
   // bodyを中央揃えする
   margin-left: auto
@@ -29,8 +31,8 @@ body
 
   header
     background: $main_color
-    margin-bottom: 0.8em
-    padding-top: 0.5em
+    margin-top: 0.2em
+    margin-bottom: 0.2em
     +box-shadow(rgba(0,0,0,.2) 0 2px 5px) //ヘッダに影
     // +zurui-gradient-top-darken($main_color) //ズルいグラデーション
     @include border-radius(4px, 4px) // 角に丸み
@@ -40,10 +42,16 @@ body
       color: white
       +zurui-ts-000(.3) //ズルいテキストシャドウ
       #en_title // 大学名（英文）
+        margin-top: 0em
+        margin-bottom: 0.4em
         font-size: 1.7em
         letter-spacing: -1px // 字詰め
       #jp_title // 大学名（日本語）
+        margin-top: 0em
+        margin-bottom: 0.6em
         font-size: 1.7em
+      #image_title // ロゴ
+        margin-top: 0em
     nav
       ul
         padding: 0.0em
@@ -53,6 +61,7 @@ body
         display: block
         padding: 0.4em
         @include link-colors($accent_color, $inverse_color, false, false, white)
+        +zurui-line-top($op1: .1, $op2: .2) //ズルい線
         +zurui-line-bottom($op1: .1, $op2: .2) //ズルい線
         // background: $accent_color
         +zurui-ts-fff(.3) //ズルいテキストシャドウ
@@ -112,45 +121,45 @@ body
         margin-top: 0.5em
         margin-bottom: 0.5em
 
-form
-  margin-top: 0.5em
-  margin-bottom: 0.5em
-  padding-top: 0.5em
-  padding-bottom: 0.5em
-  background: $accent_color
-  +zurui-gradient-top-lighten($accent_color) //ズルいグラデーション
-  @include border-radius(4px, 4px) // 角に丸み
-  color: white
-  table
-    width: 100%
-    tr
-      th
-        width: 25%
-        text-align: right
-        padding-top: 0.3em
-        padding-right: 0.3em
-      td
-        padding-top: 0.3em
-        #customer_family_name, #customer_given_name
-          width: 35%
-          border: 2px white inset
-        #customer_email, #customer_postal_code, #customer_address, #comment
-          width: 90%
-          border: 2px white inset
-        #guidance
-          width: 90%
-          border: 2px white outset
-        #submit
-          padding-bottom: 0.2em
+  form
+    margin-top: 0.5em
+    margin-bottom: 0.5em
+    padding-top: 0.5em
+    padding-bottom: 0.5em
+    background: $accent_color
+    +zurui-gradient-top-lighten($accent_color) //ズルいグラデーション
+    @include border-radius(4px, 4px) // 角に丸み
+    color: white
+    table
+      width: 100%
+      tr
+        th
+          width: 25%
+          text-align: right
           padding-top: 0.3em
-          style: none
-          font-size: 1.2em
-          font-weight: bold
-          color: $accent_color
-          background: white
-          width: 60%
-          border: 2px $accent_color outset
-          @include border-radius(15px, 15px)
+          padding-right: 0.3em
+        td
+          padding-top: 0.3em
+          #customer_family_name, #customer_given_name
+            width: 35%
+            border: 2px white inset
+          #customer_email, #customer_postal_code, #customer_address, #comment
+            width: 90%
+            border: 2px white inset
+          #guidance
+            width: 90%
+            border: 2px white outset
+          #submit
+            padding-bottom: 0.2em
+            padding-top: 0.3em
+            style: none
+            font-size: 1.2em
+            font-weight: bold
+            color: $accent_color
+            background: white
+            width: 60%
+            border: 2px $accent_color outset
+            @include border-radius(15px, 15px)
 
 section#links
   a
@@ -162,7 +171,9 @@ section#links
   background: red
   text-align: center
 
+/******************************************/
 /* 解像度 481-767 の端末用 (iPod touch 横) */
+/******************************************/
 @media only screen and (min-width: 480px)
   .sizecheck
     background: green
@@ -182,21 +193,25 @@ section#links
         padding-left: 0.5em
         padding-bottom: 0.5em
 
+/************************************/
 /* 解像度 768-959 の端末用 (iPad 縦) */
+/************************************/
 @media only screen and (min-width: 767px)
   .sizecheck
     background: yellow
   article
     float: left
-    width: 59.5%
-    margin-right: 0.5em
+    clear: both
+    width: 48%
   aside
-    float: left
-    width: 39.5%
+    float: right
+    width: 48%
   footer
     clear: both
 
+/****************************************/
 /* 解像度 960以上 の端末用 (PC, iPad 横) */
+/****************************************/
 @media only screen and (min-width: 959px)
   .sizecheck
     background: white

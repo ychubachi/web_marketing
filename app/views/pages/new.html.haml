@@ -6,10 +6,10 @@
 -# %a{href: 'http://aiit.ac.jp/', target: '_blank'} Jump to AIIT website
 %header
   #banner
+    %a{href: 'http://aiit.ac.jp/', target: '_blank'}
+      = image_tag 'aiit_logo_200x200.fw.png', {width: '90px', id: 'image_title'}
     %p#en_title Advanced Institute of Industrial Technology
     %p#jp_title 産業技術大学院大学
-    %a{href: 'http://aiit.ac.jp/', target: '_blank'}
-      = image_tag 'aiit_logo_200x200.fw.png', {width: '90px'}
   %nav
     %ul
       %li
@@ -24,17 +24,22 @@
         %a{href: '#chouki_rishuu'} 長期履修制度
       %li
         %a{href: '#aiit_credit_bank'} AIIT単位バンク
+
 %article
   = render 'about'
+  
+%aside
   %section
-    %h3 講義とPBLを柱としたカリキュラム
+    %h3 講義とPBLによるカリキュラム
     %a{name: 'curriculum'}
     %p カリキュラムの大きな特色は講義とPBL（Project Based Learning）を2本の柱としていることです。講義は主に1年次に履修する科目で、スクール形式の授業やグループワーク形式の演習などがあります。
     %figure
       = image_tag 'chubachi_pbl.png'
-    %p PBLは実践的なテーマに基づきチームでプロジェクトを遂行することによって、徹底的に業務遂行能力を身につける演習形式の授業です。従来の大学院修士課程では修士論文を完成させることが修了の要件となりますが、AIITではPBL科目を履修して単位を取得することが必須です。
+    %p PBLは実践的なテーマに基づきチームでプロジェクトを遂行することによって、徹底的に業務遂行能力を身につける演習形式の授業です。
+    %p 従来の大学院修士課程では修士論文を完成させることが修了の要件となりますが、AIITではPBL科目を履修して単位を取得することが必須です。
     %a.request{href: '#request'} 資料請求
 
+%article
   %section
     %a{name: 'isa'} 
     %h3 情報アーキテクチャ専攻
@@ -45,6 +50,7 @@
     %p この専攻を修了することで「情報システム学修士（専門職）」の学位が取得できます。
     %a.request{href: '#request'} 資料請求
 
+%aside
   %section
     %a{name: 'ide'} 
     %h3 創造技術専攻
@@ -55,8 +61,7 @@
     %p この専攻を修了することで「創造技術修士（専門職）」の学位が取得できます。
     %a.request{href: '#request'} 資料請求
 
-  = render 'access'
-  
+%article
   %section
     %a{name: 'chouki_rishuu'} 
     %h3 長期履修制度
@@ -73,9 +78,10 @@
       なお、10月入学の場合は、図の右側にある青い矢印で示すとおり、全体で2年半となる長期履修制度を利用します。
     %a.request{href: '#request'} 資料請求
 
+%aside
   %section
     %a{name: 'aiit_credit_bank'} 
-    %h3 AIIT単位バンクと科目等履修生制度
+    %h3 AIIT単位バンクとは？
     %p 『今すぐ入学するのは難しいけれど、いくつか履修してみたい科目がある』『4月入学が決まったけれども、入学前に講義を受けておきたい』
     %p このような方におすすめするのが「科目等履修生制度」です。
     %p この制度を利用すれば、１科目からでも授業を履修をすることができます。ご興味・ご関心のある領域の授業を選んで最先端の知見・スキルを修得してください。
@@ -87,7 +93,27 @@
     %p このとき、科目等履修生として支払った授業料も返還されるので学費が無駄になることがありません。
     %p なお、AIIT単位バンクに預けた単位は5年間有効です。この制度をどうぞご活用ください。
     %a.request{href: '#request'} 資料請求
+
+%article
+  %section
+    %h3 附属図書館のご案内
+    %p AIITには約1万4千冊の蔵書を有する図書館があります。専門職大学院の附属図書館らしく、情報技術、経営、工学、デザインなどの各種専門書を数多く取り揃えているのが特徴です。
+    %figure
+      = image_tag 'library.png'
+    %p 同じ建物にある都立高専の170万冊以上の蔵書も閲覧でき、ゆったりとした配置の館内で、落ち着いて図書の閲覧をしていただけます。
+    %p なお、本学の図書館は東京都で働いている方と京浜地区の事業所にお勤めの方にも無料で開放しています。
+    %a.request{href: '#request'} 資料請求
+
+  %section
+    %h3 フォーラム・勉強会
+    %p IT系の技術に関する勉強会「InfoTalk」を毎月開催しています。また、デザイン分野のプロフェッショナルにご登壇頂く「デザインミニ塾」も開催しています。
+    %p これらの勉強会にはどなたでもご自由にご参加いただけます（日程・内容はこのページの下部にあるリンク集のリンク先をご参照ください）。
+    %a.request{href: '#request'} 資料請求
+    
 %aside
+  = render 'access'
+  
+%article
   %section
     %h3 入試説明会
     %p 研究科・各専攻の紹介やキャンパスツアー、入学試験についてご案内をする入試説明会を開催しています。
@@ -102,11 +128,8 @@
           %td= data[0]
           %td= data[1]
     %a.request{href: '#request'} 資料請求
-  -# %section
-    %h3 フォーラム・勉強会
-    %p IT系の技術に関する勉強会「InfoTalk」を毎月開催しています。また、デザイン分野のプロフェッショナルにご登壇頂く「デザインミニ塾」も開催しています。
-    %p これらの勉強会にはどなたでもご自由にご参加いただけます（日程・内容はこのページの下部にあるリンク集のリンク先をご参照ください）。
-    %a.request{href: '#request'} 資料請求
+
+%aside
   %section
     %h3 入学料・授業料など
     %p 公立ならではのリーズナブルな授業料です。各種奨学金や授業料の減免・分納制度もございます。また、教育訓練給付制度指定講座です。
@@ -134,17 +157,34 @@
         %th 授業料（1科目=2単位）
         %td 28,800円
     %a.request{href: '#request'} 資料請求
-  %section
-    %h3 附属図書館のご案内
-    %p AIITには約1万4千冊の蔵書を有する図書館があります。専門職大学院の附属図書館らしく、情報技術、経営、工学、デザインなどの各種専門書を数多く取り揃えているのが特徴です。
-    %figure
-      = image_tag 'library.png'
-    %p 同じ建物にある都立高専の170万冊以上の蔵書も閲覧でき、ゆったりとした配置の館内で、落ち着いて図書の閲覧をしていただけます。
-    %p なお、本学の図書館は東京都で働いている方と京浜地区の事業所にお勤めの方にも無料で開放しています。
-    %a.request{href: '#request'} 資料請求
+
+%article
   = render 'request'
-  -# %section
-  -#   %h3 QR Code
-  -#   %figure
-  -#     = image_tag 'qr_lp_to_lp.gif', {height: '100px'}
-  -#   %p このページへのQRコードです。スマートフォンにも対応しています。通常の携帯電話ではPCサイトビューアなどで閲覧してください。  
+  
+%aside
+  %section
+    %h3 QR Code
+    %figure
+      = image_tag 'qr_lp_to_lp.gif', {height: '100px'}
+    %p このページへのQRコードです。スマートフォンにも対応しています。通常の携帯電話ではPCサイトビューアなどで閲覧してください。
+
+  %section#links
+    %h3 AIITおすすめリンク集
+    %p 様々なコンテンツを提供するサイトへのリンクとなっております．どうぞご覧ください．
+    %a{href: 'http://aiit.ac.jp/', target: '_blank'}
+      = image_tag 'aiit_logo_300x200.gif', {height: '50px'}
+    %a{href: 'https://www.facebook.com/aiit.ac.jp', target: '_blank'}
+      = image_tag 'facebook.gif', {height: '50px'}
+    %a{href: 'https://twitter.com/#!/aiit4u', target: '_blank'}
+      = image_tag 'twitter.gif', {height: '50px'}
+    %a{href: 'http://aiit.ac.jp/article/student_interview/index.html', target: '_blank', target: '_blank'}
+      = image_tag 'success_story.jpg', {height: '50px'}
+    %a{href: 'http://aiit.ac.jp/article/pbl_interviews/interviews/index.html', target: '_blank'}
+      = image_tag 'pbl_interview.jpg', {height: '50px'}
+    %a{href: 'http://d.hatena.ne.jp/pklib/', target: '_blank'}
+      = image_tag 'toshokan_titleimg.png', {height: '50px'}
+    %a{href: 'http://pk.aiit.ac.jp/', target: '_blank'}
+      = image_tag 'logo_infotalk_c2_320.png', {height: '50px'}
+    %a{href: 'http://www.apen.asia/', target: '_blank'}
+      = image_tag 'apen_logo.png', {height: '50px'}
+
