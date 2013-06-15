@@ -1,4 +1,4 @@
-# Web Marketing
+# Web Marketing [![Build Status](https://travis-ci.org/ychubachi/web_marketing.png)](https://travis-ci.org/ychubachi/web_marketing)
 
 # 準備
 
