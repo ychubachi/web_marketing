@@ -41,7 +41,6 @@ group :development do
 end
 
 group :test do
-  gem 'launchy'			# lounches a browser.
   gem 'rake'			# for Travis CI
   gem 'rspec'
   gem 'rspec-core'
@@ -54,6 +53,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'launchy'			# lounches a browser for capybara.
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'factory_girl_rails'
