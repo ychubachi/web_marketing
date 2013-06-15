@@ -333,6 +333,7 @@ DEPENDENCIES
   rack-livereload
   rails
   rails3-generators
+  rake
   rb-inotify
   rb-readline
   redcarpet
