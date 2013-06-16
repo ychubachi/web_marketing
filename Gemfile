@@ -86,3 +86,4 @@ gem 'uuidtools'
 gem 'rb-readline'
 gem 'rails3-generators'	# for factory_girl_rails and simple_form
 gem 'rubygems-bundler'
+gem 'libv8' # , '3.11.8.17'

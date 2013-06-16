@@ -328,6 +328,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   libnotify
+  libv8
   log4r
   pry-rails
   rack-livereload
