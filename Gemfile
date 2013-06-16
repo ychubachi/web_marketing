@@ -68,8 +68,9 @@ group :assets do
   gem 'zurui-sass-rails' # https://github.com/mahm/zurui-sass-rails
   # Javascripts
   gem 'coffee-rails'
-  gem 'therubyracer'
   gem 'uglifier' # JavaScript compressor
+  gem 'therubyracer', '0.11.1'
+  gem 'libv8', '~> 3.11.8.13' # http://d.hatena.ne.jp/suu-g/20121222/1356189597
 end
 
 gem 'active_scaffold', :git => 'git://github.com/activescaffold/active_scaffold.git'
@@ -86,4 +87,3 @@ gem 'uuidtools'
 gem 'rb-readline'
 gem 'rails3-generators'	# for factory_girl_rails and simple_form
 gem 'rubygems-bundler'
-gem 'libv8' # , '3.11.8.17'
