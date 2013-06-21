@@ -30,7 +30,6 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'guard-yard' # l39と重複？
-  gem 'spork'
   # for Livereload
   gem 'guard-livereload'
   gem 'rack-livereload'
@@ -60,6 +59,7 @@ group :test do
   gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'foreigner'
+  gem 'spork'
 end
 
 group :assets do
