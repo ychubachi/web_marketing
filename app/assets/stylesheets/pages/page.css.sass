@@ -25,7 +25,7 @@ body
   // fontと文字色、行間を指定する
   font-family: 'Lato', Arial, 'メイリオ', Meiryo ,'ヒラギノ角ゴPro W3' ,'Hiragino Kaku Gothic Pro', 'ＭＳ Ｐゴシック', sans-serif //ズルいフォント
   
-  // 色を設定します
+  // 色と背景を設定します
   color: $text_color
   background: $base-color url(/images/white_leather.png)//ズルい背景パターン
 
@@ -60,11 +60,11 @@ body
       a
         display: block
         padding: 0.4em
-        @include link-colors($accent_color, $inverse_color, false, false, white)
+        @include link-colors($inverse_color, $accent_color, false, false, white)
         +zurui-line-top($op1: .1, $op2: .2) //ズルい線
         +zurui-line-bottom($op1: .1, $op2: .2) //ズルい線
         // background: $accent_color
-        +zurui-ts-fff(.3) //ズルいテキストシャドウ
+        +zurui-ts-000(.3) //ズルいテキストシャドウ
         text:
           decoration: none // リンクのアンダーラインを消す
 
