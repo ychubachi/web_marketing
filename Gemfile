@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # ------------------------------------------------------------------------
 # See: https://gist.github.com/1191428
 require 'rbconfig'
@@ -28,6 +29,7 @@ group :development do
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'guard-yard' # l39と重複？
   gem 'spork'
   # for Livereload
   gem 'guard-livereload'
