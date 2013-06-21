@@ -8,7 +8,7 @@ app/models/customer.rb 144577512c92efaad846eb08e96cf8dcc3a36cf1
 app/models/page_view.rb 2befde25fa278e364115d687cdf07692009b5238
 app/models/conversion.rb ea1832a80f608ff09883a195bcf5c4a21cc16100
 app/models/redirection.rb e9b4ecd8f75b61574f112dba5e6840879cbc2b8b
-app/controllers/utility.rb 0dad0868cbe7c345d331cb40bc7e1cd273d4c298
+app/controllers/utility.rb cc0d251792f440af784fb01d7f691fc30ee47392
 app/mailers/conversion_mailer.rb 61f566420177afa9353b707b761542a5bcb1f4aa
 app/helpers/application_helper.rb eef3d3adce96afe8b14c19b6135323f47543d979
 app/controllers/pages_controller.rb 55489bc0eae0b258b4cda2e3501627b4537f7182
