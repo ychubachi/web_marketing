@@ -71,3 +71,9 @@ guard 'cucumber', :cli => "--no-profile --color --format pretty --strict --drb",
   watch(%r{^features/support/.+$})          { 'features' }
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
 end
+
+guard 'yard' do
+  watch(%r{app/.+\.rb})
+  watch(%r{lib/.+\.rb})
+  watch(%r{ext/.+\.c})
+end
