@@ -4,9 +4,7 @@ class PagesController < ApplicationController
   include Utility
 
   def initialize
-    @guidance_table = [['6/1(土)', '13:30-15:00'],
-                       ['6/12(水)', '19:30-21:00'],
-                       ['6/22(土)', '13:30-15:00'],
+    @guidance_table = [
                        ['7/3(水)','19:30-21:00'],
                        ['7/13(土)', '13:30-15:00'],
                        ['7/20(土)', '13:30-15:00'],
